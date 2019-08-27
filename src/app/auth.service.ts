@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, of, Observable, BehaviorSubject } from 'rxjs';
-
+import { Md5 } from 'ts-md5/dist/md5';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,9 +40,8 @@ export class AuthService {
 
   login(username, password) {
     const users: any = JSON.parse(localStorage.getItem('users'));
-    if (users && users[username] && users[username][1] === password) {
-
-      localStorage.setItem('userid', JSON.stringify(users[username].push(username)));
+    if (users && users[username] && users[username][1] === Md5.hashStr(password)) {
+      localStorage.setItem('userid', JSON.stringify([users[username][0], username]));
       this.emit(users[username]);
       return this.getuser();
 
@@ -50,6 +49,7 @@ export class AuthService {
     return of(null);
   }
   Signup(reguser) {
+    reguser.password = Md5.hashStr(reguser.password);
     let users = JSON.parse(localStorage.getItem('users'));
     if (users && users[reguser.id]) {
       return of(null);
