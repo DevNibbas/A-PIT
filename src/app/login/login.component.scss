@@ -1,0 +1,149 @@
+.layer{
+    width: 100vw;
+    height: 100vh;
+    margin:0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-attachment: scroll;
+    // background: url("../../assets/apicloud.png");
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size:cover;  
+    &>.brand{
+        margin: 0px;
+        width: 100%;
+        height: auto;
+        max-width: 80vw;
+        &>.apit-pic{
+            &>img{
+                max-width: 100%;
+            }
+        }
+        &>.vrline{
+            border: 1px solid rgb(214, 216, 219);
+        }
+        &>.logincontainer{
+            padding: 0 50px;
+            // display:flex;
+            // flex-direction: column;
+            // justify-content: center;
+            // align-items: center;
+            
+            &>.form-group{
+                // text-align: center;
+                max-width: 500px;
+                
+                &>img{
+                    width: 90px;
+                    position: relative;
+                    // left: 50%;
+                    margin:5px 10px;
+
+                    // height: 50px;
+                }
+                &>.header{
+                    font-weight: 500;
+                    font-size: 25px;
+                    
+                }
+                &>#body{
+                    font-size: 15px;
+                    padding:0 0 7px 0;
+                    color: rgb(94, 94, 94);
+                }
+                &>.title{
+                    font-size: 25px;
+                    color: rgb(94, 94, 94);
+                }
+                &>.formele{
+
+                    &>input{
+                        border: 1px solid #777;
+                        border-radius: 5px;
+                        padding: 5px;
+                        margin: 10px 0;
+                        width: 100%;
+
+                        &:active{
+                            outline: none;
+                        }
+                    }
+                    &>button{
+                        // border: none;
+                        border-radius: 5px;
+                        background: #4AC7F4;
+                        margin: 10px 10px 0 0;
+                        // padding: 10px 15px;
+                    }
+                    &>#noac{
+                        &>a{
+
+                            text-decoration: none;
+                            
+                            &:link{
+                                text-decoration: none;
+                            }
+                            &:active, &:hover{
+                                outline: none;
+                                color: #4AC7F4;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+}
+
+@media(max-width:800px){
+    .layer{
+        display: block;
+        
+        &>.brand{
+            margin: 50px 0;
+            max-width: 100vw;
+            &>.apit-pic{
+                // display: none;
+                text-align: center;
+                &>img{
+                    max-width: 70%;
+                }
+            }
+            &>.vrline{
+                // border: 1px solid rgb(214, 216, 219);
+                display: none;
+            }
+            &>.logincontainer{
+                margin-top:30px; 
+                padding: 0 25px;
+                // display:flex;
+                // flex-direction: column;
+                // justify-content: center;
+                // align-items: center;
+                
+                &>.form-group{
+                    // text-align: center;
+                    max-width: 100vw;
+                    
+                    &>img{
+                        width: 70px;
+                        position: relative;
+                        // left: 50%;
+                        margin:5px 10px 0 0;
+    
+                        // height: 50px;
+                    }
+                    
+    
+                }
+            }
+        }
+    
+    }
+}

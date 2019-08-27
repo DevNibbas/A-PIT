@@ -1,4 +1,36 @@
-<section class="header">
+<section class="layer">
 
-</section>
- 
+
+    <div class="row nog brand">
+      <div class="col-md-6 nog apit-pic">
+        <img src="../../assets/apitesting.jpg">
+      </div>
+      <div class="vrline"></div>
+      <div class="col-md nog logincontainer">
+        <div class="form-group">
+          <img src="../../assets/logo.png">
+          <span class="header">Welcome to APIT </span>
+          <hr>
+          <section id="body">
+            APIT is a free and open source project to make API testing easy and hassle free. Start testing your APIs today with APIT.
+  
+          </section>
+          <div class="title">
+            Login
+          </div>
+          <div class="formele">
+            <input type="text" class="userid" [(ngModel)]="user.id" placeholder="Your Username">
+          </div>
+          <div class="formele">
+            <input type="text" class="password" [(ngModel)]="user.password" placeholder="Your Password">
+          </div>
+          <div class="formele">
+              <button mat-raised-button color="primary" (click)="login()">Login</button>
+              <span id="noac"> Don't have an account? <a routerLink="/auth/signup">Signup </a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  </section>
