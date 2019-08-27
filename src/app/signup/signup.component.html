@@ -1,12 +1,15 @@
-<section>
+<section class="layer">
     <header>
         <div class="brand">
             <img src="../../assets/logo.svg">
         </div>
     </header>
 
-    <section class="body">
+    <section class="col-md-5 nog body">
         <div class="form-group">
+            <div class="title">
+                Sign-up
+            </div>
             <div class="formele">
                 <input type="text" placeholder="Name" [(ngModel)]="user.name">
 
@@ -19,13 +22,17 @@
                 <input type="text" placeholder="password" [(ngModel)]="user.password">
 
             </div>
+            <div class="formele">
+                <button mat-raised-button color="primary" (click)="signup()">Signup</button>
+                <span id="aac"> Already have an account? <a routerLink="/auth/login">Login </a></span>
+            </div>
 
 
 
         </div>
     </section>
     <section class="footer">
-        APIT does not use any server for account creation and user validation, login and signps are only to manage
+        gitAPIT does not use any server for account creation and user validation, login and signps are only to manage
         multiple accounts, on this tool
         all datas are stored locally.
 

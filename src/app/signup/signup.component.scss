@@ -1,46 +1,70 @@
-.form-group{
-    // text-align: center;
-    max-width: 500px;
-    
-    
-    &>.title{
-        font-size: 25px;
-        color: rgb(94, 94, 94);
+
+
+
+.layer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &>header{
+        margin-top: 50px;
     }
-    &>.formele{
 
-        &>input{
-            border: 1px solid #777;
-            border-radius: 5px;
-            padding: 5px;
-            margin: 10px 0;
-            width: 100%;
+    &>.body{
+        margin-top: 30px;
+        max-width: 500px;
 
-            &:active{
-                outline: none;
+        &>.form-group{
+            // text-align: center;
+            max-width: 500px;
+            
+            
+            &>.title{
+                font-size: 25px;
+                color: rgb(94, 94, 94);
+            }
+            &>.formele{
+
+                &>input{
+                    border: 1px solid #777;
+                    border-radius: 5px;
+                    padding: 5px;
+                    margin: 10px 0;
+                    width: 100%;
+
+                    &:active{
+                        outline: none;
+                    }
+                }
+                &>button{
+                    // border: none;
+                    border-radius: 5px;
+                    background: #4AC7F4;
+                    margin: 10px 10px 0 0;
+                    // padding: 10px 15px;
+                    color: white;
+                }
+                &>#aac{
+                    &>a{
+                        cursor: pointer;
+
+                        text-decoration: none;
+                        
+                        &:link{
+                            text-decoration: none;
+                        }
+                        &:active, &:hover{
+                            outline: none;
+                            color: #4AC7F4;
+                        }
+
+                    }
+                }
             }
         }
-        &>button{
-            // border: none;
-            border-radius: 5px;
-            background: #4AC7F4;
-            margin: 10px 10px 0 0;
-            // padding: 10px 15px;
-        }
-        &>#aac{
-            &>a{
-
-                text-decoration: none;
-                
-                &:link{
-                    text-decoration: none;
-                }
-                &:active, &:hover{
-                    outline: none;
-                    color: #4AC7F4;
-                }
-
-            }
-        }
+    }
+    &>.footer{
+        margin: 50px 0;
+        max-width: 500px;
     }
 }
