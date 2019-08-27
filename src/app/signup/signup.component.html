@@ -10,6 +10,9 @@
             <div class="title">
                 Sign-up
             </div>
+            <div class="err" (click)="closeerror()">
+                {{errormsg}}
+            </div>
             <div class="formele">
                 <input type="text" placeholder="Name" [(ngModel)]="user.name">
 

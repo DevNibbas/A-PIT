@@ -1,3 +1,4 @@
+import { AuthGuard } from './../auth.guard';
 import { ApiuiwrapperComponent } from './../apiuiwrapper/apiuiwrapper.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,22 +13,22 @@ const routes: Routes = [
   {
     path: '', component: ApiuiwrapperComponent, children: [
       {
-        path: '', component: TestpageComponent
+        path: '', component: TestpageComponent, canActivate: [AuthGuard]
       },
       {
-        path: 'test', component: TestpageComponent
+        path: 'test', component: TestpageComponent, canActivate: [AuthGuard]
       },
       {
-        path: 'collection', component: ViewcollectionComponent
+        path: 'collection', component: ViewcollectionComponent, canActivate: [AuthGuard]
       },
       {
-        path: 'model', component: SetupmodeldataComponent
+        path: 'model', component: SetupmodeldataComponent, canActivate: [AuthGuard]
       },
       {
-        path: 'env', component: EnvironmentComponent
+        path: 'env', component: EnvironmentComponent, canActivate: [AuthGuard]
       },
       {
-        path: 'autotest', component: AutotestComponent
+        path: 'autotest', component: AutotestComponent, canActivate: [AuthGuard]
       }
     ]
   }

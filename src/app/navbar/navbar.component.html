@@ -1,7 +1,5 @@
-<div class="jumbotron">hello me</div>
-
-<div class="jumbotron">hello me</div>
-
-<div class="jumbotron">hello me</div>
-
-<div class="jumbotron">hello me</div>
+<nav >
+    <div *ngIf="!user">login</div>
+    <div *ngIf="user" (click)="logout()">logout</div>
+    <div *ngIf="user">{{user[0]}}</div>
+</nav>
