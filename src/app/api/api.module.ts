@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ApiRoutingModule } from './api-routing.module';
 import { TestpageComponent } from './testpage/testpage.component';
@@ -32,7 +33,8 @@ import { ApiuiwrapperComponent } from '../apiuiwrapper/apiuiwrapper.component';
   ],
   imports: [
     CommonModule,
-    ApiRoutingModule
+    ApiRoutingModule,
+    HttpClientModule
   ]
 })
 export class ApiModule { }
