@@ -1,0 +1,42 @@
+.bg-custom{
+    background: #333;
+    justify-content: flex-start;
+
+}
+
+.brands{
+     
+
+    &>img{
+    width: 60px;
+    
+    }
+
+
+}
+.nav-ele{
+    max-width: 100px;
+    color: #f1f1f1;
+    margin: 0 10px;
+}
+.buttoncontainer{
+    display: table;
+    cursor: pointer;
+    // z-index: 60 ;
+}
+.bar{
+    display: block;
+    width: 30px;
+    height: 4px;
+    border-radius:5px; 
+    background: rgb(207, 207, 206);
+    // box-shadow: 0 0 5px #78E9CE;
+    margin: 4px 10px;
+
+}
+.barc1{
+    transform: rotate(45deg) translateY(5px);
+}
+.barc2{
+    transform: rotate(-45deg) translateY(-6px);
+}

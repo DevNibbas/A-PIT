@@ -1,0 +1,19 @@
+<nav class="navbar navbar-dark bg-custom">
+    <div class="buttoncontainer" *ngIf="activesidenavbutton" (click)="onClickSideNavButton()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="buttoncontainer" *ngIf="!activesidenavbutton" (click)="onClickSideNavButton()">
+        <div class="bar barc1"></div>
+        <div class="bar barc2"></div>
+    </div>
+
+    <div class="nav-ele">File</div>
+    <div class="nav-ele">View</div>
+    <div class="nav-ele">Setting</div>
+    <div class="nav-ele">Help</div>
+    <div class="nav-ele brands ml-auto">
+        <img src="../../assets/logo.svg">
+    </div>
+</nav>

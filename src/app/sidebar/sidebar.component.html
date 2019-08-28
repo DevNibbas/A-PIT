@@ -1,1 +1,20 @@
-<p>sidebar works!</p>
+<section class="sdnavbackgrd" *ngIf="showsidenav" (click)="clicksdnav()"></section>
+<section @slide class="sideNav" *ngIf="showsidenav" (click)="clicksdnav()">
+    <div class="logo">
+        <img src="../../assets/logo.svg">
+    </div>
+
+
+
+    <div class="contents">
+        <!-- <hr class="line green"> -->
+        <div routerLink="/api" class="items">Home</div>
+        <div routerLink="/api/model" class="items">Models</div>
+        <div routerLink="/api/collection" class="items">Collection</div>
+        <div routerLink="/api/env" class="items">Environment</div>
+        <div routerLink="/api/autotest" class="items">Automated Testing</div>
+        <div routerLink="" class="items" (click)="signout()">Sign Out</div>
+    </div>
+</section>
+
+<!-- </section> -->

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,6 +9,11 @@ import { AuthService } from '../auth.service';
 export class NavbarComponent implements OnInit {
 
   user;
+
+
+  @Input() activesidenavbutton = true;
+  @Output() clicksidenav = new EventEmitter();
+
   constructor(private auth: AuthService) {
     this.auth.getuser().subscribe(u => this.user = u);
   }
@@ -18,5 +23,11 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+
+  onClickSideNavButton() {
+    this.activesidenavbutton = !this.activesidenavbutton;
+    this.clicksidenav.emit();
   }
 }

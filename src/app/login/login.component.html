@@ -18,15 +18,19 @@
           <div class="title">
             Login
           </div>
+
           <div class="err" (click)="closeerror()">
               {{errormsg}}
           </div>
+
           <div class="formele">
             <input type="text" class="userid" [(ngModel)]="user.id" placeholder="Your Username">
           </div>
+
           <div class="formele">
             <input type="text" class="password" [(ngModel)]="user.password" placeholder="Your Password">
           </div>
+          
           <div class="formele">
               <button mat-raised-button color="primary" (click)="login()">Login</button>
               <span id="noac"> Don't have an account? <a routerLink="/auth/signup">Signup </a></span>

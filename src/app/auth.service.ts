@@ -22,21 +22,18 @@ export class AuthService {
   getuser() {
     return this.user$.asObservable();
   }
+
+
   isLoggedIn() {
-    // this.user$.subscribe(res => console.log("nusasa:", res));
     return this.getuser();
-
-
-
-
-
-
-
   }
 
   emit(user) {
     this.user$.next(user);
   }
+
+
+
 
   login(username, password) {
     const users: any = JSON.parse(localStorage.getItem('users'));
@@ -48,6 +45,11 @@ export class AuthService {
     }
     return of(null);
   }
+
+
+
+
+
   Signup(reguser) {
     reguser.password = Md5.hashStr(reguser.password);
     let users = JSON.parse(localStorage.getItem('users'));
@@ -66,13 +68,13 @@ export class AuthService {
 
     }
     return of(users[reguser.id]);
-
-
-
   }
+
+
 
   logout() {
     localStorage.removeItem('userid');
     this.emit(null);
+    this.route.navigateByUrl('/auth/login');
   }
 }

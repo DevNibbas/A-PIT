@@ -1,7 +1,7 @@
-<app-navbar>
+<app-navbar (clicksidenav)="sidenavstat=!sidenavstat" [activesidenavbutton]="!sidenavstat">
 
 </app-navbar>
-<app-sidebar></app-sidebar>
+<app-sidebar [showsidenav]="sidenavstat" (clicksidenavbg)="sidenavstat=!sidenavstat" (triggerchat)="togglechat()"></app-sidebar>
 <router-outlet>
 </router-outlet>
 {{user}}
