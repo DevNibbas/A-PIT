@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ApiRoutingModule } from './api-routing.module';
 import { TestpageComponent } from './testpage/testpage.component';
@@ -27,12 +28,14 @@ import { ApiuiwrapperComponent } from '../apiuiwrapper/apiuiwrapper.component';
     NavbarComponent,
     SidebarComponent,
     MaincontainerComponent,
-    ApiuiwrapperComponent
+    ApiuiwrapperComponent,
+
 
   ],
   imports: [
     CommonModule,
-    ApiRoutingModule
+    ApiRoutingModule,
+    MatSelectModule,
   ]
 })
 export class ApiModule { }

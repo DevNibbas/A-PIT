@@ -1,1 +1,20 @@
-<p>testpage works!</p>
+<section>
+    <div class="row nog section1">
+        <div class="col-md-8 nog makerequest">
+            <div class="start-request">
+                <mat-form-field>
+                    <mat-label>Select an option</mat-label>
+                    <mat-select [(value)]="request.method">
+                        <mat-option value="get">GET</mat-option>
+                        <mat-option value="post">POST</mat-option>
+                        <mat-option value="put">PUT</mat-option>
+                        <mat-option value="delete">DELETE</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <input type="text" id="url">
+            </div>
+
+        </div>
+        <div class="col-md nog"></div>
+    </div>
+</section>
