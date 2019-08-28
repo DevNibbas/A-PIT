@@ -22,11 +22,7 @@ export class ApirequestService {
   }
 
   deleteReq(url:string,data?:any,options?:any){
-<<<<<<< HEAD
     
   }
-=======
-  }*/
->>>>>>> 93eb64a1546907f7950fa2353d6938ea79048ff1
 
 }
