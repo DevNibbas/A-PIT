@@ -13,8 +13,8 @@ export class ApirequestService {
     return this.http.get<any>(url,options);
   }
 
-  /*postReq(url:string,data?:any,options?:any){
-
+  post(url:string,data:any,options?:any){
+    return this.http.post<any>(url,data,options);
   }
 
   putReq(url:string,data?:any,options?:any){
@@ -23,6 +23,6 @@ export class ApirequestService {
 
   deleteReq(url:string,data?:any,options?:any){
     
-  }*/
+  }
 
 }

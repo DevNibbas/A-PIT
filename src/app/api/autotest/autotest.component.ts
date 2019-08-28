@@ -20,13 +20,21 @@ export class AutotestComponent implements OnInit {
 
   constructor(private apiService:ApirequestService) { 
     
+    // GET request testing done here (URL is required with httpOptions is optional)
     this.apiService.get(this.apiBaseUrl).subscribe(i => {
       console.log(i);
     });
-
     this.apiService.get(this.apiBaseUrl,this.httpOptions).subscribe(i => {
       console.log(i);
     });
+
+    // POST request testing done here (URL and BODY DATA is required but httpOptions is optional)
+    this.apiService.post(this.apiBaseUrl,{id:1,title:"hey",completed:true}).subscribe(i => {
+      console.log(i);
+    })
+    this.apiService.post(this.apiBaseUrl,{id:1,title:"hey",completed:true},this.httpOptions).subscribe(i => {
+      console.log(i);
+    })
 
   }
 
