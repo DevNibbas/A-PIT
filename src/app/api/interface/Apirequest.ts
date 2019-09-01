@@ -1,8 +1,8 @@
 export interface Apirequest {
     url: string;
-    params: any;
-    data: any;
-    header: Headers;
+    params: any[];
+    datas: any[];
+    headers: Headers[];
     method: string;
 
 }

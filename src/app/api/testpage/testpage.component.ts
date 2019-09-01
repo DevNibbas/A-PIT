@@ -14,6 +14,10 @@ export class TestpageComponent implements OnInit {
 
   constructor() {
     this.request.method = 'get';
+    this.request.params = [];
+    this.request.headers = [];
+    this.request.datas = [];
+
 
 
   }

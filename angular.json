@@ -29,9 +29,10 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/font-awesome/css/font-awesome.css",
+              "src/api-theme.scss",
               "src/styles.scss"
+
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
