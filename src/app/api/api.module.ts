@@ -32,7 +32,7 @@ import { ApiuiwrapperComponent } from '../apiuiwrapper/apiuiwrapper.component';
   ],
   imports: [
     CommonModule,
-    ApiRoutingModule
+    ApiRoutingModule,
   ]
 })
 export class ApiModule { }

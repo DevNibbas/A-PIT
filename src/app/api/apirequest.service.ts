@@ -1,26 +1,32 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApirequestService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  get(url:string,data:any,headers:any){
-
+  get(url: string, options?: any): Observable<any> {
+    return this.http.get<any>(url, options);
   }
 
-  post(url:string,data:any,headers:any){
-
+  post(url:string,data:any,options?:any){
+    return this.http.post<any>(url,data,options);
   }
 
-  put(url:string,data:any,headers:any){
-
+  put(url:string,data?:any,options?:any){
+    return this.http.put<any>(url,data,options);
   }
 
-  delete(url:string,data:any,headers:any){
-    
+  delete(url:string,options?:any){
+    return this.http.delete<any>(url,options);
+  }
+
+  patch(url:string,data:any,options?:any){
+    return this.http.patch(url,data,options);
   }
 
 }
