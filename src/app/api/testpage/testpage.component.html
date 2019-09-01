@@ -1,1 +1,77 @@
-<p>testpage works!</p>
+<section>
+    <div class="section1">
+        <div class="makerequest">
+            <div class="row nog start-request">
+                <div class="col-md-8 nog ">
+
+
+                    <div class="request">
+                        <mat-form-field>
+                            <mat-label>Select request Method</mat-label>
+                            <mat-select [(ngModel)]="request.method">
+                                <mat-option value="get">GET</mat-option>
+                                <mat-option value="post">POST</mat-option>
+                                <mat-option value="put">PUT</mat-option>
+                                <mat-option value="delete">PATCH</mat-option>
+
+                                <mat-option value="delete">DELETE</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Enter request url" [(ngModel)]="request.url"
+                                id="url">
+                            <button mat-button *ngIf="request.url" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="request.url=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <!-- <input type="text" id="url"> -->
+                        <button mat-raised-button color="primary">Send</button>
+
+                    </div>
+                    <div class="header">
+                        <div class="header-tab">
+                            <mat-tab-group>
+                                <mat-tab label="Params ({{request.params.length}})">
+                                    <ng-template matTabContent>
+                                        <table class="params">
+                                            <tr class="p-header">
+                                                <th>Key</th>
+                                                <th>Value</th>
+                                                <th>Description</th>
+
+                                            </tr>
+                                            <tr class="p-body" *ngFor="let param of request.params">
+                                                <td>{{param.key}}</td>
+                                                <td>{{params.value}}</td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </ng-template>
+                                </mat-tab>
+                                <mat-tab label="Headers ({{request.headers.length}})">
+                                    <ng-template matTabContent>
+                                        Content 2 - Loaded:
+                                    </ng-template>
+                                </mat-tab>
+                                <mat-tab label="Data ({{request.datas.length}})">
+                                    <ng-template matTabContent>
+                                        content 3
+                                    </ng-template>
+                                </mat-tab>
+                            </mat-tab-group>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md nog"></div>
+    </div>
+</section>

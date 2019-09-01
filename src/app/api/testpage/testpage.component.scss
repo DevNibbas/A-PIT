@@ -1,0 +1,34 @@
+.section1{
+    width: 100vw;
+    padding:50px;
+}
+.start-request{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &>div>.request{
+        &>mat-form-field:nth-child(2){
+            
+            width: 30vw;
+            min-width: 180px;
+
+        }
+        &>mat-form-field{
+            margin: 0 10px;
+        }
+        &>button{
+            max-width: 180px;
+            margin: 0 10px;
+            background: rgb(37, 144, 206);
+        }
+    }
+}
+
+#url{
+    width: 1500px !important;
+}
+.header{
+    max-width: 800px;
+    padding: 10px;
+}
+

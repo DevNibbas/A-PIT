@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Apirequest } from './../interface/Apirequest';
 
 @Component({
   selector: 'app-testpage',
@@ -7,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestpageComponent implements OnInit {
 
-  constructor() { }
+
+  request: Apirequest = {} as Apirequest;
+
+
+  constructor() {
+    this.request.method = 'get';
+    this.request.params = [];
+    this.request.headers = [];
+    this.request.datas = [];
+
+
+
+  }
 
   ngOnInit() {
   }
