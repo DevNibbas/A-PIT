@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApirequestService } from 'src/app/api/apirequest.service';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
