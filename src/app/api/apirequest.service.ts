@@ -17,12 +17,16 @@ export class ApirequestService {
     return this.http.post<any>(url,data,options);
   }
 
-  putReq(url:string,data?:any,options?:any){
-
+  put(url:string,data?:any,options?:any){
+    return this.http.put<any>(url,data,options);
   }
 
-  deleteReq(url:string,data?:any,options?:any){
-    
+  delete(url:string,options?:any){
+    return this.http.delete<any>(url,options);
+  }
+
+  patch(url:string,data:any,options?:any){
+    return this.http.patch(url,data,options);
   }
 
 }
