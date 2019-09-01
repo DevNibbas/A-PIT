@@ -29,4 +29,24 @@ export class ApirequestService {
     return this.http.patch(url,data,options);
   }
 
+  uniReq(method:string,obj:any){
+    switch (method) {
+      case "GET":
+        this.get(obj.url,obj.options);
+        break;
+      case "POST":
+        this.post(obj.url,obj.data,obj.options);
+        break;
+      case "PUT":
+        this.put(obj.url,obj.data,obj.options);
+        break;
+      case "DELETE":
+        this.put(obj.url,obj.options);
+        break;
+      case "PATCH":
+        this.patch(obj.url,obj.data,obj.options);
+      default:
+        break;
+    }
+  }
 }
