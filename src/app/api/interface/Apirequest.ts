@@ -1,6 +1,7 @@
+import { Param } from './Param';
 export interface Apirequest {
     url: string;
-    params: any[];
+    params: Param[];
     datas: any[];
     headers: Headers[];
     method: string;
