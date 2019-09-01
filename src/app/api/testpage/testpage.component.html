@@ -34,7 +34,19 @@
                             <mat-tab-group>
                                 <mat-tab label="Params ({{request.params.length}})">
                                     <ng-template matTabContent>
-                                        Content 1 - Loaded:
+                                        <table class="params">
+                                            <tr class="p-header">
+                                                <th>Key</th>
+                                                <th>Value</th>
+                                                <th>Description</th>
+
+                                            </tr>
+                                            <tr class="p-body" *ngFor="let param of request.params">
+                                                <td>{{param.key}}</td>
+                                                <td>{{params.value}}</td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
                                     </ng-template>
                                 </mat-tab>
                                 <mat-tab label="Headers ({{request.headers.length}})">
