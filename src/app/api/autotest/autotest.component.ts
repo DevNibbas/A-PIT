@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApirequestService } from 'src/app/api/apirequest.service';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-autotest',
@@ -10,7 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 export class AutotestComponent implements OnInit {
 
-  constructor(private apiService:ApirequestService) { 
+  constructor() { 
     
   }
 
