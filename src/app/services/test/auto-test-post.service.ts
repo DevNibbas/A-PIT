@@ -12,14 +12,20 @@ export class AutoTestPostService {
   resp:any;
   ret:string[] = [];
   params:any;
+  len:number;
   obs:Observable<any>[];
+  trueVals:string[] = [];
+  falseVals:string[] = [];
+  paramNames:string[] = [];
+  temp:string[] = [];
 
   constructor(private requestService:ApirequestService) { }
 
-  testPost(url:String,params:string[],httpHeaders:HttpHeaders){
+  testPost(url:String,paramNames:string[],httpHeaders:HttpHeaders){
     this.httpOptions.headers = httpHeaders;
-    
-    
+    this.params.forEach(element => {
+      this.temp = element.split(':');
+    });
 
   }
 }
