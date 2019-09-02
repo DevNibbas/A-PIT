@@ -13,20 +13,20 @@ export class ApirequestService {
     return this.http.get<any>(url, options);
   }
 
-  post(url:string,data:any,options?:any){
-    return this.http.post<any>(url,data,options);
+  post(url: string, data: any, options?: any) {
+    return this.http.post<any>(url, data, options);
   }
 
-  put(url:string,data?:any,options?:any){
-    return this.http.put<any>(url,data,options);
+  put(url: string, data?: any, options?: any) {
+    return this.http.put<any>(url, data, options);
   }
 
-  delete(url:string,options?:any){
-    return this.http.delete<any>(url,options);
+  delete(url: string, options?: any) {
+    return this.http.delete<any>(url, options);
   }
 
-  patch(url:string,data:any,options?:any){
-    return this.http.patch(url,data,options);
+  patch(url: string, data: any, options?: any) {
+    return this.http.patch(url, data, options);
   }
 
 }
