@@ -1,8 +1,10 @@
+import { HttpHeaders } from '@angular/common/http';
+import { Param } from './Param';
 export interface Apirequest {
     url: string;
-    params: any[];
+    params: Param[];
     datas: any[];
-    headers: Headers[];
+    headers: HttpHeaders[];
     method: string;
 
 }

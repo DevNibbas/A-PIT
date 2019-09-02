@@ -9,12 +9,12 @@
                         <mat-form-field>
                             <mat-label>Select request Method</mat-label>
                             <mat-select [(ngModel)]="request.method">
-                                <mat-option value="get">GET</mat-option>
-                                <mat-option value="post">POST</mat-option>
-                                <mat-option value="put">PUT</mat-option>
-                                <mat-option value="delete">PATCH</mat-option>
+                                <mat-option value="GET">GET</mat-option>
+                                <mat-option value="POST">POST</mat-option>
+                                <mat-option value="PUT">PUT</mat-option>
+                                <mat-option value="PATCH">PATCH</mat-option>
 
-                                <mat-option value="delete">DELETE</mat-option>
+                                <mat-option value="DELETE">DELETE</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field>
@@ -26,13 +26,13 @@
                             </button>
                         </mat-form-field>
                         <!-- <input type="text" id="url"> -->
-                        <button mat-raised-button color="primary">Send</button>
+                        <button mat-raised-button color="primary" (click)="sendReq()">Send</button>
 
                     </div>
                     <div class="header">
                         <div class="header-tab">
                             <mat-tab-group>
-                                <mat-tab label="Params ({{request.params.length}})">
+                                <mat-tab label="Params ({{request.params.length - 1}})">
                                     <ng-template matTabContent>
                                         <table class="params">
                                             <tr class="p-header">
@@ -41,28 +41,87 @@
                                                 <th>Description</th>
 
                                             </tr>
-                                            <tr class="p-body" *ngFor="let param of request.params">
-                                                <td>{{param.key}}</td>
-                                                <td>{{params.value}}</td>
-                                                <td></td>
+                                            <tr class="p-body" *ngFor="let param of request.params; let i=index"
+                                                (input)="addParam(i)">
+                                                <td contenteditable="true" placeholder="key"
+                                                    (keyup)="param.key=$event.target.innerText"
+                                                    [textContent]="param.key"></td>
+                                                <td contenteditable="true" placeholder="value"
+                                                    (keyup)="param.value=$event.target.innerText"
+                                                    [textContent]="param.value"></td>
+                                                <td contenteditable="true" placeholder="description"
+                                                    (keyup)="param.description=$event.target.innerText"
+                                                    [textContent]="param.description"></td>
+
                                             </tr>
                                         </table>
                                     </ng-template>
                                 </mat-tab>
-                                <mat-tab label="Headers ({{request.headers.length}})">
+                                <mat-tab label="Headers ({{request.headers.length - 1}})">
                                     <ng-template matTabContent>
-                                        Content 2 - Loaded:
+                                        <table class="params">
+                                            <tr class="p-header">
+                                                <th>Key</th>
+                                                <th>Value</th>
+                                                <th>Description</th>
+
+                                            </tr>
+                                            <tr class="p-body" *ngFor="let header of request.headers; let i=index"
+                                                (input)="addHeader(i)">
+                                                <td contenteditable="true" placeholder="key"
+                                                    (keyup)="header.name=$event.target.innerText"
+                                                    [textContent]="header.name"></td>
+                                                <td contenteditable="true" placeholder="value"
+                                                    (keyup)="header.value=$event.target.innerText"
+                                                    [textContent]="header.value"></td>
+                                                <td contenteditable="true" placeholder="description"
+                                                    (keyup)="header.description=$event.target.innerText"
+                                                    [textContent]="header.description"></td>
+
+                                            </tr>
+                                        </table>
                                     </ng-template>
                                 </mat-tab>
-                                <mat-tab label="Data ({{request.datas.length}})">
+                                <mat-tab label="Data ({{request.datas.length - 1}})">
                                     <ng-template matTabContent>
-                                        content 3
+                                        <table class="params">
+                                            <tr class="p-header">
+                                                <th>Key</th>
+                                                <th>Value</th>
+                                                <th>Description</th>
+
+                                            </tr>
+                                            <tr class="p-body" *ngFor="let data of request.datas; let i=index"
+                                                (input)="addData(i)">
+                                                <td contenteditable="true" placeholder="key"
+                                                    (keyup)="data.key=$event.target.innerText" [textContent]="data.key">
+                                                </td>
+                                                <td contenteditable="true" placeholder="value"
+                                                    (keyup)="data.value=$event.target.innerText"
+                                                    [textContent]="data.value"></td>
+                                                <td contenteditable="true" placeholder="description"
+                                                    (keyup)="data.description=$event.target.innerText"
+                                                    [textContent]="data.description"></td>
+
+                                            </tr>
+                                        </table>
                                     </ng-template>
                                 </mat-tab>
                             </mat-tab-group>
 
                         </div>
 
+                    </div>
+                    <div class="response">
+                        <div class="responseheader">
+                            Response <span *ngIf="response.status">(Status:
+                                {{response.status +' | ' +response.statusText }})</span>
+                        </div>
+                        <div class="body" >
+                            <pre><code id="jsonResponse">out</code></pre>
+                                
+                            
+                        </div>
                     </div>
 
                 </div>
