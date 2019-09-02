@@ -8,13 +8,13 @@ import { HttpHeaders } from '@angular/common/http';
 
 export class AutoTestGetService {
 
-  httpOptions:any = {};
-  ret:string[] = [];
-  resp:any;
-  testcase1s:string = 'Test without headers';
-  testcase2s:string = 'Test with headers';
+  httpOptions: any = {};
+  ret: string[] = [];
+  resp: any;
+  testcase1s = 'Test without headers';
+  testcase2s = 'Test with headers';
 
-  constructor(private requestService:ApirequestService) { }
+  constructor(private requestService: ApirequestService) { }
 
   testGet(url: string, httpHeaders: HttpHeaders): Promise<string[]> {
     this.httpOptions.headers = httpHeaders;
