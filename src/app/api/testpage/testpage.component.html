@@ -114,15 +114,28 @@
                     </div>
                     <div class="response">
                         <div class="responseheader">
-                            Response <span *ngIf="response.status">(Status:
+                            Response
+                            <span *ngIf="response && response.status">(Status:
                                 {{response.status +' | ' +response.statusText }})</span>
                         </div>
-                        <div class="body" >
-                            <pre><code id="jsonResponse">out</code></pre>
-                                
-                            
+
+
+                        <header>Headers</header>
+                        <div class="httpHeader" [class.nodata]="!response">
+                            <div *ngIf="!response" class="helpmsg">Click on [Send] to recieve Data</div>
+                            <pre><code id="jsonResponseHeader"></code></pre>
+                        </div>
+                        
+                        
+                        <header>Body</header>
+                        <div class="body" [class.nodata]="!response">
+                            <div *ngIf="!response" class="helpmsg">Click on [Send] to recieve Data</div>
+                            <pre><code id="jsonResponse"></code></pre>
+
+
                         </div>
                     </div>
+
 
                 </div>
                 <div class="col-md-4">
