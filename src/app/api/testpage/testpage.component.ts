@@ -78,6 +78,90 @@ export class TestpageComponent implements OnInit {
 
       });
     }
+
+    if (this.request.method === 'POST') {
+
+      const option = {
+        headers: this.request.getHeaders(),
+        params: this.request.getParams(),
+        observe: 'response',
+        reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
+        responseType: 'json',
+      };
+
+      this.req.post(this.request.url, this.request.getDatas(), option).subscribe(x => {
+        console.log(x);
+        this.response = x;
+        const ele = document.getElementById('jsonResponse');
+        ele.innerHTML = this.req.library.json.prettyPrint(this.response.body);
+        const eleHeader = document.getElementById('jsonResponseHeader');
+        eleHeader.innerHTML = this.req.library.json.prettyPrint(this.req.getHeadersInJson(this.response.headers));
+
+      });
+    }
+
+    if (this.request.method === 'PUT') {
+
+      const option = {
+        headers: this.request.getHeaders(),
+        params: this.request.getParams(),
+        observe: 'response',
+        reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
+        responseType: 'json',
+      };
+
+      this.req.put(this.request.url, this.request.getDatas(), option).subscribe(x => {
+        console.log(x);
+        this.response = x;
+        const ele = document.getElementById('jsonResponse');
+        ele.innerHTML = this.req.library.json.prettyPrint(this.response.body);
+        const eleHeader = document.getElementById('jsonResponseHeader');
+        eleHeader.innerHTML = this.req.library.json.prettyPrint(this.req.getHeadersInJson(this.response.headers));
+
+      });
+    }
+    if (this.request.method === 'PATCH') {
+
+      const option = {
+        headers: this.request.getHeaders(),
+        params: this.request.getParams(),
+        observe: 'response',
+        reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
+        responseType: 'json',
+      };
+
+      this.req.patch(this.request.url, this.request.getDatas(), option).subscribe(x => {
+        console.log(x);
+        this.response = x;
+        const ele = document.getElementById('jsonResponse');
+        ele.innerHTML = this.req.library.json.prettyPrint(this.response.body);
+        const eleHeader = document.getElementById('jsonResponseHeader');
+        eleHeader.innerHTML = this.req.library.json.prettyPrint(this.req.getHeadersInJson(this.response.headers));
+
+      });
+    }
+    if (this.request.method === 'DELETE') {
+
+      const option = {
+        headers: this.request.getHeaders(),
+        params: this.request.getParams(),
+        observe: 'response',
+        reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
+        responseType: 'json',
+      };
+
+      this.req.delete(this.request.url, option).subscribe(x => {
+        console.log(x);
+        this.response = x;
+        const ele = document.getElementById('jsonResponse');
+        ele.innerHTML = this.req.library.json.prettyPrint(this.response.body);
+        const eleHeader = document.getElementById('jsonResponseHeader');
+        eleHeader.innerHTML = this.req.library.json.prettyPrint(this.req.getHeadersInJson(this.response.headers));
+
+      });
+    }
+
+
   }
   ngOnInit() {
   }

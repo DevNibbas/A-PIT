@@ -32,5 +32,14 @@ export class Apirequest {
 
         return urlparams;
     }
+    public getDatas() {
+        const data = {};
+        this.datas.forEach(d => {
+            if (d.key) {
+                data[d.key] = d.value;
+            }
+        });
+        return data;
+    }
 
 }
