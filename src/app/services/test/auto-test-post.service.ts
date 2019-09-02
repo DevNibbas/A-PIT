@@ -10,7 +10,7 @@ import { forkJoin, Observable } from 'rxjs';
 export class AutoTestPostService {
 
   httpOptions:any = {};
-  testcase_count:number = 1;
+  testcase_count:number = 0;
   url:string;
   resp:any;
   ret:string[] = [];
@@ -22,6 +22,7 @@ export class AutoTestPostService {
   paramNames:string[] = [];
   paramRegex:string[] = [];
   paramOptional:string[] = [];
+  testResultParamNames = ["No"];
 
   constructor(private requestService:ApirequestService,
     private stringGenService:StringGeneratorService) { }
@@ -39,6 +40,7 @@ export class AutoTestPostService {
       else
         this.resultVals[index+1] = "fail";
       this.trueVals.push(this.stringGenService.createString(paramRegex[index]));
+      this.testResultParamNames.push(paramNames[index]);
     };
     this.obs = this.getAllReqsWH();
     forkJoin(this.obs).subscribe(resp =>{
@@ -46,21 +48,23 @@ export class AutoTestPostService {
         let i = resp.indexOf(x);
         if(x[resultName]==resultVal)
         if(this.resultVals[i]=='pass')
-        this.ret.push(`Testcase${i}:pass`);
+        this.ret.push(`Testcase${this.testcase_count}:pass for ${this.testResultParamNames[i]} parameter missing.`);
         else
-        this.ret.push(`Testcase${i}:fail`);
+        this.ret.push(`Testcase${this.testcase_count}:fail for ${this.testResultParamNames[i]} parameter missing.`);
         else
-        this.ret.push(`Testcase${i}:fail`);
-        i += 1;
+        this.ret.push(`Testcase${this.testcase_count}:fail for ${this.testResultParamNames[i]} parameter missing.`);
+        this.testcase_count += 1;
       })
     },err => {
       err.forEach(x => {
         let i = err.indexOf(x);
-        this.ret.push(`Testcase${i}:fail`);
-        i += 1;
+        this.ret.push(`Testcase${this.testcase_count}:fail for parameter ${this.testResultParamNames[i]} missing.`);
+        this.testcase_count += 1;
       });
     });
     console.log(this.ret);
+    this.ret = [];
+    this.testcase_count = 0;
   }
 
   genData(i:number){
