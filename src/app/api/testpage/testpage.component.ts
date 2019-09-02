@@ -54,6 +54,12 @@ export class TestpageComponent implements OnInit {
   }
 
 
+  tweakUiAfterUrlChanged() {
+    this.response = undefined;
+    document.getElementById('jsonResponse').innerHTML = '';
+    document.getElementById('jsonResponseHeader').innerHTML = '';
+
+  }
 
 
 
