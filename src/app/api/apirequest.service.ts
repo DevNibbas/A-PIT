@@ -67,6 +67,21 @@ export class ApirequestService {
   }
 
 
+  unireq(method: string, url: string, options?: any, data?: any) {
+    if (method === 'GET') {
+      return this.get(url, options);
+    } else if (method === 'POST') {
+      return this.post(url, data, options);
+    } else if (method === 'PUT') {
+      return this.put(url, data, options);
+    } else if (method === 'PATCH') {
+      return this.patch(url, data, options);
+    } else if (method === 'DELETE') {
+      return this.delete(url, options);
+    }
+  }
+
+
   getHeadersInJson(headers: HttpHeaders) {
     const jsonHeader = JSON;
     headers.keys().forEach(k => {
