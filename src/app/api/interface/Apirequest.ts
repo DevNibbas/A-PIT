@@ -1,6 +1,8 @@
+import { Param } from './Param';
+
 export class Apirequest {
     url: string;
-    params: any[];
+    params: Param[];
     datas: any[];
     headers: any[];
     method: string;
@@ -10,7 +12,7 @@ export class Apirequest {
     public getHeaders() {
 
 
-        const header = { Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' };
+        const header = { Accept: 'application/json,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' };
         this.headers.forEach(h => {
             if (h.name) {
                 header[h.name] = h.value;

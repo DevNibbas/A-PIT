@@ -136,3 +136,50 @@ pre {
 }
 
 
+[contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    display: block; /* For Firefox */
+}
+
+
+.response{
+    margin: 30px 0px;
+    max-width: 885px;
+    padding: 10px;
+
+    &>.responseheader{
+        padding: 15px 0px;
+        border-bottom: 1px solid #7A7A7A;
+        color: #7A7A7A;
+    }
+    &>.body{
+        padding: 10px;
+        // background: rgb(240, 240, 240);
+        border: 1px solid #7A7A7A;
+        border-top: none;
+    }
+}
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    color: #2590CE;
+    max-height: calc(100vh - 500px);
+}
+
+
+
+
+
+
+
+
+
+
+@media(max-width:800px){
+    .section1{
+        padding: 50px 10px;
+    }
+}
