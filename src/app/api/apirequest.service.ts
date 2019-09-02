@@ -45,14 +45,7 @@ export class ApirequestService {
 
   get(url: string, options?: any): Observable<any> {
 
-    return this.http.get(url, {
-      headers: options.getHeaders(),
-      params: options.getParams(),
-      observe: 'response',
-      reportProgress: options.reportProgress ? options.reportProgress : false,
-      responseType: 'json',
-
-    });
+    return this.http.get(url, options);
   }
 
 

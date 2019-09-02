@@ -105,13 +105,13 @@ pre {
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
     color: #2590CE;
-    max-height: calc(100vh - 500px);
+    max-height: calc(100vh - 600px);
 }
 
 .nodata{
     background-color: rgb(250, 250, 250);
     border:1px dashed rgb(173, 173, 173) !important; 
-    height: 200px;
+    height: 150px;
 }
 
 
@@ -156,7 +156,6 @@ pre {
         padding: 10px;
         // background: rgb(240, 240, 240);
         border: 1px solid #7A7A7A;
-        border-top: none;
     }
 }
 pre {

@@ -17,6 +17,8 @@ export class TestpageComponent implements OnInit {
   response;
   library: any = {} as any;
 
+  uioptions: any = {} as any;
+
   // @ViewChild('jsonResponse', { static: false }) jsonResponse: ElementRef;
   constructor(private req: ApirequestService, private ele: ElementRef) {
     this.request.method = 'GET';
@@ -57,7 +59,16 @@ export class TestpageComponent implements OnInit {
 
   sendReq() {
     if (this.request.method === 'GET') {
-      this.req.get(this.request.url, this.request).subscribe(x => {
+
+      const option = {
+        headers: this.request.getHeaders(),
+        params: this.request.getParams(),
+        observe: 'response',
+        reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
+        responseType: 'json',
+      };
+
+      this.req.get(this.request.url, option).subscribe(x => {
         console.log(x);
         this.response = x;
         const ele = document.getElementById('jsonResponse');
