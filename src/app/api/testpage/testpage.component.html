@@ -44,11 +44,14 @@
                                             <tr class="p-body" *ngFor="let param of request.params; let i=index"
                                                 (input)="addParam(i)">
                                                 <td contenteditable="true" placeholder="key"
-                                                    (keyup)="param.key=$event.target.innerText" [textContent]="param.key"></td>
+                                                    (keyup)="param.key=$event.target.innerText"
+                                                    [textContent]="param.key"></td>
                                                 <td contenteditable="true" placeholder="value"
-                                                    (keyup)="param.value=$event.target.innerText" [textContent]="param.value"></td>
+                                                    (keyup)="param.value=$event.target.innerText"
+                                                    [textContent]="param.value"></td>
                                                 <td contenteditable="true" placeholder="description"
-                                                    (keyup)="param.description=$event.target.innerText" [textContent]="param.description"></td>
+                                                    (keyup)="param.description=$event.target.innerText"
+                                                    [textContent]="param.description"></td>
 
                                             </tr>
                                         </table>
@@ -66,11 +69,14 @@
                                             <tr class="p-body" *ngFor="let header of request.headers; let i=index"
                                                 (input)="addHeader(i)">
                                                 <td contenteditable="true" placeholder="key"
-                                                    (keyup)="header.name=$event.target.innerText" [textContent]="header.name"></td>
+                                                    (keyup)="header.name=$event.target.innerText"
+                                                    [textContent]="header.name"></td>
                                                 <td contenteditable="true" placeholder="value"
-                                                    (keyup)="header.value=$event.target.innerText" [textContent]="header.value"></td>
+                                                    (keyup)="header.value=$event.target.innerText"
+                                                    [textContent]="header.value"></td>
                                                 <td contenteditable="true" placeholder="description"
-                                                    (keyup)="header.description=$event.target.innerText" [textContent]="header.description"></td>
+                                                    (keyup)="header.description=$event.target.innerText"
+                                                    [textContent]="header.description"></td>
 
                                             </tr>
                                         </table>
@@ -88,11 +94,14 @@
                                             <tr class="p-body" *ngFor="let data of request.datas; let i=index"
                                                 (input)="addData(i)">
                                                 <td contenteditable="true" placeholder="key"
-                                                    (keyup)="data.key=$event.target.innerText" [textContent]="data.key"></td>
+                                                    (keyup)="data.key=$event.target.innerText" [textContent]="data.key">
+                                                </td>
                                                 <td contenteditable="true" placeholder="value"
-                                                    (keyup)="data.value=$event.target.innerText" [textContent]="data.value"></td>
+                                                    (keyup)="data.value=$event.target.innerText"
+                                                    [textContent]="data.value"></td>
                                                 <td contenteditable="true" placeholder="description"
-                                                    (keyup)="data.description=$event.target.innerText" [textContent]="data.description"></td>
+                                                    (keyup)="data.description=$event.target.innerText"
+                                                    [textContent]="data.description"></td>
 
                                             </tr>
                                         </table>
@@ -105,6 +114,12 @@
                     </div>
                     <div class="response">
                         <div class="responseheader">
+                            Response <span *ngIf="response.status">(Status:
+                                {{response.status +' | ' +response.statusText }})</span>
+                        </div>
+                        <div class="body" >
+                            <pre><code id="jsonResponse">out</code></pre>
+                                
                             
                         </div>
                     </div>
