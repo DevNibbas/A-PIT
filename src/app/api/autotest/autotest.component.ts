@@ -1,7 +1,6 @@
+import { AutomatedTestService } from './../../services/test/automated-test.service';
 import { HttpHeaders } from '@angular/common/http';
-import { AutoTestPostService } from './../../services/test/auto-test-post.service';
-import { Component, OnInit } from '@angular/core';
-import { AutoTestGetService } from 'src/app/services/test/auto-test-get.service';
+import { Component, OnInit } from '@angular/core';;
 
 @Component({
   selector: 'app-autotest',
@@ -11,12 +10,22 @@ import { AutoTestGetService } from 'src/app/services/test/auto-test-get.service'
 
 export class AutotestComponent implements OnInit {
 
-  constructor(private autoPost:AutoTestPostService,
-    private autoGet:AutoTestGetService) {
-    console.log(autoPost.testPost('https://jsonplaceholder.typicode.com/todos',['id','title','completed'],['^[0-9]{1-3}$',
-  '^[a-zA-Z]+$','^[a-z]+$'],new HttpHeaders({'Content-Type':'application/json'}),['id','title'],'id','201'));
-  console.log(autoGet.testGet('https://jsonplaceholder.typicode.com/todos',
-  new HttpHeaders({'Content-Type':'application/json'})));
+  object:any = {};
+
+  constructor(private automatedTest:AutomatedTestService) {
+      this.object.url = 'https://jsonplaceholder.typicode.com/todos';
+      this.object.httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
+      this.object.paramNames = ['id','title','completed','created_by'];
+      this.object.paramOptional = ['id'];
+      this.object.resultName = 'id';
+      this.object.resultVal = '201';
+      this.object.paramRegex = ['^[0-9]{1-3}$','^[a-zA-Z]+$','^[a-z]+$','^[a-zA-Z0-9]+$']
+      console.log(automatedTest.test('GET',this.object));
+      console.log(automatedTest.test('POST',this.object));
+  //   console.log(autoPost.testPost('https://jsonplaceholder.typicode.com/todos',['id','title','completed'],['^[0-9]{1-3}$',
+  // '^[a-zA-Z]+$','^[a-z]+$'],new HttpHeaders({'Content-Type':'application/json'}),['id','title'],'id','201'));
+  // console.log(autoGet.testGet('https://jsonplaceholder.typicode.com/todos',
+  // new HttpHeaders({'Content-Type':'application/json'})));
    }
 
   ngOnInit() {
