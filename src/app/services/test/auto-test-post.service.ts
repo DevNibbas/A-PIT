@@ -28,7 +28,9 @@ export class AutoTestPostService {
     private stringGenService:StringGeneratorService) { }
 
   testPost(url:string,paramNames:string[],paramRegex:string[],httpHeaders:HttpHeaders
-    ,paramOptional:string[],resultName:string,resultVal:string){
+    ,paramOptional:string[],resultName:string,resultVal:string):string[]{
+    this.ret = [];
+    this.testcase_count = 1;
     this.url = url;
     this.httpOptions.headers = httpHeaders;
     this.paramNames = paramNames;
@@ -48,23 +50,21 @@ export class AutoTestPostService {
         let i = resp.indexOf(x);
         if(x[resultName]==resultVal)
         if(this.resultVals[i]=='pass')
-        this.ret.push(`Testcase${this.testcase_count}:pass for ${this.testResultParamNames[i]} parameter missing.`);
+        this.ret.push(`Testcase ${this.testcase_count} : pass for ${this.testResultParamNames[i]} parameter missing.`);
         else
-        this.ret.push(`Testcase${this.testcase_count}:fail for ${this.testResultParamNames[i]} parameter missing.`);
+        this.ret.push(`Testcase ${this.testcase_count} : fail for ${this.testResultParamNames[i]} parameter missing.`);
         else
-        this.ret.push(`Testcase${this.testcase_count}:fail for ${this.testResultParamNames[i]} parameter missing.`);
+        this.ret.push(`Testcase ${this.testcase_count} : fail for ${this.testResultParamNames[i]} parameter missing.`);
         this.testcase_count += 1;
       })
     },err => {
       err.forEach(x => {
         let i = err.indexOf(x);
-        this.ret.push(`Testcase${this.testcase_count}:fail for parameter ${this.testResultParamNames[i]} missing.`);
+        this.ret.push(`Testcase ${this.testcase_count} : fail for parameter ${this.testResultParamNames[i]} missing.`);
         this.testcase_count += 1;
       });
     });
-    console.log(this.ret);
-    this.ret = [];
-    this.testcase_count = 0;
+    return this.ret;
   }
 
   genData(i:number){
