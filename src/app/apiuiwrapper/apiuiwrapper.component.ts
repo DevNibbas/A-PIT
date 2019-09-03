@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApiuiwrapperComponent implements OnInit {
 
+  sidenavstat;
+
   constructor(private auth: AuthService) {
   }
 

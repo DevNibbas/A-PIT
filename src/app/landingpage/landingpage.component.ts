@@ -1,3 +1,4 @@
+import { PwaService } from './../pwa.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public Pwa: PwaService) { }
 
+  promptEvent;
   ngOnInit() {
   }
-
+  installPwa(): void {
+    this.Pwa.promptEvent.prompt();
+  }
 }
