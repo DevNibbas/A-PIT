@@ -41,25 +41,6 @@ export class AutoTestGetService {
       });
     });
     return this.ret;
-    /*
-    return this.requestService.get(url).toPromise().then(resp => {
-      this.ret.push(`Testcase1:${this.testcase1s}:pass`);
-      console.log('Passed');
-    }, resperr => {
-      this.ret.push(`Testcase1:${this.testcase1s}:fail`);
-      console.log('Failed.');
-    }).then(resp => {
-      return this.requestService.get(url, this.httpOptions).toPromise();
-    }).then(resp => {
-      this.ret.push(`Testcase2:${this.testcase2s}:pass`);
-      console.log('Passed');
-    }, resperr => {
-      this.ret.push(`Testcase2:${this.testcase2s}:fail`);
-      console.log('Failed.');
-    }).then(x => {
-      return this.ret;
-    });
-    */
   }
 
   getAllReqs():Observable<any>[]{
