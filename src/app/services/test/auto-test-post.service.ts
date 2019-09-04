@@ -9,7 +9,7 @@ import { forkJoin, Observable } from 'rxjs';
 })
 export class AutoTestPostService {
 
-  httpOptions:any = {};
+  httpOptions:any = {observe:'response'};
   testcase_count:number = 0;
   url:string;
   ret:string[] = [];
@@ -47,6 +47,7 @@ export class AutoTestPostService {
         this.testcase_count += 1;
       })
     },err => {
+        console.log(err);
         let i = this.testcase_count - 1;
         this.ret.push(`Testcase ${this.testcase_count}:fail:server error:${err.status}`);
         this.testcase_count += 1;

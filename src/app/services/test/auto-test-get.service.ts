@@ -9,7 +9,7 @@ import { Observable, forkJoin } from 'rxjs';
 
 export class AutoTestGetService {
 
-  httpOptions: any = {};
+  httpOptions: any = {observe:'response'};
   ret: string[] = [];
   testcaseCount = 1;
   url:string;
