@@ -29,16 +29,12 @@ export class AutoTestGetService {
     this.allReqs = this.getAllReqs();
     forkJoin(this.allReqs).subscribe(resp =>{
       resp.forEach(x =>{
-        let i = resp.indexOf(x);
-        this.ret.push(`Testcase ${this.testcaseCount} : pass for ${this.testcasesDetails[i]}`);
+        this.ret.push(`Testcase ${this.testcaseCount} : pass for ${this.testcasesDetails[this.testcaseCount-1]}`);
         this.testcaseCount += 1;
       })
     },err=>{
-      err.forEach(x => {
-        let i = err.indexOf(x);
-        this.ret.push(`Testcase ${this.testcaseCount} : fail for ${this.testcasesDetails[i]}`);
+        this.ret.push(`Testcase ${this.testcaseCount} : fail for ${this.testcasesDetails[this.testcaseCount-1]}`);
         this.testcaseCount += 1;
-      });
     });
     return this.ret;
   }
