@@ -1,3 +1,4 @@
+import { ApiTestingContractService } from './../common/api-testing-contract.service';
 import { Injectable } from '@angular/core';
 import { ApirequestService } from 'src/app/api/apirequest.service';
 import { HttpHeaders } from '@angular/common/http';
@@ -9,9 +10,8 @@ import { Observable, forkJoin } from 'rxjs';
 
 export class AutoTestGetService {
 
-  httpOptions: any = {};
+  httpOptions: any = {observe:'response'};
   ret: string[] = [];
-  resp: any;
   testcaseCount = 1;
   url:string;
   testcase1s = 'test without headers';
@@ -19,9 +19,11 @@ export class AutoTestGetService {
   testcasesDetails:string[] = [this.testcase1s,this.testcase2s];
   allReqs:Observable<any>[];
 
-  constructor(private requestService: ApirequestService) { }
+  constructor(private requestService: ApirequestService,private contractClass:ApiTestingContractService) { }
 
   testGet(url: string, httpHeaders: HttpHeaders):string[]{
+    let passVals = [this.contractClass.HTTP_GET_SUCCESS_CODE];
+    let failVals = [this.contractClass.HTTP_GET_NOT_FOUND_CODE,this.contractClass.HTTP_GET_BAD_REQUEST];
     this.testcaseCount = 1;
     this.ret = [];
     this.url = url;
@@ -29,11 +31,14 @@ export class AutoTestGetService {
     this.allReqs = this.getAllReqs();
     forkJoin(this.allReqs).subscribe(resp =>{
       resp.forEach(x =>{
+        if(passVals.includes(x.status))
         this.ret.push(`Testcase ${this.testcaseCount} : pass for ${this.testcasesDetails[this.testcaseCount-1]}`);
+        else
+        this.ret.push(`Testcase ${this.testcaseCount} : fail for ${this.testcasesDetails[this.testcaseCount-1]}`);
         this.testcaseCount += 1;
       })
     },err=>{
-        this.ret.push(`Testcase ${this.testcaseCount} : fail for ${this.testcasesDetails[this.testcaseCount-1]}`);
+        this.ret.push(`Testcase ${this.testcaseCount} : fail for server error.`);
         this.testcaseCount += 1;
     });
     return this.ret;
