@@ -77,7 +77,7 @@ export class AutoTestPostService {
     let defReqWHeader = this.requestService.post(this.url,this.genData(-1),this.httpOptions);
     let ret = [defReqWHeader];
     for(let i=0;i<this.paramNames.length;i++)
-      ret.push(this.requestService.post(this.url,this.genData(i)));
+      ret.push(this.requestService.post(this.url,this.genData(i),this.httpOptions));
     return ret;
   }
 

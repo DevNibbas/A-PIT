@@ -18,9 +18,9 @@ export class AutotestComponent implements OnInit {
       this.object.paramNames = ['id','title','completed','created_by'];
       this.object.paramOptional = ['id'];
       this.object.resultName = 'id';
-      this.object.resultVal = '201';
+      this.object.resultVal = '101';
       this.object.paramRegex = ['^[0-9]{1-3}$','^[a-zA-Z]+$','^[a-z]+$','^[a-zA-Z0-9]+$']
-      this.object.data = {title:'Head',completed:true,created_by:'jack1806',id:201};
+      this.object.data = {title:'Head',completed:true,created_by:'jack1806'};
       console.log(automatedTest.test('GET',this.object));
       console.log(automatedTest.test('POST',this.object));
       this.object.url = `${this.object.url}/1`;
