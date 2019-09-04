@@ -23,7 +23,7 @@ export class AutoTestPutService {
     this.testcaseCount = 1;
     this.ret = [];
     this.url = url;
-    this.httpOptions.httpHeaders = httpHeaders;
+    this.httpOptions.headers = httpHeaders;
     this.data = data;
     this.testcaseResp.push(data);
     this.allReqs = this.getAllReqs();
