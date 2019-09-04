@@ -47,7 +47,7 @@ export class AutoTestPostService {
     this.obs = this.getAllReqsWH();
     forkJoin(this.obs).subscribe(resp =>{
       resp.forEach(x => {
-        let i = resp.indexOf(x);
+        let i = this.testcase_count-1;
         if(x[resultName]==resultVal)
         if(this.resultVals[i]=='pass')
         this.ret.push(`Testcase ${this.testcase_count} : pass for ${this.testResultParamNames[i]} parameter missing.`);
@@ -58,11 +58,9 @@ export class AutoTestPostService {
         this.testcase_count += 1;
       })
     },err => {
-      err.forEach(x => {
-        let i = err.indexOf(x);
+        let i = this.testcase_count - 1;
         this.ret.push(`Testcase ${this.testcase_count} : fail for parameter ${this.testResultParamNames[i]} missing.`);
         this.testcase_count += 1;
-      });
     });
     return this.ret;
   }

@@ -24,6 +24,8 @@ export class AutomatedTestService {
     if(method=='POST')
     return this.autoPost.testPost(url,object.paramNames,object.paramRegex,
       httpHeaders,object.paramOptional,object.resultName,object.resultVal);
+    if(method=='PUT')
+    return this.autoPut.testPut(url,httpHeaders,object.data);
     return [];
   }
 
