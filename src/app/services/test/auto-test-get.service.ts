@@ -31,20 +31,25 @@ export class AutoTestGetService {
     forkJoin(this.allReqs).subscribe(resp =>{
       resp.forEach(x =>{
         if(passVals.includes(x.status))
-        this.ret.push(`Testcase ${this.testcaseCount} : pass for ${this.testcasesDetails[this.testcaseCount-1]}`);
+        this.ret.push(`Testcase ${this.testcaseCount}:pass:${this.testcasesDetails[this.testcaseCount-1]}:${x.status}`);
         else
-        this.ret.push(`Testcase ${this.testcaseCount} : fail for ${this.testcasesDetails[this.testcaseCount-1]}`);
+        this.ret.push(`Testcase ${this.testcaseCount}:fail:${this.testcasesDetails[this.testcaseCount-1]}:${x.status}`);
         this.testcaseCount += 1;
       })
     },err=>{
-        this.ret.push(`Testcase ${this.testcaseCount} : fail for server error.`);
+        this.ret.push(`Testcase ${this.testcaseCount}:fail:server error:${err.status}`);
         this.testcaseCount += 1;
     });
     return this.ret;
   }
 
   getAllReqs():Observable<any>[]{
-    let woHeader = this.requestService.get(this.url);
+    let woOptions:any = {};
+    for(let i in this.httpOptions){
+      if(i!='headers')
+      woOptions[i] = this.httpOptions[i];
+    }
+    let woHeader = this.requestService.get(this.url,woOptions);
     let wHeader = this.requestService.get(this.url,this.httpOptions);
     return [woHeader,wHeader];
   }
