@@ -14,15 +14,15 @@ export class AutotestComponent implements OnInit {
 
   object:any = {};
   request:Apirequest = new Apirequest();
-  response;
+  result:any = {};
+  response:string[] = [];
+  pass:number = 0;
 
   constructor(private automatedTest:AutomatedTestService) {
     this.request.method = 'GET';
     this.request.params = [new Param];
-
     this.request.headers = [{ name: 'Access-Control-Request-Origin', value: '*' } as any, {}];
     this.request.datas = [{} as any];
-
       // this.object.url = 'https://jsonplaceholder.typicode.com/posts';
     
       // this.object.url = 'https://sms-system-api.herokuapp.com/add-leave';
@@ -62,6 +62,7 @@ export class AutotestComponent implements OnInit {
 
   tweakUiAfterUrlChanged() {
     this.response = undefined;
+    this.pass = 0;
   }
 
   sendReq() {
@@ -72,9 +73,13 @@ export class AutotestComponent implements OnInit {
       reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
       responseType: 'json',
     };
-
-    console.log(this.automatedTest.test(this.request,option));
-
+    this.response = this.automatedTest.test(this.request,option);
+    console.log(this.response);
+    this.response.forEach(x => {
+      console.log(x);
+      if(x.includes('pass'))
+      this.pass += 1;
+    });
     // this.req.unireq(this.request.method, this.request.url, option, this.request.getDatas()).subscribe(x => {
     //   console.log(x);
     //   this.response = x;

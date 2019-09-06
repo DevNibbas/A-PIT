@@ -100,6 +100,15 @@
                             </mat-tab-group>
                         </div>
                     </div>
+                    <div class="response">
+                            <div class="responseheader" *ngIf="response && response.length>0">
+                                Testcases ({{pass}}/{{response.length}})
+                            </div>
+                            <!-- <div class="httpHeader" [class.nodata]="!response">
+                                <div *ngIf="!response" class="helpmsg">Click on [Send] to recieve Data</div>
+                                <pre><code id="jsonResponseHeader"></code></pre>
+                            </div> -->
+                        </div>
                 </div>
                 <div class="col-md-4">
                 </div>

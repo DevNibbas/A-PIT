@@ -29,7 +29,6 @@ export class AutomatedTestService {
         dataRegex.push(d.value);
       }
     });
-    console.log(req);
     if(method=='GET')
     return this.autoGet.testGet(url,httpOptions);
     if(method=='POST')
