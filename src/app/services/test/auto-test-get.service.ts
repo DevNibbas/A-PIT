@@ -1,7 +1,6 @@
 import { ApiTestingContractService } from './../common/api-testing-contract.service';
 import { Injectable } from '@angular/core';
 import { ApirequestService } from 'src/app/api/apirequest.service';
-import { HttpHeaders } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 
 @Injectable({
@@ -10,7 +9,7 @@ import { Observable, forkJoin } from 'rxjs';
 
 export class AutoTestGetService {
 
-  httpOptions: any = {observe:'response'};
+  httpOptions: any = {};
   ret: string[] = [];
   testcaseCount = 1;
   url:string;
@@ -21,13 +20,13 @@ export class AutoTestGetService {
 
   constructor(private requestService: ApirequestService,private contractClass:ApiTestingContractService) { }
 
-  testGet(url: string, httpHeaders: HttpHeaders):string[]{
+  testGet(url: string, options: any):string[]{
     let passVals = [this.contractClass.HTTP_GET_SUCCESS_CODE];
     let failVals = [this.contractClass.HTTP_GET_NOT_FOUND_CODE,this.contractClass.HTTP_GET_BAD_REQUEST];
     this.testcaseCount = 1;
     this.ret = [];
     this.url = url;
-    this.httpOptions.headers = httpHeaders;
+    this.httpOptions = options;
     this.allReqs = this.getAllReqs();
     forkJoin(this.allReqs).subscribe(resp =>{
       resp.forEach(x =>{

@@ -5,6 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class ApiTestingContractService {
 
+  HTTP_GET_METHOD_NAME:string = 'GET';
+  HTTP_POST_METHOD_NAME:string = 'POST';
+  HTTP_PUT_METHOD_NAME:string = 'PUT';
+  HTTP_DELETE_METHOD_NAME:string = 'DELETE';
+  HTTP_PATCH_METHOD_NAME:string = 'PATCH';
+
   HTTP_GET_SUCCESS_CODE:number = 200;
   HTTP_GET_BAD_REQUEST:number = 400;
   HTTP_GET_NOT_FOUND_CODE:number = 404;
