@@ -91,9 +91,13 @@ export class AutotestComponent implements OnInit {
     let ret = 0;
     this.resultDetails = [];
     this.response.forEach(x => {
+<<<<<<< HEAD
       let tmp = x.split(':');
       let obj = {casenum:tmp[0],result:tmp[1],details:tmp[2],status:tmp[3]};
       this.resultDetails.push(obj);
+=======
+      let tmp = x.split(' : ');
+>>>>>>> Changes made.
       console.log(tmp);
       if(x.includes('pass'))
       ret += 1;
