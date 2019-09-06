@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 import { ApiRoutingModule } from './api-routing.module';
 import { TestpageComponent } from './testpage/testpage.component';
@@ -50,6 +50,7 @@ import { TabcontainerComponent } from './tabcontainer/tabcontainer.component';
     MatInputModule,
     MatTabsModule,
     MatSlideToggleModule,
+    MatMenuModule,
   ]
 })
 export class ApiModule { }

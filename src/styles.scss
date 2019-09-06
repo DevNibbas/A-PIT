@@ -57,6 +57,9 @@ body { margin: 0; font-family: 'Nunito Sans', sans-serif; }
     }
 }
 
+button:active{
+    outline: none;
+}
 
 @media(max-width:800px){
 }
