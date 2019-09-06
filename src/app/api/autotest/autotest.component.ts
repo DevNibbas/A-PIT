@@ -75,11 +75,6 @@ export class AutotestComponent implements OnInit {
     };
     this.response = this.automatedTest.test(this.request,option);
     console.log(this.response);
-    this.response.forEach(x => {
-      console.log(x);
-      if(x.includes('pass'))
-      this.pass += 1;
-    });
     // this.req.unireq(this.request.method, this.request.url, option, this.request.getDatas()).subscribe(x => {
     //   console.log(x);
     //   this.response = x;
@@ -89,6 +84,15 @@ export class AutotestComponent implements OnInit {
     //   eleHeader.innerHTML = this.req.library.json.prettyPrint(this.req.getHeadersInJson(this.response.headers));
 
     // });
+  }
+
+  getPassValues():number{
+    let ret = 0;
+    this.response.forEach(x => {
+      if(x.includes('pass'))
+      ret += 1;
+    });
+    return ret;
   }
 
 }
