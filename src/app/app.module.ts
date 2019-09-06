@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
     LandingpageComponent,
     GetobjPipe,
 
+
   ],
   imports: [
     BrowserModule,

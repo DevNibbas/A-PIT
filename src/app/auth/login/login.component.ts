@@ -1,4 +1,4 @@
-import { AuthService } from './../auth.service';
+import { AuthService } from '../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -29,11 +29,10 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.user.id, this.user.password).subscribe(res => {
       if (res) {
         this.route.navigateByUrl('/api');
+      } else {
+        this.errormsg = 'User or password is incorrect ';
       }
-      else {
-        this.errormsg = "User or password is incorrect ";
-      }
-    })
+    });
   }
 
   ngOnInit() {

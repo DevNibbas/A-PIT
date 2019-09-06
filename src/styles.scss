@@ -22,7 +22,7 @@ body { margin: 0; font-family: 'Nunito Sans', sans-serif; }
 
 ::-webkit-scrollbar
 {
-	width: 5px;
+	width: 3px;
 	background-color: #F5F5F5;
 }
 
@@ -33,4 +33,30 @@ body { margin: 0; font-family: 'Nunito Sans', sans-serif; }
 	background-image: -webkit-gradient(linear, 0 0, 0 100%,
 	                   color-stop(.5, rgba(255, 255, 255, .2)),
 					   color-stop(.5, transparent), to(transparent));
+}
+
+
+[contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    display: block; /* For Firefox */
+}
+
+.apit_close{
+    &>mat-icon{
+        cursor: pointer;
+        text-align: center;
+        width: auto;
+        height: auto;
+        padding: 5px;
+        font-size:  15px;
+        font-weight: bold;
+        &:hover{
+            color: #da4343;
+            
+        }
+    }
+}
+
+
+@media(max-width:800px){
 }

@@ -1,0 +1,20 @@
+<table class="params" (mouseout)="triggermagic()">
+    <tr class="p-header">
+        <th>Key</th>
+        <th>Value</th>
+        <th>Description</th>
+    </tr>
+    <tr class="p-body" *ngFor="let opt of option; let i=index"
+        (input)="addOption(i)" (mouseout)=removeOption(i)>
+        <td contenteditable="true" placeholder="key"
+            (keyup)="opt.key=$event.target.innerText"
+            [textContent]="opt.key"></td>
+        <td contenteditable="true" placeholder="value"
+            (keyup)="opt.value=$event.target.innerText"
+            [textContent]="opt.value"></td>
+        <td ><div class="td" contenteditable="true" placeholder="description"
+            (keyup)="opt.description=$event.target.innerText"
+            [textContent]="opt.description"></div><div class="apit_close" *ngIf="option.length!==1" (click)="close(i)"><mat-icon>close</mat-icon></div></td>
+
+    </tr>
+</table>

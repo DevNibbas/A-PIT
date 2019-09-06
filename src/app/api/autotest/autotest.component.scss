@@ -1,0 +1,185 @@
+.section1{
+    width: 100%;
+    padding:50px;
+}
+.start-request{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 100vw;
+    &>div>.request{
+        &>mat-form-field:nth-child(2){
+            
+            width: 30vw;
+            min-width: 180px;
+
+        }
+        &>mat-form-field{
+            margin: 0 10px;
+        }
+        &>button{
+            max-width: 180px;
+            margin: 0 10px;
+            background: rgb(37, 144, 206);
+        }
+    }
+}
+
+
+.header{
+    max-width: 885px;
+    padding: 10px;
+}
+.params{
+    margin: 0px 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: #7A7A7A;
+    
+    &>tr{
+        display: flex;
+        // flex-direction:row;
+        // flex-grow:1
+        &>th{
+            background: rgb(212, 212, 212);
+            color: rgb(0, 0, 0);
+            padding: 7px;
+            font-weight: 400;
+            flex-grow: 1;
+            box-sizing: border-box;
+            width: 33.33%;
+
+            
+        }
+        &>td{
+            padding: 7px;
+            flex-grow: 1;
+            font-weight: 400;
+            font-size: 15px;
+            width: 33.33%;
+            height: 40px;
+            box-sizing: border-box;
+            overflow:auto; 
+            background: rgba(236, 235, 235, 0.671);
+        }  
+
+    }
+}
+[contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    display: block; /* For Firefox */
+}
+
+
+.response{
+    margin: 30px 0px;
+    max-width: 885px;
+    padding: 10px;
+
+    &>.responseheader{
+        padding: 15px 0px;
+        border-bottom: 1px solid #7A7A7A;
+        color: #7A7A7A;
+    }
+    &>.body{
+        padding: 10px;
+        // background: rgb(240, 240, 240);
+        border: 1px solid #7A7A7A;
+        
+    }
+    &>.httpHeader{
+        padding: 10px;
+        // background: rgb(240, 240, 240);
+        border: 1px solid #7A7A7A;
+
+    }
+    &>header{
+        margin: 30px 0 0 0; 
+
+    }
+}
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    color: #2590CE;
+    max-height: calc(100vh - 600px);
+}
+
+.nodata{
+    background-color: rgb(250, 250, 250);
+    border:1px dashed rgb(173, 173, 173) !important; 
+    height: 150px;
+}
+
+
+
+.helpmsg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #2590CE;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+@media(max-width:800px){
+    .section1{
+        padding: 50px 10px;
+    }
+}
+
+
+[contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    display: block; /* For Firefox */
+}
+
+
+.response{
+    margin: 30px 0px;
+    max-width: 885px;
+    padding: 10px;
+
+    &>.responseheader{
+        padding: 15px 0px;
+        border-bottom: 1px solid #7A7A7A;
+        color: #7A7A7A;
+    }
+    &>.body{
+        padding: 10px;
+        // background: rgb(240, 240, 240);
+        border: 1px solid #7A7A7A;
+    }
+}
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    color: #2590CE;
+    max-height: calc(100vh - 500px);
+}
+
+
+
+
+
+
+
+
+
+
+@media(max-width:800px){
+    .section1{
+        padding: 50px 10px;
+    }
+}

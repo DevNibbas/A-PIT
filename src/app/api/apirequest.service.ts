@@ -1,5 +1,3 @@
-import { Apirequest } from './interface/Apirequest';
-import { Param } from './interface/Param';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,6 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApirequestService {
 
   library;
@@ -14,7 +13,6 @@ export class ApirequestService {
     if (!this.library) {
       this.library = {};
     }
-
     this.library.json = {
       replacer: (match, pIndent, pKey, pVal, pEnd) => {
         const key = '<span class=json-key style="color: #444;">';
@@ -39,22 +37,15 @@ export class ApirequestService {
     };
   }
 
-
-
-
-
   get(url: string, options?: any): Observable<any> {
-
     return this.http.get(url, options);
   }
-
-
 
   post(url: string, data: any, options?: any) {
     return this.http.post<any>(url, data, options);
   }
 
-  put(url: string, data?: any, options?: any) {
+  put(url: string, data?: any, options?: any){
     return this.http.put<any>(url, data, options);
   }
 
@@ -65,7 +56,6 @@ export class ApirequestService {
   patch(url: string, data: any, options?: any) {
     return this.http.patch(url, data, options);
   }
-
 
   unireq(method: string, url: string, options?: any, data?: any) {
     if (method === 'GET') {
@@ -80,7 +70,6 @@ export class ApirequestService {
       return this.delete(url, options);
     }
   }
-
 
   getHeadersInJson(headers: HttpHeaders) {
     const jsonHeader = JSON;

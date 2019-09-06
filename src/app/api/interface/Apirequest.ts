@@ -2,7 +2,7 @@ import { Param } from './Param';
 
 export class Apirequest {
     url: string;
-    params: Param[];
+    params: any[];
     datas: any[];
     headers: any[];
     method: string;
