@@ -41,14 +41,14 @@ export class AutoTestPostService {
       resp.forEach(x => {
         let i = this.testcase_count-1;
         if(passVals.includes(x.status))
-        this.ret.push(`Testcase ${this.testcase_count} : pass for ${this.testResultParamNames[i]} parameter missing with code ${x.status}`);
+        this.ret.push(`Testcase ${this.testcase_count}:pass:${this.testResultParamNames[i]} parameter missing:${x.status}`);
         else
-        this.ret.push(`Testcase ${this.testcase_count} : fail for ${this.testResultParamNames[i]} parameter missing with code ${x.status}`);
+        this.ret.push(`Testcase ${this.testcase_count}:fail:${this.testResultParamNames[i]} parameter missing:${x.status}`);
         this.testcase_count += 1;
       })
     },err => {
         let i = this.testcase_count - 1;
-        this.ret.push(`Testcase ${this.testcase_count} : fail for server error.`);
+        this.ret.push(`Testcase ${this.testcase_count}:fail:server error:${err.status}`);
         this.testcase_count += 1;
     });
     return this.ret;

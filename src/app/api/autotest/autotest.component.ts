@@ -17,6 +17,7 @@ export class AutotestComponent implements OnInit {
   result:any = {};
   response:string[] = [];
   pass:number = 0;
+  resultDetails:any[] = [];
 
   constructor(private automatedTest:AutomatedTestService) {
     this.request.method = 'GET';
@@ -89,6 +90,8 @@ export class AutotestComponent implements OnInit {
   getPassValues():number{
     let ret = 0;
     this.response.forEach(x => {
+      let tmp = x.split(' : ');
+      console.log(tmp);
       if(x.includes('pass'))
       ret += 1;
     });
