@@ -1,4 +1,3 @@
-import { HttpHeaders } from '@angular/common/http';
 import { ApirequestService } from 'src/app/api/apirequest.service';
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, of } from 'rxjs';
@@ -19,11 +18,11 @@ export class AutoTestPutService {
 
   constructor(private apiRequest:ApirequestService) { }
 
-  testPut(url:string,httpHeaders:HttpHeaders,data?:any){
+  testPut(url:string,options:any,data?:any){
     this.testcaseCount = 1;
     this.ret = [];
     this.url = url;
-    this.httpOptions.httpHeaders = httpHeaders;
+    this.httpOptions = options;
     this.data = data;
     this.testcaseResp.push(data);
     this.allReqs = this.getAllReqs();

@@ -1,1 +1,127 @@
-<p>autotest works!</p>
+<section>
+    <div class="section1">
+        <div class="makerequest">
+            <div class="row nog start-request">
+                <div class="col-md-8 nog ">
+                    <div class="request">
+                        <mat-form-field>
+                            <mat-label>Select request Method</mat-label>
+                            <mat-select [(ngModel)]="request.method">
+                                <mat-option value="GET">GET</mat-option>
+                                <mat-option value="POST">POST</mat-option>
+                                <mat-option value="PUT">PUT</mat-option>
+                                <mat-option value="PATCH">PATCH</mat-option>
+                                <mat-option value="DELETE">DELETE</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Enter request url" [(ngModel)]="request.url" (input)="tweakUiAfterUrlChanged()"
+                                id="url">
+                            <button mat-button *ngIf="request.url" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="request.url=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <!-- <input type="text" id="url"> -->
+                        <button mat-raised-button color="primary" (click)="sendReq()">Send</button>
+                    </div>
+                    <div class="header">
+                        <div class="header-tab">
+                            <mat-tab-group>
+                                <mat-tab label="Params ({{request.params.length - 1}})">
+                                    <ng-template matTabContent>
+                                        <table class="params">
+                                            <tr class="p-header">
+                                                <th>Key</th>
+                                                <th>Value</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            <tr class="p-body" *ngFor="let param of request.params; let i=index"
+                                                (input)="addParam(i)">
+                                                <td contenteditable="true" placeholder="key"
+                                                    (keyup)="param.key=$event.target.innerText"
+                                                    [textContent]="param.key"></td>
+                                                <td contenteditable="true" placeholder="value"
+                                                    (keyup)="param.value=$event.target.innerText"
+                                                    [textContent]="param.value"></td>
+                                                <td contenteditable="true" placeholder="description"
+                                                    (keyup)="param.description=$event.target.innerText"
+                                                    [textContent]="param.description"></td>
+                                            </tr>
+                                        </table>
+                                    </ng-template>
+                                </mat-tab>
+                                <mat-tab label="Headers ({{request.headers.length - 1}})">
+                                    <ng-template matTabContent>
+                                        <table class="params">
+                                            <tr class="p-header">
+                                                <th>Key</th>
+                                                <th>Value</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            <tr class="p-body" *ngFor="let header of request.headers; let i=index"
+                                                (input)="addHeader(i)">
+                                                <td contenteditable="true" placeholder="key"
+                                                    (keyup)="header.name=$event.target.innerText"
+                                                    [textContent]="header.name"></td>
+                                                <td contenteditable="true" placeholder="value"
+                                                    (keyup)="header.value=$event.target.innerText"
+                                                    [textContent]="header.value"></td>
+                                                <td contenteditable="true" placeholder="description"
+                                                    (keyup)="header.description=$event.target.innerText"
+                                                    [textContent]="header.description"></td>
+                                            </tr>
+                                        </table>
+                                    </ng-template>
+                                </mat-tab>
+                                <mat-tab label="Data ({{request.datas.length - 1}})">
+                                    <ng-template matTabContent>
+                                        <table class="params">
+                                            <tr class="p-header">
+                                                <th>Key</th>
+                                                <th>Value</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            <tr class="p-body" *ngFor="let data of request.datas; let i=index"
+                                                (input)="addData(i)">
+                                                <td contenteditable="true" placeholder="key"
+                                                    (keyup)="data.key=$event.target.innerText" [textContent]="data.key">
+                                                </td>
+                                                <td contenteditable="true" placeholder="value"
+                                                    (keyup)="data.value=$event.target.innerText"
+                                                    [textContent]="data.value"></td>
+                                                <td contenteditable="true" placeholder="description"
+                                                    (keyup)="data.description=$event.target.innerText"
+                                                    [textContent]="data.description"></td>
+                                            </tr>
+                                        </table>
+                                    </ng-template>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                    </div>
+                    <div class="response">
+                            <div class="responseheader" *ngIf="(response && response.length>0)?getPassValues():false">
+                                Testcases ({{pass}}/{{response.length}})
+                                <table class="params">
+                                    <tr class="p-header" *ngFor="let res of resultDetails">
+                                        <td>{{res.casenum}}</td>
+                                        <td>{{res.result}}</td>
+                                        <td>{{res.status}}</td>
+                                        <td>{{res.details}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- <div class="httpHeader" [class.nodata]="!response">
+                                <div *ngIf="!response" class="helpmsg">Click on [Send] to recieve Data</div>
+                                <pre><code id="jsonResponseHeader"></code></pre>
+                            </div> -->
+                        </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+        </div>
+        <div class="col-md nog"></div>
+    </div>
+</section>
