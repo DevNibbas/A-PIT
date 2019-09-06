@@ -22,7 +22,7 @@ export class TestpageComponent implements OnInit {
   // @ViewChild('jsonResponse', { static: false }) jsonResponse: ElementRef;
   constructor(private req: ApirequestService, private ele: ElementRef) {
     this.request.method = 'GET';
-    this.request.params = [new Param()];
+    this.request.params = [{} as any];
     console.log(this.response);
 
     this.request.headers = [{ name: 'Access-Control-Request-Origin', value: '*' } as any, {}];
@@ -37,21 +37,6 @@ export class TestpageComponent implements OnInit {
 
 
 
-  addParam(index) { // ui part
-    if (index === this.request.params.length - 1) {
-      this.request.params.push(new Param());
-    }
-  }
-  addHeader(index) { // ui part
-    if (index === this.request.headers.length - 1) {
-      this.request.headers.push({});
-    }
-  }
-  addData(index) { // ui part
-    if (index === this.request.datas.length - 1) {
-      this.request.datas.push({} as any);
-    }
-  }
 
 
   tweakUiAfterUrlChanged() {
@@ -64,6 +49,7 @@ export class TestpageComponent implements OnInit {
 
 
   sendReq() {
+    console.log(this.request);
     const option = {
       headers: this.request.getHeaders(),
       params: this.request.getParams(),

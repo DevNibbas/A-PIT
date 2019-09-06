@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GetobjPipe } from './getobj.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { TabcontainerComponent } from './tabcontainer/tabcontainer.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { environment } from '../environments/environment';
     AppComponent,
     LandingpageComponent,
     GetobjPipe,
+
 
   ],
   imports: [

@@ -10,22 +10,25 @@ import { Injectable } from '@angular/core';
 })
 export class AutomatedTestService {
 
-  constructor(private autoGet:AutoTestGetService,
-    private autoPost:AutoTestPostService,
-    private autoPut:AutoTestPutService,
-    private autoPatch:AutoTestPatchService,
-    private autoDelete:AutoTestDeleteService) { }
-  
-  test(method:string,object:any):string[]{
-    let url = object.url;
-    let httpHeaders = object.httpHeaders;
-    if(method=='GET')
-    return this.autoGet.testGet(url,httpHeaders);
-    if(method=='POST')
-    return this.autoPost.testPost(url,object.paramNames,object.paramRegex,
-      httpHeaders,object.paramOptional,object.resultName,object.resultVal);
-    if(method=='PUT')
-    return this.autoPut.testPut(url,httpHeaders,object.data);
+  constructor(private autoGet: AutoTestGetService, private autoPost: AutoTestPostService, private autoPut: AutoTestPutService,
+    // tslint:disable-next-line:align
+    private autoPatch: AutoTestPatchService,
+    // tslint:disable-next-line:align
+    private autoDelete: AutoTestDeleteService) { }
+
+  test(method: string, object: any): string[] {
+    const url = object.url;
+    const httpHeaders = object.httpHeaders;
+    if (method === 'GET') {
+      return this.autoGet.testGet(url, httpHeaders);
+    }
+    if (method === 'POST') {
+      return this.autoPost.testPost(url, object.paramNames, object.paramRegex,
+        httpHeaders, object.paramOptional, object.resultName, object.resultVal);
+    }
+    if (method === 'PUT') {
+      return this.autoPut.testPut(url, httpHeaders, object.data);
+    }
     return [];
   }
 
