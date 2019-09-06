@@ -120,11 +120,20 @@
                         </div>
 
                     </div>
+                    <div class="auth-section">
+                        <div class="auth-head">
+                            <mat-slide-toggle class="auth-toggle" [color]="'primary'" [checked]="uioptions.auth" (change)="uioptions.auth=!uioptions.auth">
+                                <span *ngIf="!uioptions.auth">Enable Authentication</span>
+                                <span *ngIf="uioptions.auth">Disable Authentication</span>
+
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
 
 
 
                 </div>
-                <div class="col-md">
+                <div class="col-md nog">
                     <div class="response">
                         <div class="responseheader">
                             Response
@@ -153,6 +162,5 @@
             </div>
 
         </div>
-        <div class="col-md nog"></div>
     </div>
 </section>

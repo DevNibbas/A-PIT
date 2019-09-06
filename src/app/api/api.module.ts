@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 import { ApiRoutingModule } from './api-routing.module';
@@ -48,7 +49,7 @@ import { TabcontainerComponent } from './tabcontainer/tabcontainer.component';
     MatIconModule,
     MatInputModule,
     MatTabsModule,
-
+    MatSlideToggleModule,
   ]
 })
 export class ApiModule { }
