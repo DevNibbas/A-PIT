@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',

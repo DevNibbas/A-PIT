@@ -2,7 +2,7 @@
     <div class="section1">
         <div class="makerequest">
             <div class="row nog start-request">
-                <div class="col-md-8 nog ">
+                <div class="col-md-6 nog ">
 
 
                     <div class="request">
@@ -18,8 +18,8 @@
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput type="text" placeholder="Enter request url" [(ngModel)]="request.url" (input)="tweakUiAfterUrlChanged()"
-                                id="url">
+                            <input matInput type="text" placeholder="Enter request url" [(ngModel)]="request.url"
+                                (input)="tweakUiAfterUrlChanged()" id="url">
                             <button mat-button *ngIf="request.url" matSuffix mat-icon-button aria-label="Clear"
                                 (click)="request.url=''">
                                 <mat-icon>close</mat-icon>
@@ -55,7 +55,8 @@
 
                                             </tr>
                                         </table> -->
-                                        <tabcontainer (requestUpdated)="request.params=$event" [option]="request.params"></tabcontainer>
+                                        <tabcontainer (requestUpdated)="request.params=$event"
+                                            [option]="request.params"></tabcontainer>
                                     </ng-template>
                                 </mat-tab>
                                 <mat-tab label="Headers ({{request.headers.length - 1}})">
@@ -81,7 +82,8 @@
 
                                             </tr>
                                         </table> -->
-                                        <tabcontainer (requestUpdated)="request.headers=$event" [option]="request.headers"></tabcontainer>
+                                        <tabcontainer (requestUpdated)="request.headers=$event"
+                                            [option]="request.headers"></tabcontainer>
 
                                     </ng-template>
                                 </mat-tab>
@@ -108,7 +110,8 @@
 
                                             </tr>
                                         </table> -->
-                                        <tabcontainer (requestUpdated)="request.datas=$event" [option]="request.datas"></tabcontainer>
+                                        <tabcontainer (requestUpdated)="request.datas=$event" [option]="request.datas">
+                                        </tabcontainer>
 
                                     </ng-template>
                                 </mat-tab>
@@ -117,6 +120,11 @@
                         </div>
 
                     </div>
+
+
+
+                </div>
+                <div class="col-md">
                     <div class="response">
                         <div class="responseheader">
                             Response
@@ -140,10 +148,6 @@
 
                         </div>
                     </div>
-
-
-                </div>
-                <div class="col-md-4">
 
                 </div>
             </div>

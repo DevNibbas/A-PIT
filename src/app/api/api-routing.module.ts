@@ -1,4 +1,4 @@
-import { AuthGuard } from './../auth.guard';
+import { AuthGuard } from '../auth/auth.guard';
 import { ApiuiwrapperComponent } from './../apiuiwrapper/apiuiwrapper.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';

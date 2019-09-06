@@ -20,7 +20,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MaincontainerComponent } from '../maincontainer/maincontainer.component';
 import { ApiuiwrapperComponent } from '../apiuiwrapper/apiuiwrapper.component';
 import { FormsModule } from '@angular/forms';
-import { TabcontainerComponent } from '../tabcontainer/tabcontainer.component';
+import { TabcontainerComponent } from './tabcontainer/tabcontainer.component';
 
 
 @NgModule({
