@@ -103,6 +103,14 @@
                     <div class="response">
                             <div class="responseheader" *ngIf="response && response.length>0">
                                 Testcases ({{getPassValues()}}/{{response.length}})
+                                <table class="params">
+                                    <tr class="p-header" *ngFor="let res of resultDetails">
+                                        <td>{{res.casenum}}</td>
+                                        <td>{{res.result}}</td>
+                                        <td>{{res.status}}</td>
+                                        <td>{{res.details}}</td>
+                                    </tr>
+                                </table>
                             </div>
                             <!-- <div class="httpHeader" [class.nodata]="!response">
                                 <div *ngIf="!response" class="helpmsg">Click on [Send] to recieve Data</div>
