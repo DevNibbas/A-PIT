@@ -91,9 +91,25 @@ export class AutotestComponent implements OnInit {
     let ret = 0;
     this.resultDetails = [];
     this.response.forEach(x => {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
       let tmp = x.split(':');
       let obj = {casenum:tmp[0],result:tmp[1],details:tmp[2],status:tmp[3]};
       this.resultDetails.push(obj);
+=======
+      let tmp = x.split(' : ');
+>>>>>>> Changes made.
+=======
+      let tmp = x.split(':');
+      let obj = {casenum:tmp[0],result:tmp[1],details:tmp[2],status:tmp[3]};
+      this.resultDetails.push(obj);
+>>>>>>> Output printed.
+=======
+      let tmp = x.split(':');
+      let obj = {casenum:tmp[0],result:tmp[1],details:tmp[2],status:tmp[3]};
+      this.resultDetails.push(obj);
+>>>>>>> bd525b2e52dc6a3dbf1d8dcb8d276d6df9e6a96a
       console.log(tmp);
       if(x.includes('pass'))
       ret += 1;
