@@ -1,6 +1,5 @@
 import { ApiTestingContractService } from './../common/api-testing-contract.service';
 import { StringGeneratorService } from './../common/string-generator.service';
-import { HttpHeaders } from '@angular/common/http';
 import { ApirequestService } from 'src/app/api/apirequest.service';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
@@ -10,7 +9,7 @@ import { forkJoin, Observable } from 'rxjs';
 })
 export class AutoTestPostService {
 
-  httpOptions:any = {observe:'response'};
+  httpOptions:any = {};
   testcase_count:number = 0;
   url:string;
   ret:string[] = [];
@@ -24,13 +23,13 @@ export class AutoTestPostService {
     private stringGenService:StringGeneratorService,
     private apiContract:ApiTestingContractService) { }
 
-  testPost(url:string,paramNames:string[],paramRegex:string[],httpHeaders:HttpHeaders):string[]{
+  testPost(url:string,paramNames:string[],paramRegex:string[],options:any):string[]{
     this.ret = [];
     let passVals = [this.apiContract.HTTP_POST_SUCCESS_CODE,this.apiContract.HTTP_POST_CREATED_CODE];
     let failVals = [this.apiContract.HTTP_POST_NO_CONTENT_CODE,this.apiContract.HTTP_POST_NOT_FOUND_CODE,this.apiContract.HTTP_POST_BAD_REQUEST];
     this.testcase_count = 1;
     this.url = url;
-    this.httpOptions.headers = httpHeaders;
+    this.httpOptions = options;
     this.paramNames = paramNames;
     this.paramRegex = paramRegex;
     for(let index = 0; index<paramRegex.length;index++){
@@ -41,8 +40,6 @@ export class AutoTestPostService {
     forkJoin(this.obs).subscribe(resp =>{
       resp.forEach(x => {
         let i = this.testcase_count-1;
-        console.log(x);
-        console.log(passVals);
         if(passVals.includes(x.status))
         this.ret.push(`Testcase ${this.testcase_count} : pass for ${this.testResultParamNames[i]} parameter missing with code ${x.status}`);
         else
@@ -50,7 +47,6 @@ export class AutoTestPostService {
         this.testcase_count += 1;
       })
     },err => {
-        console.log(err);
         let i = this.testcase_count - 1;
         this.ret.push(`Testcase ${this.testcase_count} : fail for server error.`);
         this.testcase_count += 1;
