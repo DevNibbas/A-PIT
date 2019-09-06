@@ -87,7 +87,7 @@ export class AutotestComponent implements OnInit {
     // });
   }
 
-  getPassValues():number{
+  getPassValues():boolean{
     let ret = 0;
     this.resultDetails = [];
     this.response.forEach(x => {
@@ -98,7 +98,8 @@ export class AutotestComponent implements OnInit {
       if(x.includes('pass'))
       ret += 1;
     });
-    return ret;
+    this.pass = ret;
+    return true;
   }
 
 }
