@@ -101,8 +101,8 @@
                         </div>
                     </div>
                     <div class="response">
-                            <div class="responseheader" *ngIf="response && response.length>0">
-                                Testcases ({{getPassValues()}}/{{response.length}})
+                            <div class="responseheader" *ngIf="(response && response.length>0)?getPassValues():false">
+                                Testcases ({{pass}}/{{response.length}})
                                 <table class="params">
                                     <tr class="p-header" *ngFor="let res of resultDetails">
                                         <td>{{res.casenum}}</td>
