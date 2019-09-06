@@ -89,8 +89,11 @@ export class AutotestComponent implements OnInit {
 
   getPassValues():number{
     let ret = 0;
+    this.resultDetails = [];
     this.response.forEach(x => {
-      let tmp = x.split(' : ');
+      let tmp = x.split(':');
+      let obj = {casenum:tmp[0],result:tmp[1],details:tmp[2],status:tmp[3]};
+      this.resultDetails.push(obj);
       console.log(tmp);
       if(x.includes('pass'))
       ret += 1;
