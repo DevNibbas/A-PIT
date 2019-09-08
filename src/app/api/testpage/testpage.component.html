@@ -85,10 +85,24 @@
                         <div class="make-auth" *ngIf="uioptions.auth && uioptions.authtype">
                             <div class="row nog basicform" *ngIf="uioptions.authtype==='Basic Authentication'">
                                 <div class="col-md nog">
-                                    <input type="text" >
-                                </div >
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Username">
+                                    </mat-form-field>
+                                </div>
                                 <div class="col-md nog">
-                                    <input type="text" >
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Password">
+                                    </mat-form-field>
+                                </div>
+
+
+                            </div>
+                            <div class="row nog basicform" *ngIf="uioptions.authtype==='Bearer Token Authentication'">
+                                <div class="col-md nog Bearertoken">
+                                    <mat-form-field>
+
+                                        <input matInput type="text" placeholder="Enter Bearer Token">
+                                    </mat-form-field>
                                 </div>
 
                             </div>
@@ -101,7 +115,7 @@
                         <ng-template #bearer>
                             <div class="basicform">
                                 <input type="text" name="" id="">
-                                <input type="text" name="" id="">
+                                <input type="text" name="" id="" placeholder="Password">
 
                             </div>
                         </ng-template>
