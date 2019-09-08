@@ -16,9 +16,10 @@ export class AutotestComponent implements OnInit {
   object:any = {};
   request:Apirequest = new Apirequest();
   result:any = {};
-  response:string[];
+  response:string[] = undefined;
   pass:number = 0;
   resultDetails:any[] = [];
+  displayResults:boolean = false;
 
   constructor(private automatedTest:AutomatedTestService) {
     this.request.method = 'GET';
@@ -65,6 +66,8 @@ export class AutotestComponent implements OnInit {
   tweakUiAfterUrlChanged() {
     this.response = undefined;
     this.pass = 0;
+    this.displayResults = false;
+    this.resultDetails = [];
   }
 
   sendReq() {
@@ -75,15 +78,18 @@ export class AutotestComponent implements OnInit {
       reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
       responseType: 'json',
     };
-    let x = new Promise<string[]>((res,rej)=>{
-      this.response = this.automatedTest.test(this.request,option);
-      res(this.response);
-    });
-    x.then(x=>{
-      console.log(this.response);
-      console.log('in');
-      this.getPassValues();
-    });
+    this.response = this.automatedTest.test(this.request,option);
+    // let x = new Promise<string[]>((res,rej)=>{
+    //   res(this.automatedTest.test(this.request,option));
+    // });
+    // x.then(x=>{
+    //   console.log(x.length);
+    //   this.response = x;
+    //   console.log('in');
+    //   this.getPassValues();
+    //   this.displayResults = true;
+    //   console.log(this.response.length);
+    // });
     console.log('out');
     // this.req.unireq(this.request.method, this.request.url, option, this.request.getDatas()).subscribe(x => {
     //   console.log(x);
@@ -101,7 +107,6 @@ export class AutotestComponent implements OnInit {
     this.resultDetails = [];
     console.log(this.response.length);
     this.response.forEach(x => {
-      console.log(x);
       let tmp = x.split(':');
       let obj = {casenum:tmp[0],result:tmp[1],details:tmp[2],status:tmp[3]};
       this.resultDetails.push(obj);
@@ -109,6 +114,8 @@ export class AutotestComponent implements OnInit {
       ret += 1;
     });
     this.pass = ret;
+    this.displayResults = true;
+    return this.resultDetails;
   }
 
 }
