@@ -56,24 +56,55 @@
                         </div>
 
                     </div>
-                    <div class="row nog auth-section">
-                        <div class="col-md nog auth-head">
-                            <mat-slide-toggle class="auth-toggle" [color]="'primary'" [checked]="uioptions.auth"
-                                (change)="uioptions.auth=!uioptions.auth">
-                                <span *ngIf="!uioptions.auth">Enable authorization</span>
-                                <span *ngIf="uioptions.auth" style="color: rgb(185, 185, 185);">Disable
-                                    authorization</span>
+                    <div class="auth-part">
 
-                            </mat-slide-toggle>
+
+                        <div class="row nog auth-section">
+                            <div class="col-md nog auth-head">
+                                <mat-slide-toggle class="auth-toggle" [color]="'primary'" [checked]="uioptions.auth"
+                                    (change)="uioptions.auth=!uioptions.auth">
+                                    <span *ngIf="!uioptions.auth">Enable authorization</span>
+                                    <span *ngIf="uioptions.auth" style="color: rgb(185, 185, 185);">Disable
+                                        authorization</span>
+
+                                </mat-slide-toggle>
+                            </div>
+                            <div class="col-md nog auth-options" *ngIf="uioptions.auth">
+                                <button mat-button color="default"
+                                    [matMenuTriggerFor]="menu">{{uioptions.authtype || 'Select an auth type'}}</button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="uioptions.authtype='Basic Authentication'">Basic
+                                        Authentication</button>
+                                    <button mat-menu-item
+                                        (click)="uioptions.authtype='Bearer Token Authentication'">Bearer Token
+                                        Authentication</button>
+                                </mat-menu>
+
+                            </div>
                         </div>
-                        <div class="col-md nog auth-options">
-                            <button mat-button [matMenuTriggerFor]="menu">Select an auth type</button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>Item 1</button>
-                                <button mat-menu-item>Item 2</button>
-                            </mat-menu>
+                        <div class="make-auth" *ngIf="uioptions.auth && uioptions.authtype">
+                            <div class="row nog basicform" *ngIf="uioptions.authtype==='Basic Authentication'">
+                                <div class="col-md nog">
+                                    <input type="text" >
+                                </div >
+                                <div class="col-md nog">
+                                    <input type="text" >
+                                </div>
+
+                            </div>
 
                         </div>
+                        <ng-template #basic>
+
+                        </ng-template>
+
+                        <ng-template #bearer>
+                            <div class="basicform">
+                                <input type="text" name="" id="">
+                                <input type="text" name="" id="">
+
+                            </div>
+                        </ng-template>
                     </div>
 
 
