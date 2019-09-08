@@ -30,15 +30,15 @@ export class AutoTestPutService {
       resp=>{
       resp.forEach(x => {
         let i = this.testcaseCount - 1;
-        if(this.checkValidity(x,this.testcaseResp[i]))
-        this.ret.push(`Testcase ${this.testcaseCount} : pass for ${this.testcaseDetails[i]}`);
+        if(this.checkValidity(x.body,this.testcaseResp[i]))
+        this.ret.push(`Testcase ${this.testcaseCount}:pass:${this.testcaseDetails[i]}:${x.status}`);
         else
-        this.ret.push(`Testcase ${this.testcaseCount} : fail for ${this.testcaseDetails[i]}`);
+        this.ret.push(`Testcase ${this.testcaseCount}:fail:${this.testcaseDetails[i]}:${x.status}`);
         this.testcaseCount += 1;
       });
     },err=>{
         let i = this.testcaseCount - 1;
-        this.ret.push(`Testcase ${this.testcaseCount} : server error.`);
+        this.ret.push(`Testcase ${this.testcaseCount}:fail:server error:${err.status}`);
         this.testcaseCount += 1;
     });
     return this.ret;

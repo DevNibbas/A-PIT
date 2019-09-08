@@ -2,7 +2,8 @@ import { Param } from './../interface/Param';
 import { Apirequest } from './../interface/Apirequest';
 import { AutomatedTestService } from './../../services/test/automated-test.service';
 import { HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';;
+import { Component, OnInit } from '@angular/core';
+;
 
 @Component({
   selector: 'app-autotest',
@@ -15,9 +16,10 @@ export class AutotestComponent implements OnInit {
   object:any = {};
   request:Apirequest = new Apirequest();
   result:any = {};
-  response:string[] = [];
+  response:string[] = undefined;
   pass:number = 0;
   resultDetails:any[] = [];
+  displayResults:boolean = false;
 
   constructor(private automatedTest:AutomatedTestService) {
     this.request.method = 'GET';
@@ -62,11 +64,14 @@ export class AutotestComponent implements OnInit {
   }
 
   tweakUiAfterUrlChanged() {
-    this.response = undefined;
+    this.response = [];
     this.pass = 0;
+    this.displayResults = false;
+    this.resultDetails = [];
   }
 
   sendReq() {
+    this.tweakUiAfterUrlChanged();
     const option = {
       headers: this.request.getHeaders(),
       params: this.request.getParams(),
@@ -75,7 +80,18 @@ export class AutotestComponent implements OnInit {
       responseType: 'json',
     };
     this.response = this.automatedTest.test(this.request,option);
-    console.log(this.response);
+    // let x = new Promise<string[]>((res,rej)=>{
+    //   res(this.automatedTest.test(this.request,option));
+    // });
+    // x.then(x=>{
+    //   console.log(x.length);
+    //   this.response = x;
+    //   console.log('in');
+    //   this.getPassValues();
+    //   this.displayResults = true;
+    //   console.log(this.response.length);
+    // });
+    console.log('out');
     // this.req.unireq(this.request.method, this.request.url, option, this.request.getDatas()).subscribe(x => {
     //   console.log(x);
     //   this.response = x;
@@ -87,19 +103,20 @@ export class AutotestComponent implements OnInit {
     // });
   }
 
-  getPassValues():boolean{
+  getPassValues(){
     let ret = 0;
     this.resultDetails = [];
+    console.log(this.response.length);
     this.response.forEach(x => {
       let tmp = x.split(':');
       let obj = {casenum:tmp[0],result:tmp[1],details:tmp[2],status:tmp[3]};
       this.resultDetails.push(obj);
-      console.log(tmp);
       if(x.includes('pass'))
       ret += 1;
     });
     this.pass = ret;
-    return true;
+    this.displayResults = true;
+    return this.resultDetails;
   }
 
 }

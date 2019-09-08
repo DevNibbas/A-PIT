@@ -100,15 +100,21 @@
                             </mat-tab-group>
                         </div>
                     </div>
-                    <div class="response">
-                            <div class="responseheader" *ngIf="(response && response.length>0)?getPassValues():false">
+                    <div class="header">
+                            <div class="header-tab" *ngIf="response && response.length>0">
                                 Testcases ({{pass}}/{{response.length}})
-                                <table class="params">
-                                    <tr class="p-header" *ngFor="let res of resultDetails">
+                                <table class="results">
+                                    <tr>
+                                        <th>Testcase</th>
+                                        <th>Result</th>
+                                        <th>Code</th>
+                                        <th style="width:40%">Details</th>
+                                    </tr>
+                                    <tr *ngFor="let res of (displayResults?resultDetails:getPassValues())">
                                         <td>{{res.casenum}}</td>
                                         <td>{{res.result}}</td>
                                         <td>{{res.status}}</td>
-                                        <td>{{res.details}}</td>
+                                        <td style="width:40%">{{res.details}}</td>
                                     </tr>
                                 </table>
                             </div>
