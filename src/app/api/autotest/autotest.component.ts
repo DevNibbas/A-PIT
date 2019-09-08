@@ -64,13 +64,14 @@ export class AutotestComponent implements OnInit {
   }
 
   tweakUiAfterUrlChanged() {
-    this.response = undefined;
+    this.response = [];
     this.pass = 0;
     this.displayResults = false;
     this.resultDetails = [];
   }
 
   sendReq() {
+    this.tweakUiAfterUrlChanged();
     const option = {
       headers: this.request.getHeaders(),
       params: this.request.getParams(),
