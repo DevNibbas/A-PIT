@@ -66,6 +66,40 @@
 
     }
 }
+
+.results{
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: #7A7A7A;
+    
+    &>tr{
+        display: flex;
+        // flex-direction:row;
+        // flex-grow:1
+        &>th{
+            background: rgb(212, 212, 212);
+            color: rgb(0, 0, 0);
+            padding: 7px;
+            font-weight: 400;
+            flex-grow: 1;
+            box-sizing: border-box;
+            width: 20%;
+        }
+        &>td{
+            padding: 7px;
+            flex-grow: 1;
+            font-weight: 400;
+            font-size: 15px;
+            width: 20%;
+            overflow:auto; 
+            background: rgba(236, 235, 235, 0.671);
+        }  
+
+    }
+}
+
 [contenteditable=true]:empty:before{
     content: attr(placeholder);
     display: block; /* For Firefox */
