@@ -13,7 +13,7 @@ export class TestpageComponent {
   request: Apirequest = new Apirequest();
   response;
   library: any = {} as any;
-  // uioptions: any = {} as any;
+  uioptions: any = { auth: false, authtype: null } as any;
 
 
   constructor(private req: ApirequestService, private ele: ElementRef) {
