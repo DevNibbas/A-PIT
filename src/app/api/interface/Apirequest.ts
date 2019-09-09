@@ -12,12 +12,13 @@ export class Apirequest {
     public getHeaders() {
 
 
-        const header = { Accept: 'application/json' };
+        const header = { Accept: 'application/json,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' };
         this.headers.forEach(h => {
-            if (h.name) {
+            if (h.key) {
                 header[h.key] = h.value;
             }
         });
+        console.log(header);
         return header;
     }
     public getParams() {

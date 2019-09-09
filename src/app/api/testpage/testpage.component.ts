@@ -43,6 +43,7 @@ export class TestpageComponent {
 
     }
     if (this.uioptions.cors === true) {
+      console.log('cors');
       url = 'http://127.0.0.1:8000/' + this.request.url;
     }
     const option = {
@@ -56,10 +57,11 @@ export class TestpageComponent {
     this.req.unireq(this.request.method, url, option, this.request.getDatas()).subscribe(x => {
       this.response = x;
       const ele = document.getElementById('jsonResponse');
-      console.log(JSON.stringify(x.body));
       // ele.innerHTML = this.req.library.json.prettyPrint(this.response.body);
       // removed due to scalability factor please update this algorithm
-      ele.innerHTML = JSON.stringify(this.response.body);
+      ele.innerHTML = JSON.stringify(this.response.body, null, 3);
+
+      // ele.innerHTML = JSON.stringify(this.response.body);
       const eleHeader = document.getElementById('jsonResponseHeader');
       eleHeader.innerHTML = this.req.library.json.prettyPrint(this.req.getHeadersInJson(this.response.headers));
 
