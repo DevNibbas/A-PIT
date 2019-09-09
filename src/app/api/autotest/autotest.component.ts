@@ -1,3 +1,5 @@
+import { HistIDBContract } from './../interface/HistIDBContract';
+import { CrudService } from './../../crud.service';
 import { Param } from './../interface/Param';
 import { Apirequest } from './../interface/Apirequest';
 import { AutomatedTestService } from './../../services/test/automated-test.service';
@@ -21,7 +23,8 @@ export class AutotestComponent implements OnInit {
   resultDetails:any[] = [];
   displayResults:boolean = false;
 
-  constructor(private automatedTest:AutomatedTestService) {
+  constructor(private automatedTest:AutomatedTestService,
+      private idbCRUD:CrudService) {
     this.request.method = 'GET';
     this.request.params = [new Param];
     this.request.headers = [{ name: 'Access-Control-Request-Origin', value: '*' } as any, {}];
@@ -79,6 +82,20 @@ export class AutotestComponent implements OnInit {
       reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
       responseType: 'json',
     };
+    let obj:any = {};
+    obj[HistIDBContract._tReqHistoryUserId] = 1;
+    obj[HistIDBContract._tReqHistoryMethod] = this.request.method;
+    obj[HistIDBContract._tReqHistoryURL] = this.request.url;
+    obj[HistIDBContract._tReqHistoryParams] = this.request.getParams();
+    obj[HistIDBContract._tReqHistoryHeaders] = this.request.getHeaders();
+    obj[HistIDBContract._tReqHistoryData] = this.request.getDatas();
+    // obj[HistIDBContract._tReqHistoryAuth] = 1;
+    // obj[HistIDBContract._tReqHistoryAuthType] = 1;
+    // obj[HistIDBContract._tReqHistoryAuthUname] = 1;
+    // obj[HistIDBContract._tReqHistoryAuthPwd] = 1;
+    // obj[HistIDBContract._tReqHistoryBearerToken] = 1;
+
+    console.log(this.idbCRUD.addRequestHistory(obj));
     this.response = this.automatedTest.test(this.request,option);
     // let x = new Promise<string[]>((res,rej)=>{
     //   res(this.automatedTest.test(this.request,option));
