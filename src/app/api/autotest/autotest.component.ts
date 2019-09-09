@@ -96,6 +96,11 @@ export class AutotestComponent implements OnInit {
     // obj[HistIDBContract._tReqHistoryBearerToken] = 1;
 
     console.log(this.idbCRUD.addRequestHistory(obj));
+    let history = this.idbCRUD.getRequestHistory(1);
+    history.onsuccess = ()=>{
+      console.log(history.result.length);
+      console.log(history.result);
+    };
     this.response = this.automatedTest.test(this.request,option);
     // let x = new Promise<string[]>((res,rej)=>{
     //   res(this.automatedTest.test(this.request,option));
