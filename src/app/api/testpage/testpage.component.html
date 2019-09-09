@@ -28,6 +28,15 @@
                         <button mat-raised-button color="primary" (click)="sendReq()">Send</button>
 
                     </div>
+                    <div class="cors">
+                        <mat-slide-toggle class="auth-toggle" [color]="'primary'" [checked]="uioptions.cors"
+                            (change)="uioptions.cors=!uioptions.cors">
+                            <span *ngIf="!uioptions.cors">Enable Cors</span>
+                            <span *ngIf="uioptions.cors" style="color: rgb(185, 185, 185);">Disable
+                                Cors</span>
+
+                        </mat-slide-toggle>
+                    </div>
                     <div class="header">
                         <div class="header-tab">
                             <mat-tab-group>
@@ -86,12 +95,14 @@
                             <div class="row nog basicform" *ngIf="uioptions.authtype==='Basic Authentication'">
                                 <div class="col-md nog">
                                     <mat-form-field>
-                                        <input matInput type="text" placeholder="Username">
+                                        <input matInput type="text" placeholder="Username"
+                                            [(ngModel)]="apiAuth.username">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md nog">
                                     <mat-form-field>
-                                        <input matInput type="text" placeholder="Password">
+                                        <input matInput type="text" placeholder="Password"
+                                            [(ngModel)]="apiAuth.password">
                                     </mat-form-field>
                                 </div>
 
@@ -99,9 +110,10 @@
                             </div>
                             <div class="row nog basicform" *ngIf="uioptions.authtype==='Bearer Token Authentication'">
                                 <div class="col-md nog Bearertoken">
-                                    <mat-form-field> 
+                                    <mat-form-field>
 
-                                        <input matInput type="text" placeholder="Enter Bearer Token">
+                                        <input matInput type="text" placeholder="Enter Bearer Token"
+                                            [(ngModel)]="apiAuth.bearer">
                                     </mat-form-field>
                                 </div>
 

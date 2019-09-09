@@ -45,7 +45,7 @@ export class ApirequestService {
     return this.http.post<any>(url, data, options);
   }
 
-  put(url: string, data?: any, options?: any){
+  put(url: string, data?: any, options?: any) {
     return this.http.put<any>(url, data, options);
   }
 
