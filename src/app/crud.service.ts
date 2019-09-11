@@ -8,8 +8,10 @@ export class CrudService {
 
   // tslint:disable-next-line:variable-name
   private _dbHistoryReq: IDBOpenDBRequest;
+  private _dbModelNameReq: IDBOpenDBRequest;
   // tslint:disable-next-line:variable-name
   private _dbHistoryDB: IDBDatabase;
+  private _dbModelNameDB: IDBDatabase;
 
   constructor() {
     this._dbHistoryReq = window.indexedDB.open(HistIDBContract._dbNameHistory,
@@ -26,6 +28,17 @@ export class CrudService {
     };
     this._dbHistoryReq.onsuccess = () => {
       this._dbHistoryDB = this._dbHistoryReq.result;
+    };
+    this._dbModelNameReq = window.indexedDB.open(HistIDBContract._dbNameModels,
+      HistIDBContract._dbVersionModelName);
+    this._dbModelNameReq.onupgradeneeded = () => {
+      this._dbModelNameDB = this._dbModelNameReq.result;
+      const modelName = this._dbModelNameDB.createObjectStore(
+        HistIDBContract._tModelName, {keyPath: HistIDBContract._tModelNameId, autoIncrement:true});
+      this.addIndexesWithOutOptions(modelName,[HistIDBContract._tModelNameName,HistIDBContract._tModelNameUid]);
+    };
+    this._dbModelNameReq.onsuccess = () => {
+      this._dbModelNameDB = this._dbModelNameReq.result;
     };
   }
 
@@ -45,6 +58,14 @@ export class CrudService {
     reqHistTransaction.onerror = (err) => {
       console.log(err);
     };
+  }
+
+  getModelNames(uid: any): IDBRequest<any>{
+    const modelNameTransaction = this._dbModelNameDB.transaction(HistIDBContract._tModelName,
+      HistIDBContract._transactionRO);
+    const modelNameStore = modelNameTransaction.objectStore(HistIDBContract._tModelName);
+    const uidIndex = modelNameStore.index(HistIDBContract._tModelNameUid);
+    return uidIndex.getAll(uid);
   }
 
   getRequestHistory(uid: any): IDBRequest<any> {
