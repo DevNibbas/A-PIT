@@ -49,8 +49,7 @@ export class CrudService {
   }
 
   getRequestHistory(uid: any): IDBRequest<any> {
-    const reqHistTransaction = this._dbHistoryDB.transaction(HistIDBContract._tReqHistoryName,
-      HistIDBContract._transactionRO);
+    const reqHistTransaction = this._dbHistoryDB.transaction(HistIDBContract._tReqHistoryName, HistIDBContract._transactionRO);
     const reqHistStore = reqHistTransaction.objectStore(HistIDBContract._tReqHistoryName);
     const uidIndex = reqHistStore.index(HistIDBContract._tReqHistoryUserId);
     return uidIndex.getAll(uid);

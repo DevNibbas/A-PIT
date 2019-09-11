@@ -1,8 +1,8 @@
 export class HistIDBContract {
 
     /* ---------------------------------------------- */
-    public static _transactionRO:IDBTransactionMode = 'readonly';
-    public static _transactionRW:IDBTransactionMode = 'readwrite';
+    public static _transactionRO: IDBTransactionMode = 'readonly';
+    public static _transactionRW: IDBTransactionMode = 'readwrite';
     /* ---------------------------------------------- */
 
     /* ---------------------------------------------- */
@@ -15,7 +15,7 @@ export class HistIDBContract {
 
     /* ---------------------------------------------- */
     public static _tReqHistoryName: string = 'request_history';
-    public static _tReqUniqueId:string = 'id';
+    public static _tReqUniqueId: string = 'id';
     public static _tReqHistoryUserId: string = 'uid';
     public static _tReqHistoryMethod: string = 'req_method';
     public static _tReqHistoryURL: string = 'req_url';
@@ -34,5 +34,5 @@ export class HistIDBContract {
     public static _tModelNameUid: string = 'uid';
     /* ---------------------------------------------- */
 
-    constructor(){}
+    constructor() { }
 }
