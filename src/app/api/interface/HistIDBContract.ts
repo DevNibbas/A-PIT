@@ -1,24 +1,24 @@
 export class HistIDBContract {
 
-    public static _transactionRO:IDBTransactionMode = 'readonly';
-    public static _transactionRW:IDBTransactionMode = 'readwrite';
+    public static _transactionRO: IDBTransactionMode = 'readonly';
+    public static _transactionRW: IDBTransactionMode = 'readwrite';
 
-    public static _dbNameHistory: string = 'history';
-    public static _dbVersionHistory: number = 1;
+    public static _dbNameHistory = 'history';
+    public static _dbVersionHistory = 1;
 
-    public static _tReqHistoryName: string = 'request_history';
-    public static _tReqUniqueId:string = 'id';
-    public static _tReqHistoryUserId: string = 'uid';
-    public static _tReqHistoryMethod: string = 'req_method';
-    public static _tReqHistoryURL: string = 'req_url';
-    public static _tReqHistoryParams: string = 'req_params';
-    public static _tReqHistoryHeaders: string = 'req_headers';
-    public static _tReqHistoryData: string = 'req_data';
-    public static _tReqHistoryAuth: string = 'req_auth';
-    public static _tReqHistoryAuthUname: string = 'req_auth_uname';
-    public static _tReqHistoryAuthPwd: string = 'req_auth_pwd';
-    public static _tReqHistoryBearerToken: string = 'req_auth_bearer_token';
-    public static _tReqHistoryAuthType: string = 'req_auth_type';
+    public static _tReqHistoryName = 'request_history';
+    public static _tReqUniqueId = 'id';
+    public static _tReqHistoryUserId = 'uid';
+    public static _tReqHistoryMethod = 'req_method';
+    public static _tReqHistoryURL = 'req_url';
+    public static _tReqHistoryParams = 'req_params';
+    public static _tReqHistoryHeaders = 'req_headers';
+    public static _tReqHistoryData = 'req_data';
+    public static _tReqHistoryAuth = 'req_auth';
+    public static _tReqHistoryAuthUname = 'req_auth_uname';
+    public static _tReqHistoryAuthPwd = 'req_auth_pwd';
+    public static _tReqHistoryBearerToken = 'req_auth_bearer_token';
+    public static _tReqHistoryAuthType = 'req_auth_type';
 
-    constructor(){}
+    constructor() { }
 }
