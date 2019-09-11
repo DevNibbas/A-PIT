@@ -120,17 +120,13 @@
                             </div>
 
                         </div>
-                        <ng-template #basic>
+                        
+                    </div>
 
-                        </ng-template>
-
-                        <ng-template #bearer>
-                            <div class="basicform">
-                                <input type="text" name="" id="">
-                                <input type="text" name="" id="" placeholder="Password">
-
-                            </div>
-                        </ng-template>
+                    <div class="history-table">
+                        <div class="histories" *ngFor="let hist of allHistory">
+                            {{hist}}
+                        </div>
                     </div>
 
 
