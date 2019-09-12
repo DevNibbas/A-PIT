@@ -33,7 +33,6 @@ export class CrudService {
       reqHistTransaction.onerror = (err) => {
         rej(err);
       };
-
     });
 
   }
@@ -50,9 +49,8 @@ export class CrudService {
         res(result.result);
       };
       result.onerror = (err) => {
-        res(err);
+        rej(err);
       };
-      rej('Application error please reload');
     });
   }
 
@@ -66,9 +64,8 @@ export class CrudService {
         res(result.result);
       };
       result.onerror = (err) => {
-        res(err);
+        rej(err);
       };
-      rej('Application error please reload');
     });
   }
 
