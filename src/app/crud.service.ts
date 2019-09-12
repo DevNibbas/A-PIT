@@ -38,19 +38,20 @@ export class CrudService {
 
   }
 
-  getModelNames(uid: any): IDBRequest<any> {
+  // Gives the list of ModelNames with UserId/Name with uid and Method type with type
+  getModelNames(uid: any,type: any): IDBRequest<any> {
     const modelNameTransaction = this._dbAPIT.transaction(IDBContract._tModelStoreName,
       IDBContract._transactionRO);
     const modelNameStore = modelNameTransaction.objectStore(IDBContract._tModelStoreName);
-    const uidIndex = modelNameStore.index(IDBContract._tModelIndexUid);
-    return uidIndex.getAll(uid);
+    const uidIndex = modelNameStore.index(`${IDBContract._tModelIndexUid}, ${IDBContract._tModelIndexType}`);
+    return uidIndex.getAll([uid,type]);
   }
 
   getRequestHistory(uid: any): IDBRequest<any> {
     const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName, IDBContract._transactionRO);
     const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
     const uidIndex = reqHistStore.index(IDBContract._tReqHistoryIndexUserId);
-    return uidIndex.getAll(uid);
+    return uidIndex.getAll();
   }
 
   isDBOpened(): boolean {
@@ -79,6 +80,11 @@ export class CrudService {
       this._dbOpen = true;
       this._dbAPIT = this._dbAPITReq.result;
     };
+  }
+
+  getAllMethodTypes():string[]{
+    return [IDBContract._methodURL,IDBContract._methodData,IDBContract._methodHeader,
+            IDBContract._methodParam];
   }
 
 }
