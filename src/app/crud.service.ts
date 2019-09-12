@@ -22,16 +22,20 @@ export class CrudService {
     });
   }
 
-  addRequestHistory(object: any) {
+  async addRequestHistory(object: any) {
     const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName,
       IDBContract._transactionRW);
-    reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName).put(object);
-    reqHistTransaction.oncomplete = () => {
-      console.log('Success');
-    };
-    reqHistTransaction.onerror = (err) => {
-      console.log(err);
-    };
+    const out = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName).put(object);
+    return new Promise<any>((res, rej) => {
+      reqHistTransaction.oncomplete = () => {
+        res(out.result);
+      };
+      reqHistTransaction.onerror = (err) => {
+        res(err);
+      };
+      rej('Application error please reload');
+    });
+
   }
 
   getModelNames(uid: any): IDBRequest<any> {
@@ -49,7 +53,7 @@ export class CrudService {
     return uidIndex.getAll(uid);
   }
 
-  isDBOpened(): boolean{
+  isDBOpened(): boolean {
     return this._dbOpen;
   }
 
@@ -63,13 +67,13 @@ export class CrudService {
       this.addIndexesWithOutOptions(reqHistStore, [IDBContract._tReqHistoryIndexUserId,
       IDBContract._tReqHistoryIndexMethod, IDBContract._tReqHistoryIndexURL,
       IDBContract._tReqHistoryIndexParams, IDBContract._tReqHistoryIndexHeaders,
-      IDBContract._tReqHistoryIndexData, IDBContract._tReqHistoryIndexAuth, 
-      IDBContract._tReqHistoryIndexAuthType,IDBContract._tReqHistoryIndexAuthUname, 
+      IDBContract._tReqHistoryIndexData, IDBContract._tReqHistoryIndexAuth,
+      IDBContract._tReqHistoryIndexAuthType, IDBContract._tReqHistoryIndexAuthUname,
       IDBContract._tReqHistoryIndexAuthPwd, IDBContract._tReqHistoryIndexBearerToken]);
       const modelsStore = this._dbAPIT.createObjectStore(
         IDBContract._tModelStoreName, { keyPath: IDBContract._tModelIndexId, autoIncrement: true });
-      this.addIndexesWithOutOptions(modelsStore, [IDBContract._tModelIndexName, 
-        IDBContract._tModelIndexUid,IDBContract._tModelIndexType,IDBContract._tModelIndexData]);
+      this.addIndexesWithOutOptions(modelsStore, [IDBContract._tModelIndexName,
+      IDBContract._tModelIndexUid, IDBContract._tModelIndexType, IDBContract._tModelIndexData]);
     };
     this._dbAPITReq.onsuccess = () => {
       this._dbOpen = true;
