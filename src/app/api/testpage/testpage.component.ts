@@ -1,5 +1,5 @@
 import { ReqHistory } from './../interface/ReqHistory';
-import { HistIDBContract } from './../interface/HistIDBContract';
+import { IDBContract } from './../interface/IDBContract';
 import { CrudService } from './../../crud.service';
 import { ApirequestService } from 'src/app/api/apirequest.service';
 import { Component, ElementRef } from '@angular/core';
@@ -76,17 +76,17 @@ export class TestpageComponent {
 
 
       // save request
-      this.saverequest[HistIDBContract._tReqHistoryIndexUserId] = 1;
-      this.saverequest[HistIDBContract._tReqHistoryIndexURL] = this.request.url;
-      this.saverequest[HistIDBContract._tReqHistoryIndexParams] = this.request.params;
-      this.saverequest[HistIDBContract._tReqHistoryIndexMethod] = this.request.method;
-      this.saverequest[HistIDBContract._tReqHistoryIndexHeaders] = this.request.headers;
-      this.saverequest[HistIDBContract._tReqHistoryIndexData] = this.request.datas;
-      this.saverequest[HistIDBContract._tReqHistoryIndexBearerToken] = this.apiAuth.bearer;
-      this.saverequest[HistIDBContract._tReqHistoryIndexAuthUname] = this.apiAuth.username;
-      this.saverequest[HistIDBContract._tReqHistoryIndexAuthPwd] = this.apiAuth.password;
-      this.saverequest[HistIDBContract._tReqHistoryIndexAuth] = this.uioptions.auth;
-      this.saverequest[HistIDBContract._tReqHistoryIndexAuthType] = this.uioptions.authtype;
+      this.saverequest[IDBContract._tReqHistoryIndexUserId] = 1;
+      this.saverequest[IDBContract._tReqHistoryIndexURL] = this.request.url;
+      this.saverequest[IDBContract._tReqHistoryIndexParams] = this.request.params;
+      this.saverequest[IDBContract._tReqHistoryIndexMethod] = this.request.method;
+      this.saverequest[IDBContract._tReqHistoryIndexHeaders] = this.request.headers;
+      this.saverequest[IDBContract._tReqHistoryIndexData] = this.request.datas;
+      this.saverequest[IDBContract._tReqHistoryIndexBearerToken] = this.apiAuth.bearer;
+      this.saverequest[IDBContract._tReqHistoryIndexAuthUname] = this.apiAuth.username;
+      this.saverequest[IDBContract._tReqHistoryIndexAuthPwd] = this.apiAuth.password;
+      this.saverequest[IDBContract._tReqHistoryIndexAuth] = this.uioptions.auth;
+      this.saverequest[IDBContract._tReqHistoryIndexAuthType] = this.uioptions.authtype;
 
 
 

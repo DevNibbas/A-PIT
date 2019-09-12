@@ -1,4 +1,4 @@
-import { HistIDBContract } from './../interface/HistIDBContract';
+import { IDBContract } from '../interface/IDBContract';
 import { CrudService } from './../../crud.service';
 import { Param } from './../interface/Param';
 import { Apirequest } from './../interface/Apirequest';
@@ -83,17 +83,17 @@ export class AutotestComponent implements OnInit {
       responseType: 'json',
     };
     let obj:any = {};
-    obj[HistIDBContract._tReqHistoryUserId] = 1;
-    obj[HistIDBContract._tReqHistoryMethod] = this.request.method;
-    obj[HistIDBContract._tReqHistoryURL] = this.request.url;
-    obj[HistIDBContract._tReqHistoryParams] = this.request.getParams();
-    obj[HistIDBContract._tReqHistoryHeaders] = this.request.getHeaders();
-    obj[HistIDBContract._tReqHistoryData] = this.request.getDatas();
-    // obj[HistIDBContract._tReqHistoryAuth] = 1;
-    // obj[HistIDBContract._tReqHistoryAuthType] = 1;
-    // obj[HistIDBContract._tReqHistoryAuthUname] = 1;
-    // obj[HistIDBContract._tReqHistoryAuthPwd] = 1;
-    // obj[HistIDBContract._tReqHistoryBearerToken] = 1;
+    obj[IDBContract._tReqHistoryIndexUserId] = 1;
+    obj[IDBContract._tReqHistoryIndexMethod] = this.request.method;
+    obj[IDBContract._tReqHistoryIndexURL] = this.request.url;
+    obj[IDBContract._tReqHistoryIndexParams] = this.request.getParams();
+    obj[IDBContract._tReqHistoryIndexHeaders] = this.request.getHeaders();
+    obj[IDBContract._tReqHistoryIndexData] = this.request.getDatas();
+    // obj[IDBContract._tReqHistoryAuth] = 1;
+    // obj[IDBContract._tReqHistoryAuthType] = 1;
+    // obj[IDBContract._tReqHistoryAuthUname] = 1;
+    // obj[IDBContract._tReqHistoryAuthPwd] = 1;
+    // obj[IDBContract._tReqHistoryBearerToken] = 1;
 
     console.log(this.idbCRUD.addRequestHistory(obj));
     let history = this.idbCRUD.getRequestHistory(1);

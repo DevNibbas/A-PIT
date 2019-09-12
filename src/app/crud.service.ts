@@ -1,4 +1,4 @@
-import { HistIDBContract } from './api/interface/HistIDBContract';
+import { IDBContract } from './api/interface/IDBContract';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -23,9 +23,9 @@ export class CrudService {
   }
 
   addRequestHistory(object: any) {
-    const reqHistTransaction = this._dbAPIT.transaction(HistIDBContract._tReqHistoryStoreName,
-      HistIDBContract._transactionRW);
-    reqHistTransaction.objectStore(HistIDBContract._tReqHistoryStoreName).put(object);
+    const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName,
+      IDBContract._transactionRW);
+    reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName).put(object);
     reqHistTransaction.oncomplete = () => {
       console.log('Success');
     };
@@ -35,17 +35,17 @@ export class CrudService {
   }
 
   getModelNames(uid: any): IDBRequest<any> {
-    const modelNameTransaction = this._dbAPIT.transaction(HistIDBContract._tModelStoreName,
-      HistIDBContract._transactionRO);
-    const modelNameStore = modelNameTransaction.objectStore(HistIDBContract._tModelStoreName);
-    const uidIndex = modelNameStore.index(HistIDBContract._tModelIndexUid);
+    const modelNameTransaction = this._dbAPIT.transaction(IDBContract._tModelStoreName,
+      IDBContract._transactionRO);
+    const modelNameStore = modelNameTransaction.objectStore(IDBContract._tModelStoreName);
+    const uidIndex = modelNameStore.index(IDBContract._tModelIndexUid);
     return uidIndex.getAll(uid);
   }
 
   getRequestHistory(uid: any): IDBRequest<any> {
-    const reqHistTransaction = this._dbAPIT.transaction(HistIDBContract._tReqHistoryStoreName, HistIDBContract._transactionRO);
-    const reqHistStore = reqHistTransaction.objectStore(HistIDBContract._tReqHistoryStoreName);
-    const uidIndex = reqHistStore.index(HistIDBContract._tReqHistoryIndexUserId);
+    const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName, IDBContract._transactionRO);
+    const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
+    const uidIndex = reqHistStore.index(IDBContract._tReqHistoryIndexUserId);
     return uidIndex.getAll(uid);
   }
 
@@ -54,22 +54,22 @@ export class CrudService {
   }
 
   openAPITDB() {
-    this._dbAPITReq = window.indexedDB.open(HistIDBContract._databaseName,
-      HistIDBContract._dbVersionHistory);
+    this._dbAPITReq = window.indexedDB.open(IDBContract._databaseName,
+      IDBContract._dbVersionHistory);
     this._dbAPITReq.onupgradeneeded = () => {
       this._dbAPIT = this._dbAPITReq.result;
       const reqHistStore = this._dbAPIT.createObjectStore(
-        HistIDBContract._tReqHistoryStoreName, { keyPath: HistIDBContract._tReqHistoryIndexUniqueId, autoIncrement: true });
-      this.addIndexesWithOutOptions(reqHistStore, [HistIDBContract._tReqHistoryIndexUserId,
-      HistIDBContract._tReqHistoryIndexMethod, HistIDBContract._tReqHistoryIndexURL,
-      HistIDBContract._tReqHistoryIndexParams, HistIDBContract._tReqHistoryIndexHeaders,
-      HistIDBContract._tReqHistoryIndexData, HistIDBContract._tReqHistoryIndexAuth, 
-      HistIDBContract._tReqHistoryIndexAuthType,HistIDBContract._tReqHistoryIndexAuthUname, 
-      HistIDBContract._tReqHistoryIndexAuthPwd, HistIDBContract._tReqHistoryIndexBearerToken]);
+        IDBContract._tReqHistoryStoreName, { keyPath: IDBContract._tReqHistoryIndexUniqueId, autoIncrement: true });
+      this.addIndexesWithOutOptions(reqHistStore, [IDBContract._tReqHistoryIndexUserId,
+      IDBContract._tReqHistoryIndexMethod, IDBContract._tReqHistoryIndexURL,
+      IDBContract._tReqHistoryIndexParams, IDBContract._tReqHistoryIndexHeaders,
+      IDBContract._tReqHistoryIndexData, IDBContract._tReqHistoryIndexAuth, 
+      IDBContract._tReqHistoryIndexAuthType,IDBContract._tReqHistoryIndexAuthUname, 
+      IDBContract._tReqHistoryIndexAuthPwd, IDBContract._tReqHistoryIndexBearerToken]);
       const modelsStore = this._dbAPIT.createObjectStore(
-        HistIDBContract._tModelStoreName, { keyPath: HistIDBContract._tModelIndexId, autoIncrement: true });
-      this.addIndexesWithOutOptions(modelsStore, [HistIDBContract._tModelIndexName, 
-        HistIDBContract._tModelIndexUid,HistIDBContract._tModelIndexType,HistIDBContract._tModelIndexData]);
+        IDBContract._tModelStoreName, { keyPath: IDBContract._tModelIndexId, autoIncrement: true });
+      this.addIndexesWithOutOptions(modelsStore, [IDBContract._tModelIndexName, 
+        IDBContract._tModelIndexUid,IDBContract._tModelIndexType,IDBContract._tModelIndexData]);
     };
     this._dbAPITReq.onsuccess = () => {
       this._dbOpen = true;
