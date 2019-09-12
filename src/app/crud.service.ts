@@ -33,24 +33,40 @@ export class CrudService {
       reqHistTransaction.onerror = (err) => {
         rej(err);
       };
-
     });
 
   }
 
-  getModelNames(uid: any): IDBRequest<any> {
+  // Gives the list of ModelNames with UserId/Name with uid and Method type with type
+  async getModelNames(uid: any,type: any) {
     const modelNameTransaction = this._dbAPIT.transaction(IDBContract._tModelStoreName,
       IDBContract._transactionRO);
     const modelNameStore = modelNameTransaction.objectStore(IDBContract._tModelStoreName);
-    const uidIndex = modelNameStore.index(IDBContract._tModelIndexUid);
-    return uidIndex.getAll(uid);
+    const uidIndex = modelNameStore.index(`${IDBContract._tModelIndexUid}, ${IDBContract._tModelIndexType}`);
+    const result = uidIndex.getAll([uid,type]);
+    return new Promise<any>((res,rej) => {
+      result.onsuccess = () => {
+        res(result.result);
+      };
+      result.onerror = (err) => {
+        rej(err);
+      };
+    });
   }
 
-  getRequestHistory(uid: any): IDBRequest<any> {
+  getRequestHistory(uid: any) {
     const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName, IDBContract._transactionRO);
     const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
     const uidIndex = reqHistStore.index(IDBContract._tReqHistoryIndexUserId);
-    return uidIndex.getAll(uid);
+    const result = uidIndex.getAll();
+    return new Promise<any>((res,rej) => {
+      result.onsuccess = () => {
+        res(result.result);
+      };
+      result.onerror = (err) => {
+        rej(err);
+      };
+    });
   }
 
   isDBOpened(): boolean {
@@ -79,6 +95,11 @@ export class CrudService {
       this._dbOpen = true;
       this._dbAPIT = this._dbAPITReq.result;
     };
+  }
+
+  getAllMethodTypes():string[]{
+    return [IDBContract._methodURL,IDBContract._methodData,IDBContract._methodHeader,
+            IDBContract._methodParam];
   }
 
 }

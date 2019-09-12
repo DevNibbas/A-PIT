@@ -1,4 +1,3 @@
-import { ReqHistory } from './../interface/ReqHistory';
 import { IDBContract } from './../interface/IDBContract';
 import { CrudService } from './../../crud.service';
 import { ApirequestService } from 'src/app/api/apirequest.service';
@@ -36,10 +35,10 @@ export class TestpageComponent {
     this.request.datas = [{} as any];
 
     const history = this.getHistory(this.user[0]);
-    history.onsuccess = () => {
-      this.allHistory = history.result;
+    history.then(result => {
+      this.allHistory = result;
       console.log(this.allHistory);
-    };
+    });
 
 
 
@@ -114,9 +113,9 @@ export class TestpageComponent {
     });
   }
 
-  getHistory(uid): IDBRequest<any> {
+  getHistory(uid) {
     if (!this.db.isDBOpened()) {
-      return null as IDBRequest;
+      return null;
     } else {
       return this.db.getRequestHistory(uid);
     }

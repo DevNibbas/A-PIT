@@ -11,6 +11,13 @@ export class IDBContract {
     /* ---------------------------------------------- */
 
     /* ---------------------------------------------- */
+    public static _methodHeader: string = 'method_header';
+    public static _methodParam: string = 'method_param';
+    public static _methodData: string = 'method_data';
+    public static _methodURL: string = 'method_url';
+    /* ---------------------------------------------- */
+
+    /* ---------------------------------------------- */
     public static _tReqHistoryStoreName: string = 'request_history';
     public static _tReqHistoryIndexUniqueId: string = 'id';
     public static _tReqHistoryIndexUserId: string = 'uid';
