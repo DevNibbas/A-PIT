@@ -4,6 +4,7 @@ import { CrudService } from './../../crud.service';
 import { ApirequestService } from 'src/app/api/apirequest.service';
 import { Component, ElementRef } from '@angular/core';
 import { Apirequest } from './../interface/Apirequest';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-testpage',
@@ -18,15 +19,27 @@ export class TestpageComponent {
   library: any = {} as any;
   uioptions: any = { auth: false, authtype: null, cors: false } as any;
   apiAuth: any = {} as any;
-
+  user;
   allHistory: any[] = [] as any;
   saverequest = {} as any;
 
-  constructor(private req: ApirequestService, private ele: ElementRef, private db: CrudService) {
+
+  errors: any = [] as any;
+
+  activatedHistory;
+
+  constructor(private req: ApirequestService, private ele: ElementRef, private db: CrudService, private auth: AuthService) {
+    this.user = JSON.parse(localStorage.getItem('userid'));
     this.request.method = 'GET';
     this.request.params = [{} as any];
     this.request.headers = [{ key: 'Access-Control-Request-Origin', value: '*' } as any, {}];
     this.request.datas = [{} as any];
+
+    const history = this.getHistory(this.user[0]);
+    history.onsuccess = () => {
+      this.allHistory = history.result;
+      console.log(this.allHistory);
+    };
 
 
 
@@ -76,31 +89,44 @@ export class TestpageComponent {
 
 
       // save request
-      this.saverequest[IDBContract._tReqHistoryIndexUserId] = 1;
-      this.saverequest[IDBContract._tReqHistoryIndexURL] = this.request.url;
-      this.saverequest[IDBContract._tReqHistoryIndexParams] = this.request.params;
-      this.saverequest[IDBContract._tReqHistoryIndexMethod] = this.request.method;
-      this.saverequest[IDBContract._tReqHistoryIndexHeaders] = this.request.headers;
-      this.saverequest[IDBContract._tReqHistoryIndexData] = this.request.datas;
-      this.saverequest[IDBContract._tReqHistoryIndexBearerToken] = this.apiAuth.bearer;
-      this.saverequest[IDBContract._tReqHistoryIndexAuthUname] = this.apiAuth.username;
-      this.saverequest[IDBContract._tReqHistoryIndexAuthPwd] = this.apiAuth.password;
-      this.saverequest[IDBContract._tReqHistoryIndexAuth] = this.uioptions.auth;
-      this.saverequest[IDBContract._tReqHistoryIndexAuthType] = this.uioptions.authtype;
+      this.saverequest[HistIDBContract._tReqHistoryUserId] = this.user[0];
+      this.saverequest[HistIDBContract._tReqHistoryURL] = this.request.url;
+      this.saverequest[HistIDBContract._tReqHistoryParams] = this.request.params;
+      this.saverequest[HistIDBContract._tReqHistoryMethod] = this.request.method;
+      this.saverequest[HistIDBContract._tReqHistoryHeaders] = this.request.headers;
+      this.saverequest[HistIDBContract._tReqHistoryData] = this.request.datas;
+      this.saverequest[HistIDBContract._tReqHistoryBearerToken] = this.apiAuth.bearer;
+      this.saverequest[HistIDBContract._tReqHistoryAuthUname] = this.apiAuth.username;
+      this.saverequest[HistIDBContract._tReqHistoryAuthPwd] = this.apiAuth.password;
+      this.saverequest[HistIDBContract._tReqHistoryAuth] = this.uioptions.auth;
+      this.saverequest[HistIDBContract._tReqHistoryAuthType] = this.uioptions.authtype;
 
 
 
 
       this.db.addRequestHistory(this.saverequest);
-      const result = this.db.getRequestHistory(1);
-      result.onsuccess = (e) => {
-        console.log(result.result);
-        this.allHistory = result.result;
-      };
+      this.allHistory.push(this.saverequest);
 
     });
   }
 
+  getHistory(uid): IDBRequest<any> {
+    if (!this.db.isHistoryDBOpened()) {
+      return null as IDBRequest;
+    } else {
+      return this.db.getRequestHistory(uid);
+    }
+  }
 
 
+  activateHistoryList(index) {
+    if (this.activatedHistory === this.allHistory[index].id) {
+      this.activatedHistory = undefined;
+    } else {
+      this.activatedHistory = this.allHistory[index].id;
+    }
+  }
+  deactivateHistoryList(index) {
+    this.activatedHistory = undefined;
+  }
 }
