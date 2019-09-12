@@ -40,7 +40,7 @@ export class CrudService {
     };
   }
 
-  getModelNames(uid: any): IDBRequest<any>{
+  getModelNames(uid: any): IDBRequest<any> {
     const modelNameTransaction = this._dbModelDB.transaction(HistIDBContract._tModelName,
       HistIDBContract._transactionRO);
     const modelNameStore = modelNameTransaction.objectStore(HistIDBContract._tModelName);
@@ -49,22 +49,21 @@ export class CrudService {
   }
 
   getRequestHistory(uid: any): IDBRequest<any> {
-    const reqHistTransaction = this._dbHistoryDB.transaction(HistIDBContract._tReqHistoryName,
-      HistIDBContract._transactionRO);
+    const reqHistTransaction = this._dbHistoryDB.transaction(HistIDBContract._tReqHistoryName, HistIDBContract._transactionRO);
     const reqHistStore = reqHistTransaction.objectStore(HistIDBContract._tReqHistoryName);
     const uidIndex = reqHistStore.index(HistIDBContract._tReqHistoryUserId);
     return uidIndex.getAll(uid);
   }
 
-  isHistoryDBOpened(){
+  isHistoryDBOpened() {
     return this._dbHistoryOpen;
   }
 
-  isModelDBOpened(){
+  isModelDBOpened() {
     return this._dbModelOpen;
   }
 
-  openHistoryDB(){
+  openHistoryDB() {
     this._dbHistoryReq = window.indexedDB.open(HistIDBContract._dbNameHistory,
       HistIDBContract._dbVersionHistory);
     this._dbHistoryReq.onupgradeneeded = () => {
@@ -83,14 +82,14 @@ export class CrudService {
     };
   }
 
-  openModelDB(){
+  openModelDB() {
     this._dbModelNameReq = window.indexedDB.open(HistIDBContract._dbNameModels,
       HistIDBContract._dbVersionModelName);
     this._dbModelNameReq.onupgradeneeded = () => {
       this._dbModelDB = this._dbModelNameReq.result;
       const modelName = this._dbModelDB.createObjectStore(
-        HistIDBContract._tModelName, {keyPath: HistIDBContract._tModelNameId, autoIncrement:true});
-      this.addIndexesWithOutOptions(modelName,[HistIDBContract._tModelNameName,HistIDBContract._tModelNameUid]);
+        HistIDBContract._tModelName, { keyPath: HistIDBContract._tModelNameId, autoIncrement: true });
+      this.addIndexesWithOutOptions(modelName, [HistIDBContract._tModelNameName, HistIDBContract._tModelNameUid]);
     };
     this._dbModelNameReq.onsuccess = () => {
       this._dbModelOpen = false;
