@@ -76,17 +76,17 @@ export class TestpageComponent {
 
 
       // save request
-      this.saverequest[HistIDBContract._tReqHistoryUserId] = 1;
-      this.saverequest[HistIDBContract._tReqHistoryURL] = this.request.url;
-      this.saverequest[HistIDBContract._tReqHistoryParams] = this.request.params;
-      this.saverequest[HistIDBContract._tReqHistoryMethod] = this.request.method;
-      this.saverequest[HistIDBContract._tReqHistoryHeaders] = this.request.headers;
-      this.saverequest[HistIDBContract._tReqHistoryData] = this.request.datas;
-      this.saverequest[HistIDBContract._tReqHistoryBearerToken] = this.apiAuth.bearer;
-      this.saverequest[HistIDBContract._tReqHistoryAuthUname] = this.apiAuth.username;
-      this.saverequest[HistIDBContract._tReqHistoryAuthPwd] = this.apiAuth.password;
-      this.saverequest[HistIDBContract._tReqHistoryAuth] = this.uioptions.auth;
-      this.saverequest[HistIDBContract._tReqHistoryAuthType] = this.uioptions.authtype;
+      this.saverequest[HistIDBContract._tReqHistoryIndexUserId] = 1;
+      this.saverequest[HistIDBContract._tReqHistoryIndexURL] = this.request.url;
+      this.saverequest[HistIDBContract._tReqHistoryIndexParams] = this.request.params;
+      this.saverequest[HistIDBContract._tReqHistoryIndexMethod] = this.request.method;
+      this.saverequest[HistIDBContract._tReqHistoryIndexHeaders] = this.request.headers;
+      this.saverequest[HistIDBContract._tReqHistoryIndexData] = this.request.datas;
+      this.saverequest[HistIDBContract._tReqHistoryIndexBearerToken] = this.apiAuth.bearer;
+      this.saverequest[HistIDBContract._tReqHistoryIndexAuthUname] = this.apiAuth.username;
+      this.saverequest[HistIDBContract._tReqHistoryIndexAuthPwd] = this.apiAuth.password;
+      this.saverequest[HistIDBContract._tReqHistoryIndexAuth] = this.uioptions.auth;
+      this.saverequest[HistIDBContract._tReqHistoryIndexAuthType] = this.uioptions.authtype;
 
 
 
