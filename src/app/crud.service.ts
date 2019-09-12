@@ -55,11 +55,11 @@ export class CrudService {
     return uidIndex.getAll(uid);
   }
 
-  isHistoryDBOpened() {
+  isHistoryDBOpened(): boolean{
     return this._dbHistoryOpen;
   }
 
-  isModelDBOpened() {
+  isModelDBOpened(): boolean{
     return this._dbModelOpen;
   }
 
