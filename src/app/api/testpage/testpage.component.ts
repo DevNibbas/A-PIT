@@ -121,6 +121,16 @@ export class TestpageComponent {
     }
   }
 
+  loadMoreHistory() {
+    // function for lazy load
+  }
+
+
+  deleteAllHistory() {
+    const x = confirm('you naughty.. want to clear your history :)- ');
+    // function for delete  all history
+  }
+
 
   activateHistoryList(index) {
     if (this.activatedHistory === this.allHistory[index].id) {
@@ -132,4 +142,6 @@ export class TestpageComponent {
   deactivateHistoryList(index) {
     this.activatedHistory = undefined;
   }
+
+
 }

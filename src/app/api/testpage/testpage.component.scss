@@ -228,12 +228,11 @@ pre {
                     flex-direction: row;
                     justify-content: center;
                     align-items: center;
+                    cursor: pointer;
                     &>.slipcard{
-                        background-color: rgb(161, 221, 255);
-                        color: #7A7A7A;
+                        color: #2590CE;
                         padding: 5px;
                         margin: auto;
-                        border-radius: 10px;
                     }
 
                 }

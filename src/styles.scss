@@ -56,6 +56,23 @@ body { margin: 0; font-family: 'Nunito Sans', sans-serif; }
         }
     }
 }
+.clear{
+    position: relative;
+    left: auto;
+    right: 10px;
+    float: right;
+
+    cursor: pointer;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 5px;
+    font-size:  25px;
+    &:hover{
+        color: #da4343;
+            
+    }
+}
 
 button:focus{
     outline: none !important; 
