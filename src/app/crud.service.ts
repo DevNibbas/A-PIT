@@ -39,19 +39,37 @@ export class CrudService {
   }
 
   // Gives the list of ModelNames with UserId/Name with uid and Method type with type
-  getModelNames(uid: any,type: any): IDBRequest<any> {
+  async getModelNames(uid: any,type: any) {
     const modelNameTransaction = this._dbAPIT.transaction(IDBContract._tModelStoreName,
       IDBContract._transactionRO);
     const modelNameStore = modelNameTransaction.objectStore(IDBContract._tModelStoreName);
     const uidIndex = modelNameStore.index(`${IDBContract._tModelIndexUid}, ${IDBContract._tModelIndexType}`);
-    return uidIndex.getAll([uid,type]);
+    const result = uidIndex.getAll([uid,type]);
+    return new Promise<any>((res,rej) => {
+      result.onsuccess = () => {
+        res(result.result);
+      };
+      result.onerror = (err) => {
+        res(err);
+      };
+      rej('Application error please reload');
+    });
   }
 
-  getRequestHistory(uid: any): IDBRequest<any> {
+  getRequestHistory(uid: any) {
     const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName, IDBContract._transactionRO);
     const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
     const uidIndex = reqHistStore.index(IDBContract._tReqHistoryIndexUserId);
-    return uidIndex.getAll();
+    const result = uidIndex.getAll();
+    return new Promise<any>((res,rej) => {
+      result.onsuccess = () => {
+        res(result.result);
+      };
+      result.onerror = (err) => {
+        res(err);
+      };
+      rej('Application error please reload');
+    });
   }
 
   isDBOpened(): boolean {

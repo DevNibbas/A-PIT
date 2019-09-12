@@ -92,10 +92,9 @@ export class TestpageComponent {
 
       this.db.addRequestHistory(this.saverequest);
       const result = this.db.getRequestHistory(1);
-      result.onsuccess = (e) => {
-        console.log(result.result);
-        this.allHistory = result.result;
-      };
+      result.then(res=>{
+        console.log(res);
+      });
 
     });
   }

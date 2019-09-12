@@ -3,7 +3,6 @@ import { CrudService } from './../../crud.service';
 import { Param } from './../interface/Param';
 import { Apirequest } from './../interface/Apirequest';
 import { AutomatedTestService } from './../../services/test/automated-test.service';
-import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 ;
 
@@ -97,10 +96,9 @@ export class AutotestComponent implements OnInit {
 
     console.log(this.idbCRUD.addRequestHistory(obj));
     let history = this.idbCRUD.getRequestHistory(1);
-    history.onsuccess = ()=>{
-      console.log(history.result.length);
-      console.log(history.result);
-    };
+    history.then(res=>{
+      console.log(res);
+    });
     this.response = this.automatedTest.test(this.request,option);
     // let x = new Promise<string[]>((res,rej)=>{
     //   res(this.automatedTest.test(this.request,option));
