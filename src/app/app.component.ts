@@ -1,3 +1,4 @@
+import { CrudService } from './crud.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'APIT';
+  constructor(private db: CrudService) {
+
+  }
 }
