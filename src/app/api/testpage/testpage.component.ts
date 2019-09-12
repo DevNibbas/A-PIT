@@ -1,6 +1,7 @@
 import { ApirequestService } from 'src/app/api/apirequest.service';
 import { Component, ElementRef } from '@angular/core';
 import { Apirequest } from './../interface/Apirequest';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-testpage',
@@ -43,8 +44,10 @@ export class TestpageComponent {
 
     }
     if (this.uioptions.cors === true) {
-      console.log('cors');
-      url = 'http://127.0.0.1:8000/' + this.request.url;
+      url = environment.corsurl + this.request.url;
+      console.log('cors', url);
+
+
     }
     const option = {
       headers: this.request.getHeaders(),
