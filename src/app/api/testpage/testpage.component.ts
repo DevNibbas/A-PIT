@@ -4,6 +4,7 @@ import { CrudService } from './../../crud.service';
 import { ApirequestService } from 'src/app/api/apirequest.service';
 import { Component, ElementRef } from '@angular/core';
 import { Apirequest } from './../interface/Apirequest';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-testpage',
@@ -18,15 +19,27 @@ export class TestpageComponent {
   library: any = {} as any;
   uioptions: any = { auth: false, authtype: null, cors: false } as any;
   apiAuth: any = {} as any;
-
+  user;
   allHistory: any[] = [] as any;
   saverequest = {} as any;
 
-  constructor(private req: ApirequestService, private ele: ElementRef, private db: CrudService) {
+
+  errors: any = [] as any;
+
+  activatedHistory;
+
+  constructor(private req: ApirequestService, private ele: ElementRef, private db: CrudService, private auth: AuthService) {
+    this.user = JSON.parse(localStorage.getItem('userid'));
     this.request.method = 'GET';
     this.request.params = [{} as any];
     this.request.headers = [{ key: 'Access-Control-Request-Origin', value: '*' } as any, {}];
     this.request.datas = [{} as any];
+
+    const history = this.getHistory(this.user[0]);
+    history.onsuccess = () => {
+      this.allHistory = history.result;
+      console.log(this.allHistory);
+    };
 
 
 
@@ -76,7 +89,7 @@ export class TestpageComponent {
 
 
       // save request
-      this.saverequest[IDBContract._tReqHistoryIndexUserId] = 1;
+      this.saverequest[IDBContract._tReqHistoryIndexUserId] = this.user[0];
       this.saverequest[IDBContract._tReqHistoryIndexURL] = this.request.url;
       this.saverequest[IDBContract._tReqHistoryIndexParams] = this.request.params;
       this.saverequest[IDBContract._tReqHistoryIndexMethod] = this.request.method;
@@ -91,16 +104,33 @@ export class TestpageComponent {
 
 
 
-      this.db.addRequestHistory(this.saverequest);
-      const result = this.db.getRequestHistory(1);
-      result.onsuccess = (e) => {
-        console.log(result.result);
-        this.allHistory = result.result;
-      };
+      this.db.addRequestHistory(this.saverequest).then(id => {
+        this.saverequest.id = id;
+        this.allHistory.push(this.saverequest);
+        this.saverequest = {} as any;
+
+      });
 
     });
   }
 
+  getHistory(uid): IDBRequest<any> {
+    if (!this.db.isDBOpened()) {
+      return null as IDBRequest;
+    } else {
+      return this.db.getRequestHistory(uid);
+    }
+  }
 
 
+  activateHistoryList(index) {
+    if (this.activatedHistory === this.allHistory[index].id) {
+      this.activatedHistory = undefined;
+    } else {
+      this.activatedHistory = this.allHistory[index].id;
+    }
+  }
+  deactivateHistoryList(index) {
+    this.activatedHistory = undefined;
+  }
 }
