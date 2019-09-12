@@ -89,29 +89,33 @@ export class TestpageComponent {
 
 
       // save request
-      this.saverequest[HistIDBContract._tReqHistoryUserId] = this.user[0];
-      this.saverequest[HistIDBContract._tReqHistoryURL] = this.request.url;
-      this.saverequest[HistIDBContract._tReqHistoryParams] = this.request.params;
-      this.saverequest[HistIDBContract._tReqHistoryMethod] = this.request.method;
-      this.saverequest[HistIDBContract._tReqHistoryHeaders] = this.request.headers;
-      this.saverequest[HistIDBContract._tReqHistoryData] = this.request.datas;
-      this.saverequest[HistIDBContract._tReqHistoryBearerToken] = this.apiAuth.bearer;
-      this.saverequest[HistIDBContract._tReqHistoryAuthUname] = this.apiAuth.username;
-      this.saverequest[HistIDBContract._tReqHistoryAuthPwd] = this.apiAuth.password;
-      this.saverequest[HistIDBContract._tReqHistoryAuth] = this.uioptions.auth;
-      this.saverequest[HistIDBContract._tReqHistoryAuthType] = this.uioptions.authtype;
+      this.saverequest[IDBContract._tReqHistoryIndexUserId] = this.user[0];
+      this.saverequest[IDBContract._tReqHistoryIndexURL] = this.request.url;
+      this.saverequest[IDBContract._tReqHistoryIndexParams] = this.request.params;
+      this.saverequest[IDBContract._tReqHistoryIndexMethod] = this.request.method;
+      this.saverequest[IDBContract._tReqHistoryIndexHeaders] = this.request.headers;
+      this.saverequest[IDBContract._tReqHistoryIndexData] = this.request.datas;
+      this.saverequest[IDBContract._tReqHistoryIndexBearerToken] = this.apiAuth.bearer;
+      this.saverequest[IDBContract._tReqHistoryIndexAuthUname] = this.apiAuth.username;
+      this.saverequest[IDBContract._tReqHistoryIndexAuthPwd] = this.apiAuth.password;
+      this.saverequest[IDBContract._tReqHistoryIndexAuth] = this.uioptions.auth;
+      this.saverequest[IDBContract._tReqHistoryIndexAuthType] = this.uioptions.authtype;
 
 
 
 
-      this.db.addRequestHistory(this.saverequest);
-      this.allHistory.push(this.saverequest);
+      this.db.addRequestHistory(this.saverequest).then(id => {
+        this.saverequest.id = id;
+        this.allHistory.push(this.saverequest);
+        this.saverequest = {} as any;
+
+      });
 
     });
   }
 
   getHistory(uid): IDBRequest<any> {
-    if (!this.db.isHistoryDBOpened()) {
+    if (!this.db.isDBOpened()) {
       return null as IDBRequest;
     } else {
       return this.db.getRequestHistory(uid);

@@ -120,22 +120,28 @@
                             </div>
 
                         </div>
-                        
-                    </div>
 
-                    <div class="history-table">
-                        <div class="load">Load Previous</div>
-                        <div class="histories" *ngFor="let hist of allHistory; let i=index">
-                            <div class="histlisthead" (click)="activateHistoryList(i)">
-                                {{hist.id}} | {{hist.req_url}} | {{hist.req_method}}
-                            </div>
-                            <div class="histlistbody" *ngIf="activatedHistory==hist.id">
-                                {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} | {{hist}}
-                            </div>
+                    </div>
+                    <div class="history-part pc">
+                        <div class="history-table">
+                            <header>History log</header>
+
+                            <section>
+                                <div class="load">Load Previous</div>
+                                <div class="histories" *ngFor="let hist of allHistory; let i=index">
+                                    <div class="histlisthead" (click)="activateHistoryList(i)">
+                                        {{hist.id}} | {{hist.req_url}} | {{hist.req_method}}
+                                    </div>
+                                    <div class="histlistbody" *ngIf="activatedHistory==hist.id">
+                                        {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
+                                        {{hist}}
+                                    </div>
+
+                                </div>
+                                <div class="load">Load Next</div>
+                            </section>
 
                         </div>
-                        <div class="load">Load Next</div>
-
                     </div>
 
 
@@ -167,7 +173,30 @@
                     </div>
 
                 </div>
+
             </div>
+            <div class="history-part mobile" >
+                    <div class="history-table">
+                        <header>History log</header>
+
+                        <section>
+                            <div class="load">Load Previous</div>
+                            <div class="histories" *ngFor="let hist of allHistory; let i=index">
+                                <div class="histlisthead" (click)="activateHistoryList(i)">
+                                    {{hist.id}} | {{hist.req_url}} | {{hist.req_method}}
+                                </div>
+                                <div class="histlistbody" *ngIf="activatedHistory==hist.id">
+                                    {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
+                                    {{hist}}
+                                </div>
+
+                            </div>
+                            <div class="load">Load Next</div>
+                        </section>
+
+                    </div>
+                </div>
+
 
         </div>
     </div>

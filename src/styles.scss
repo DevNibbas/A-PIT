@@ -61,5 +61,20 @@ button:focus{
     outline: none !important; 
 }
 
+
+.mobile{
+    display: none;
+
+}
+
+.pc{
+    display: block;
+}
 @media(max-width:800px){
+    .mobile{
+        display: block;
+    }
+    .pc{
+        display: none;
+    }
 }
