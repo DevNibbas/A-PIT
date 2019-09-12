@@ -1,4 +1,3 @@
-import { ReqHistory } from './../interface/ReqHistory';
 import { IDBContract } from './../interface/IDBContract';
 import { CrudService } from './../../crud.service';
 import { ApirequestService } from 'src/app/api/apirequest.service';
