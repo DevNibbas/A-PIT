@@ -1,4 +1,4 @@
-export class HistIDBContract {
+export class IDBContract {
 
     /* ---------------------------------------------- */
     public static _transactionRO: IDBTransactionMode = 'readonly';
