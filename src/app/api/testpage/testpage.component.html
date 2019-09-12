@@ -124,16 +124,18 @@
                     </div>
                     <div class="history-part pc">
                         <div class="history-table">
-                            <header>History log <mat-icon class="clear" (click)="deleteAllHistory()">clear_all</mat-icon></header>
-                            
+                            <header>History log <mat-icon class="clear" (click)="deleteAllHistory()">clear_all
+                                </mat-icon>
+                            </header>
+
 
                             <div class="history-content">
                                 <div class="histories" *ngFor="let hist of allHistory; let i=index">
                                     <div class="histlisthead" (click)="activateHistoryList(i)">
                                         <div class="slipcard">
-                                                {{hist.id}}
+                                            {{hist.id}}
                                         </div>
-                                        <div class="slipcard"><span>URL:</span>  {{hist.req_url}}</div>
+                                        <div class="slipcard"><span>URL:</span> {{hist.req_url}}</div>
                                         <div class="slipcard"><span>Type:</span> {{hist.req_method}}</div>
                                     </div>
                                     <div class="histlistbody" *ngIf="activatedHistory==hist.id">
@@ -183,12 +185,18 @@
             </div>
             <div class="history-part mobile">
                 <div class="history-table">
-                    <header>History log</header>
+                    <header>History log <mat-icon class="clear" (click)="deleteAllHistory()">clear_all</mat-icon>
+                    </header>
+
 
                     <div class="history-content">
                         <div class="histories" *ngFor="let hist of allHistory; let i=index">
                             <div class="histlisthead" (click)="activateHistoryList(i)">
-                                {{hist.id}} | {{hist.req_url}} | {{hist.req_method}}
+                                <div class="slipcard">
+                                    {{hist.id}}
+                                </div>
+                                <div class="slipcard"><span>URL:</span> {{hist.req_url}}</div>
+                                <div class="slipcard"><span>Type:</span> {{hist.req_method}}</div>
                             </div>
                             <div class="histlistbody" *ngIf="activatedHistory==hist.id">
                                 {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
@@ -197,7 +205,7 @@
 
                         </div>
                         <div class="load">
-                            <mat-icon>keyboard_arrow_down</mat-icon>
+                            <mat-icon (click)="loadMoreHistory()">keyboard_arrow_down</mat-icon>
                         </div>
                     </div>
 
