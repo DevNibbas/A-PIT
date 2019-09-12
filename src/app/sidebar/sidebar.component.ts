@@ -40,6 +40,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   subscription1: Subscription;
   constructor(private auth: AuthService) {
     this.auth.getuser().subscribe(u => this.user = u);
+    // let slide = n
   }
 
   ngOnInit() {

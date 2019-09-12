@@ -126,11 +126,14 @@
                         <div class="history-table">
                             <header>History log</header>
 
-                            <section>
-                                <div class="load">Load Previous</div>
+                            <div class="history-content">
                                 <div class="histories" *ngFor="let hist of allHistory; let i=index">
                                     <div class="histlisthead" (click)="activateHistoryList(i)">
-                                        {{hist.id}} | {{hist.req_url}} | {{hist.req_method}}
+                                        <div class="slipcard">
+                                                <span>id:</span> {{hist.id}}
+                                        </div>
+                                        <div class="slipcard"><span>URL:</span>  {{hist.req_url}}</div>
+                                        <div class="slipcard"><span>Type:</span>{{hist.req_method}}</div>
                                     </div>
                                     <div class="histlistbody" *ngIf="activatedHistory==hist.id">
                                         {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
@@ -138,8 +141,10 @@
                                     </div>
 
                                 </div>
-                                <div class="load">Load Next</div>
-                            </section>
+                                <div class="load">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -175,27 +180,30 @@
                 </div>
 
             </div>
-            <div class="history-part mobile" >
-                    <div class="history-table">
-                        <header>History log</header>
+            <div class="history-part mobile">
+                <div class="history-table">
+                    <header>History log</header>
 
-                        <section>
-                            <div class="load">Load Previous</div>
-                            <div class="histories" *ngFor="let hist of allHistory; let i=index">
-                                <div class="histlisthead" (click)="activateHistoryList(i)">
-                                    {{hist.id}} | {{hist.req_url}} | {{hist.req_method}}
-                                </div>
-                                <div class="histlistbody" *ngIf="activatedHistory==hist.id">
-                                    {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
-                                    {{hist}}
-                                </div>
-
+                    <div class="history-content">
+                        <div class="histories" *ngFor="let hist of allHistory; let i=index">
+                            <div class="histlisthead" (click)="activateHistoryList(i)">
+                                {{hist.id}} | {{hist.req_url}} | {{hist.req_method}}
                             </div>
-                            <div class="load">Load Next</div>
-                        </section>
+                            <div class="histlistbody" *ngIf="activatedHistory==hist.id">
+                                {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
+                                {{hist}}
+                            </div>
 
+                        </div>
+                        <div class="load">
+                            <mat-icon>keyboard_arrow_down</mat-icon>
+                        </div>
                     </div>
+
                 </div>
+            </div>
+
+
 
 
         </div>
