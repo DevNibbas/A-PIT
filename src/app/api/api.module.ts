@@ -22,6 +22,7 @@ import { MaincontainerComponent } from '../maincontainer/maincontainer.component
 import { ApiuiwrapperComponent } from '../apiuiwrapper/apiuiwrapper.component';
 import { FormsModule } from '@angular/forms';
 import { TabcontainerComponent } from './tabcontainer/tabcontainer.component';
+import { History } from './interface/History';
 
 
 @NgModule({
@@ -51,6 +52,9 @@ import { TabcontainerComponent } from './tabcontainer/tabcontainer.component';
     MatTabsModule,
     MatSlideToggleModule,
     MatMenuModule,
+  ],
+  providers: [
+    History,
   ]
 })
 export class ApiModule { }

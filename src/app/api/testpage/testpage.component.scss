@@ -221,19 +221,44 @@ pre {
                 &>.histlisthead{
                     padding:7px 10px;
                     background-color:#fff;
-                    box-shadow: 1px 1px 6px rgb(148, 147, 147); 
+                    box-shadow: 1px 1px 4px rgb(184, 182, 182); 
                     margin:5px 0;
-                    word-break: break-all;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
                     cursor: pointer;
                     &>.slipcard{
                         color: #2590CE;
                         padding: 5px;
+                        word-break: break-all;
+
                         margin: auto;
+                        &:nth-child(1){
+                            color: #7A7A7A;
+                        }
+                        &:nth-child(4){
+                            &>.hist-actions{
+                                float: right;
+
+                                &>mat-icon{
+                                    // background-color: #7A7A7A;
+                                    position: relative;
+                                    top:3px !important;
+                                    
+                                    margin: 0 4px;
+                                    
+                                    &:hover{
+                                        &:nth-child(1){
+                                            color: rgb(49, 250, 133);
+                                        }
+                                        &:nth-child(2){
+                                            color: rgb(250, 106, 49);
+                                        }
+                                        
+                                        
+                                    }
+                                }
+                            }
+                        }
                     }
+                    
 
                 }
                 &>.histlistbody{

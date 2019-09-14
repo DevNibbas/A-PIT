@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  corsUrl: 'https://apit-testing.herokuapp.com/',
 };

@@ -29,10 +29,10 @@
 
                     </div>
                     <div class="cors">
-                        <mat-slide-toggle class="auth-toggle" [color]="'primary'" [checked]="uioptions.cors"
-                            (change)="uioptions.cors=!uioptions.cors">
-                            <span *ngIf="!uioptions.cors">Enable Cors</span>
-                            <span *ngIf="uioptions.cors" style="color: rgb(185, 185, 185);">Disable
+                        <mat-slide-toggle class="auth-toggle" [color]="'primary'" [checked]="request.cors"
+                            (change)="request.cors=!request.cors">
+                            <span *ngIf="!request.cors">Enable Cors</span>
+                            <span *ngIf="request.cors" style="color: rgb(185, 185, 185);">Disable
                                 Cors</span>
 
                         </mat-slide-toggle>
@@ -70,50 +70,50 @@
 
                         <div class="row nog auth-section">
                             <div class="col-md nog auth-head">
-                                <mat-slide-toggle class="auth-toggle" [color]="'primary'" [checked]="uioptions.auth"
-                                    (change)="uioptions.auth=!uioptions.auth">
-                                    <span *ngIf="!uioptions.auth">Enable authorization</span>
-                                    <span *ngIf="uioptions.auth" style="color: rgb(185, 185, 185);">Disable
+                                <mat-slide-toggle class="auth-toggle" [color]="'primary'" [checked]="request.auth"
+                                    (change)="request.auth=!request.auth">
+                                    <span *ngIf="!request.auth">Enable authorization</span>
+                                    <span *ngIf="request.auth" style="color: rgb(185, 185, 185);">Disable
                                         authorization</span>
 
                                 </mat-slide-toggle>
                             </div>
-                            <div class="col-md nog auth-options" *ngIf="uioptions.auth">
+                            <div class="col-md nog auth-options" *ngIf="request.auth">
                                 <button mat-button color="default"
-                                    [matMenuTriggerFor]="menu">{{uioptions.authtype || 'Select an auth type'}}</button>
+                                    [matMenuTriggerFor]="menu">{{request.authtype || 'Select an auth type'}}</button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item (click)="uioptions.authtype='Basic Authentication'">Basic
+                                    <button mat-menu-item (click)="request.authtype='Basic Authentication'">Basic
                                         Authentication</button>
                                     <button mat-menu-item
-                                        (click)="uioptions.authtype='Bearer Token Authentication'">Bearer Token
+                                        (click)="request.authtype='Bearer Token Authentication'">Bearer Token
                                         Authentication</button>
                                 </mat-menu>
 
                             </div>
                         </div>
-                        <div class="make-auth" *ngIf="uioptions.auth && uioptions.authtype">
-                            <div class="row nog basicform" *ngIf="uioptions.authtype==='Basic Authentication'">
+                        <div class="make-auth" *ngIf="request.auth && request.authtype">
+                            <div class="row nog basicform" *ngIf="request.authtype==='Basic Authentication'">
                                 <div class="col-md nog">
                                     <mat-form-field>
                                         <input matInput type="text" placeholder="Username"
-                                            [(ngModel)]="apiAuth.username">
+                                            [(ngModel)]="request.apiAuth.username">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md nog">
                                     <mat-form-field>
                                         <input matInput type="text" placeholder="Password"
-                                            [(ngModel)]="apiAuth.password">
+                                            [(ngModel)]="request.apiAuth.password">
                                     </mat-form-field>
                                 </div>
 
 
                             </div>
-                            <div class="row nog basicform" *ngIf="uioptions.authtype==='Bearer Token Authentication'">
+                            <div class="row nog basicform" *ngIf="request.authtype==='Bearer Token Authentication'">
                                 <div class="col-md nog Bearertoken">
                                     <mat-form-field>
 
                                         <input matInput type="text" placeholder="Enter Bearer Token"
-                                            [(ngModel)]="apiAuth.bearer">
+                                            [(ngModel)]="request.apiAuth.bearer">
                                     </mat-form-field>
                                 </div>
 
@@ -124,28 +124,41 @@
                     </div>
                     <div class="history-part pc">
                         <div class="history-table">
-                            <header>History log <mat-icon class="clear" (click)="deleteAllHistory()">clear_all
+                            <header>History log <mat-icon class="clear" (click)="history.deleteAllHistory()">clear_all
                                 </mat-icon>
                             </header>
 
 
                             <div class="history-content">
-                                <div class="histories" *ngFor="let hist of allHistory; let i=index">
-                                    <div class="histlisthead" (click)="activateHistoryList(i)">
-                                        <div class="slipcard">
-                                            {{hist.id}}
+                                <div class="histories" *ngFor="let hist of history.allHistory; let i=index">
+                                    <div class="row nog histlisthead" (click)="history.toggleHistoryList(i)">
+                                        <div class="col-md-1 nog slipcard">
+                                            {{hist.id}}:
                                         </div>
-                                        <div class="slipcard"><span>URL:</span> {{hist.req_url}}</div>
-                                        <div class="slipcard"><span>Type:</span> {{hist.req_method}}</div>
+                                        <div class="col-md nog slipcard"><span>URL:</span> {{hist.req_url}}</div>
+                                        <div class="col-md-2 nog slipcard"><span>Type:</span> {{hist.req_method}}</div>
+                                        <div class="col-md-2 nog slipcard">
+                                            <div class="hist-actions">
+                                                <mat-icon
+                                                    (click)="request.parseToReq(hist); sendReq() ;$event.stopPropagation()">
+                                                    refresh
+                                                </mat-icon>
+                                                <mat-icon
+                                                    (click)="history.deleteHist(hist.id);$event.stopPropagation()">
+                                                    delete
+                                                </mat-icon>
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <div class="histlistbody" *ngIf="activatedHistory==hist.id">
+                                    <div class="histlistbody" *ngIf="history.activatedHistory==hist.id">
                                         {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
                                         {{hist}}
                                     </div>
 
                                 </div>
                                 <div class="load">
-                                    <mat-icon (click)="loadMoreHistory()">keyboard_arrow_down</mat-icon>
+                                    <mat-icon (click)="history.loadMoreHistory()">keyboard_arrow_down</mat-icon>
                                 </div>
                             </div>
 
@@ -159,21 +172,21 @@
                     <div class="response">
                         <div class="responseheader">
                             Response
-                            <span *ngIf="response && response.status">(Status:
-                                {{response.status +' | ' +response.statusText }})</span>
+                            <span *ngIf="request.response && request.response.status">(Status:
+                                {{request.response.status +' | ' +request.response.statusText }})</span>
                         </div>
 
 
                         <header>Headers</header>
-                        <div class="httpHeader" [class.nodata]="!response">
-                            <div *ngIf="!response" class="helpmsg">Click on [Send] to recieve Data</div>
+                        <div class="httpHeader" [class.nodata]="!request.response">
+                            <div *ngIf="!request.response" class="helpmsg">Click on [Send] to recieve Data</div>
                             <pre><code id="jsonResponseHeader"></code></pre>
                         </div>
 
 
                         <header>Body</header>
-                        <div class="body" [class.nodata]="!response">
-                            <div *ngIf="!response" class="helpmsg">Click on [Send] to recieve Data</div>
+                        <div class="body" [class.nodata]="!request.response">
+                            <div *ngIf="!request.response" class="helpmsg">Click on [Send] to recieve Data</div>
                             <pre><code id="jsonResponse"></code></pre>
 
 
@@ -185,27 +198,32 @@
             </div>
             <div class="history-part mobile">
                 <div class="history-table">
-                    <header>History log <mat-icon class="clear" (click)="deleteAllHistory()">clear_all</mat-icon>
+                    <header>History log <mat-icon class="clear" (click)="history.deleteAllHistory()">clear_all
+                        </mat-icon>
                     </header>
 
 
                     <div class="history-content">
-                        <div class="histories" *ngFor="let hist of allHistory; let i=index">
-                            <div class="histlisthead" (click)="activateHistoryList(i)">
-                                <div class="slipcard">
+                        <div class="histories" *ngFor="let hist of history.allHistory; let i=index">
+                            <div class="row nog histlisthead" (click)="history.toggleHistoryList(i)">
+                                <div class="col-md-2 nog slipcard">
                                     {{hist.id}}
                                 </div>
-                                <div class="slipcard"><span>URL:</span> {{hist.req_url}}</div>
-                                <div class="slipcard"><span>Type:</span> {{hist.req_method}}</div>
+                                <div class="col-md nog slipcard"><span>URL:</span> {{hist.req_url}}</div>
+                                <div class="col-md-2 nog slipcard"><span>Type:</span> {{hist.req_method}}</div>
+                                <div class="col-md-2 nog slipcard">
+                                    <mat-icon>refresh</mat-icon>
+                                    <mat-icon>close</mat-icon>
+                                </div>
                             </div>
-                            <div class="histlistbody" *ngIf="activatedHistory==hist.id">
+                            <div class="histlistbody" *ngIf="history.activatedHistory==hist.id">
                                 {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
                                 {{hist}}
                             </div>
 
                         </div>
                         <div class="load">
-                            <mat-icon (click)="loadMoreHistory()">keyboard_arrow_down</mat-icon>
+                            <mat-icon (click)="history.loadMoreHistory()">keyboard_arrow_down</mat-icon>
                         </div>
                     </div>
 

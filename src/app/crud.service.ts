@@ -9,7 +9,7 @@ export class CrudService {
   private _dbAPITReq: IDBOpenDBRequest;
   // tslint:disable-next-line:variable-name
   private _dbAPIT: IDBDatabase;
-  private _dbOpen: boolean = false;
+  private _dbOpen = false;
 
   constructor() {
     this._dbOpen = false;
@@ -38,13 +38,13 @@ export class CrudService {
   }
 
   // Gives the list of ModelNames with UserId/Name with uid and Method type with type
-  async getModelNames(uid: any,type: any) {
+  async getModelNames(uid: any, type: any) {
     const modelNameTransaction = this._dbAPIT.transaction(IDBContract._tModelStoreName,
       IDBContract._transactionRO);
     const modelNameStore = modelNameTransaction.objectStore(IDBContract._tModelStoreName);
     const uidIndex = modelNameStore.index(`${IDBContract._tModelIndexUid}, ${IDBContract._tModelIndexType}`);
-    const result = uidIndex.getAll([uid,type]);
-    return new Promise<any>((res,rej) => {
+    const result = uidIndex.getAll([uid, type]);
+    return new Promise<any>((res, rej) => {
       result.onsuccess = () => {
         res(result.result);
       };
@@ -59,7 +59,7 @@ export class CrudService {
     const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
     const uidIndex = reqHistStore.index(IDBContract._tReqHistoryIndexUserId);
     const result = uidIndex.getAll();
-    return new Promise<any>((res,rej) => {
+    return new Promise<any>((res, rej) => {
       result.onsuccess = () => {
         res(result.result);
       };
@@ -97,9 +97,9 @@ export class CrudService {
     };
   }
 
-  getAllMethodTypes():string[]{
-    return [IDBContract._methodURL,IDBContract._methodData,IDBContract._methodHeader,
-            IDBContract._methodParam];
+  getAllMethodTypes(): string[] {
+    return [IDBContract._methodURL, IDBContract._methodData, IDBContract._methodHeader,
+    IDBContract._methodParam];
   }
 
 }
