@@ -172,7 +172,7 @@
                     <div class="response">
                         <div class="responseheader">
                             Response
-                            <span *ngIf="request.response && request.response.status">(Status:
+                            <span *ngIf="request.response && request.response.status!=undefined">(Status:
                                 {{request.response.status +' | ' +request.response.statusText }})</span>
                         </div>
 
@@ -206,17 +206,26 @@
                     <div class="history-content">
                         <div class="histories" *ngFor="let hist of history.allHistory; let i=index">
                             <div class="row nog histlisthead" (click)="history.toggleHistoryList(i)">
-                                <div class="col-md-2 nog slipcard">
-                                    {{hist.id}}
+                                <div class="col-md-1 nog slipcard">
+                                    {{hist.id}}:
                                 </div>
                                 <div class="col-md nog slipcard"><span>URL:</span> {{hist.req_url}}</div>
                                 <div class="col-md-2 nog slipcard"><span>Type:</span> {{hist.req_method}}</div>
                                 <div class="col-md-2 nog slipcard">
-                                    <mat-icon>refresh</mat-icon>
-                                    <mat-icon>close</mat-icon>
+                                    <div class="hist-actions">
+                                        <mat-icon
+                                            (click)="request.parseToReq(hist); sendReq() ;$event.stopPropagation()">
+                                            refresh
+                                        </mat-icon>
+                                        <mat-icon (click)="history.deleteHist(hist.id);$event.stopPropagation()">
+                                            delete
+                                        </mat-icon>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="histlistbody" *ngIf="history.activatedHistory==hist.id">
+                                div*
                                 {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
                                 {{hist}}
                             </div>

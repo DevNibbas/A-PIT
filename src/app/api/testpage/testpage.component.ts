@@ -29,21 +29,39 @@ export class TestpageComponent {
   }
 
   sendReq() {
+    const ele = document.getElementById('jsonResponse');
+    const eleHeader = document.getElementById('jsonResponseHeader');
+
+
     this.request.getAuthIfEnabled();
     this.request.getOptions();
     this.request.CheckForCors();
+
     this.req.unireq(this.request.method, this.request.typeCastedUrl, this.request.options, this.request.getDatas()).subscribe(res => {
       this.request.response = res;
-      const ele = document.getElementById('jsonResponse');
       ele.innerHTML = JSON.stringify(this.request.response.body, null, 3);
-      const eleHeader = document.getElementById('jsonResponseHeader');
       eleHeader.innerHTML = this.req.library.json.prettyPrint(this.req.getHeadersInJson(this.request.response.headers));
 
       // save request
       const savereq = this.request.parseToDb();
       this.history.saveHistory(savereq);
 
-    });
+    },
+      error => {
+        console.log(error);
+        if (error) {
+          this.request.response = error;
+          eleHeader.innerHTML = '<div style="color:#B00020;">' + JSON.stringify(
+            { error: 'Something Went Wrong (this header is a custom set by this app) ' }, null, 3) + '</div>';
+
+          ele.innerHTML = '<div style="color:#B00020;">' +
+            error.message + '\nSuggestion: May be the error is due to cors policy try enabling cors while sending request' + '</div>';
+
+        }
+      });
+
+
+
   }
 
 
