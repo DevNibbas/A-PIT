@@ -12,41 +12,52 @@
                 &#123;authToken&#125;
             </span>
         </div>
+        <div class="row nog input-vars">
+            <div class="col nog">
+                <mat-form-field>
+
+                    <input matInput placeholder="variable name" [(ngModel)]="env.key" id="inputkey">
+                </mat-form-field>
+            </div>
+            <div class="col nog">
+                <mat-form-field>
+                    <input matInput placeholder="variable value" (keyup.enter)="addEnv()" [(ngModel)]="env.value">
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="addvar">
+            <button mat-raised-button color="primary" (click)="addEnv()">Add Variable</button>
+        </div>
+
     </div>
 
 
-    <div class="environment-variables">
-        <div class="env-var">
-            <div class="vars-head">
-                <div class="">
-                    Variable Name
-                </div>
-                <div class="">
-                    Variable Value
-                </div>
-            </div>
-            <div class="body">
-                <div class="vars-body">
-                    <div class="vars" *ngFor="let env of envs">
-                        <div class=" "><span>{{env.key}}</span></div>
-                        <div class=""><span>{{env.value}}</span></div>
-                    </div>
-                    <div class=" input-vars">
-                        <div class="">
-                            <mat-form-field>
-                                <input matInput placeholder="variable name" [(ngModel)]="env.key">
-                            </mat-form-field>
-                        </div>
-                        <div class="">
-                            <mat-form-field><input matInput placeholder="variable value" [(ngModel)]="env.value">
-                            </mat-form-field>
-                        </div>
+    <div class="row nog environment-variables">
+        <div class="col env" *ngFor="let en of envs; let i = index">
+            <div class="env-var" *ngIf="en">
 
-                    </div>
-                    <div class="">
-                        <button mat-raised-button color="primary" (click)="addEnv()">Add Variable</button>
-                    </div>
+                <div class="env-head" *ngIf="!editEnv || editEnv.key!==en.key">Name: &#123; {{en.key}} &#125;</div>
+                <div class="env-head" *ngIf="editEnv && editEnv.key===en.key">
+                    Name: <input type="text" [(ngModel)]="editEnv.key" >
                 </div>
+
+
+                <div class="env-body" *ngIf="!editEnv || editEnv.key!==en.key">
+                    <span>Value: </span> {{en.value}}
+                </div>
+                <div class="env-body" *ngIf="editEnv && editEnv.key===en.key">
+
+                    <span>Value: </span> <input type="text" [(ngModel)]="editEnv.value" (keyup.enter)="editEnvVar(i)">
+                </div>
+                <!-- <hr> -->
+                <div class="env-action">
+                    <mat-icon *ngIf="!editEnv || editEnv.key!==en.key" (click)="enableEdit(i)">edit</mat-icon>
+                    <mat-icon *ngIf="editEnv && editEnv.key===en.key" (click)="editEnvVar(i)">done</mat-icon>
+
+                    <mat-icon (click)="deleteEnv(i); ">delete_outline</mat-icon>
+                </div>
+
             </div>
         </div>
     </div>
