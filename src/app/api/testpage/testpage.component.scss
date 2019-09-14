@@ -66,7 +66,14 @@ pre {
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
     color: #2590CE;
-    max-height: calc(35vh );
+    max-height: 35vh;
+}
+.prehist{
+    // height: auto;
+    max-height: none;
+    padding: 0 10px;
+    color: rgb(77, 76, 76);
+    margin-bottom: 25px;
 }
 
 .nodata{

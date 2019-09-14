@@ -152,8 +152,8 @@
                                         </div>
                                     </div>
                                     <div class="histlistbody" *ngIf="history.activatedHistory==hist.id">
-                                        {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
-                                        {{hist}}
+                                        <pre class="prehist"><code>{{Json.stringify(history.parseToJson(hist),null,3)}}</code></pre>
+
                                     </div>
 
                                 </div>
@@ -225,9 +225,8 @@
                                 </div>
                             </div>
                             <div class="histlistbody" *ngIf="history.activatedHistory==hist.id">
-                                div*
-                                {{hist.id}} | {{hist.req_url}} | {{hist.req_method}} | {{hist.auth_type}} |
-                                {{hist}}
+                                <pre
+                                    class="prehist"><code>{{Json.stringify(history.parseToJson(hist),null,3)}}</code></pre>
                             </div>
 
                         </div>

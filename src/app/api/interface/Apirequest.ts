@@ -16,7 +16,6 @@ export class Apirequest {
 
     reportProgress?: boolean;
     responseType?: string;
-
     apiAuth;
     response;
     constructor() {
@@ -25,7 +24,7 @@ export class Apirequest {
         this.headers = [{ key: 'Access-Control-Request-Origin', value: '*' } as any, {}];
         this.method = 'GET';
         this.auth = false;
-        this.authtype = null;
+        this.authtype = undefined;
         this.cors = false;
 
         this.apiAuth = {} as any;
@@ -48,7 +47,6 @@ export class Apirequest {
                 header[h.key] = h.value;
             }
         });
-        console.log(header);
         return header;
     }
 
@@ -103,7 +101,6 @@ export class Apirequest {
     }
 
     public parseToReq(dbdata: any) {
-        this.url = dbdata.req_url;
         this.user[0] = dbdata[IDBContract._tReqHistoryIndexUserId];
         this.url = dbdata[IDBContract._tReqHistoryIndexURL];
         this.params = dbdata[IDBContract._tReqHistoryIndexParams];

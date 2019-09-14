@@ -17,6 +17,8 @@ export class TestpageComponent {
 
   request: Apirequest = new Apirequest();
   errors: any = [] as any;
+  Json = JSON;
+
   constructor(private req: ApirequestService, private ele: ElementRef, private db: CrudService, private auth: AuthService,
     public history: History) {
   }
