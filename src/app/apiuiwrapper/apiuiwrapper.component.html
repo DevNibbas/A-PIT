@@ -1,9 +1,10 @@
 <app-navbar (clicksidenav)="sidenavstat=!sidenavstat" [activesidenavbutton]="!sidenavstat">
 
 </app-navbar>
-<app-sidebar [showsidenav]="sidenavstat" (clicksidenavbg)="sidenavstat=!sidenavstat"></app-sidebar>
-<div class="hm_slide" (swiperight)="sidenavstat=!sidenavstat"></div>
 <div class="mybody">
 </div>
+
+<app-sidebar [showsidenav]="sidenavstat" (clicksidenavbg)="sidenavstat=!sidenavstat"></app-sidebar>
+<div class="hm_slide" (swiperight)="sidenavstat=!sidenavstat"></div>
 <router-outlet>
 </router-outlet>

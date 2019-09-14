@@ -1,0 +1,31 @@
+.env{
+    &>.head{
+        position: relative;
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+        background: #fafafa;
+        padding: 50px 10px;
+        font-size: 18px;
+        font-weight: 200; 
+        &>.header{
+            font-size: 25px;
+            margin-bottom: 10px;
+            max-width: 700px;
+            color: #555;
+
+        }
+        &>.subheading{
+            font-size: 15px;
+            max-width: 700px;
+            color:#888;
+            
+
+        }
+    }
+
+}
+.bg-lblue{
+    color: rgb(37, 144, 206);
+}

@@ -1,1 +1,37 @@
-<p>environment works!</p>
+<div class="env">
+    <div class="head">
+        <div class="header">
+
+            Welcome to <span class="bg-lblue">&#123;env&#125;</span>!
+        </div>
+        <div class="subheading">
+            An environment variable is a global variable in this app, containing an editable value, which may be used
+            anywhere in this APP.<br>e.g.
+            <span class="bg-lblue">
+
+                &#123;authToken&#125;
+            </span>
+        </div>
+    </div>
+
+    <div class="environment-variables">
+        <div class="env-var">
+            <div class="row nog vars" *ngFor="let env of envs">
+                <div class="col-md">{{env.key}}</div>
+                <div class="col-md">{{env.value}}</div>
+            </div>
+            <div class="row nog vars">
+                <div class="col-md">
+                    <mat-form-field>
+                        <input matInput placeholder="variable name">
+                    </mat-form-field>
+                </div>
+                <div class="col-md">
+                    <mat-form-field><input matInput placeholder="variable value"></mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

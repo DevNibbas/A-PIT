@@ -1,3 +1,4 @@
+import { CrudService } from './../../crud.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EnvironmentComponent implements OnInit {
 
-  constructor() { }
+  json = JSON;
+
+  envs: any[] = [{ key: 'sample', value: 'this is a sample env declaration' } as any];
+
+  constructor(private db: CrudService) { }
+
 
   ngOnInit() {
   }
