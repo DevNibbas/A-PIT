@@ -12,7 +12,14 @@ export class EnvironmentComponent implements OnInit {
 
   envs: any[] = [{ key: 'sample', value: 'this is a sample env declaration' } as any];
 
+  env: any = { key: '', value: '' };
+
   constructor(private db: CrudService) { }
+
+  addEnv() {
+    this.envs.push({ key: this.env.key, value: this.env.value });
+    this.env = {};
+  }
 
 
   ngOnInit() {
