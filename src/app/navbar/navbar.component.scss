@@ -1,6 +1,10 @@
 .bg-custom{
     background: #333;
     justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
 
 }
 

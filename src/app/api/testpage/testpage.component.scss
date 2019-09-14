@@ -70,10 +70,13 @@ pre {
 }
 .prehist{
     // height: auto;
+    position: relative;
+    top:-10px;
     max-height: none;
-    padding: 0 10px;
-    color: rgb(77, 76, 76);
+    padding: 10px 10px;
+    color: rgb(56, 56, 56);
     margin-bottom: 25px;
+    background-color: #F2F2F2;
 }
 
 .nodata{
@@ -226,11 +229,13 @@ pre {
                 // flex-grow: 1;
                 width: 100%;
                 &>.histlisthead{
+                    position: relative;
                     padding:7px 10px;
                     background-color:#fff;
                     box-shadow: 1px 1px 4px rgb(184, 182, 182); 
                     margin:5px 0;
                     cursor: pointer;
+                    z-index: 1;
                     &>.slipcard{
                         color: #2590CE;
                         padding: 5px;
