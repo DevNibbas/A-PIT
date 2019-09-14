@@ -1,1 +1,65 @@
-<p>environment works!</p>
+<div class="env">
+    <div class="head">
+        <div class="header">
+
+            Welcome to <span class="bg-lblue">&#123;env&#125;</span>!
+        </div>
+        <div class="subheading">
+            An environment variable is a global variable in this app, containing an editable value, which may be used
+            anywhere in this APP.<br>e.g.
+            <span class="bg-lblue">
+
+                &#123;authToken&#125;
+            </span>
+        </div>
+
+        <div class="err" *ngIf="error">
+            {{error}}
+        </div>
+        <div class="row nog input-vars">
+            <div class="col nog">
+                <mat-form-field>
+
+                    <input matInput placeholder="variable name" [(ngModel)]="env.key" id="inputkey" required>
+                </mat-form-field>
+            </div>
+            <div class="col nog">
+                <mat-form-field>
+                    <input matInput placeholder="variable value" (keyup.enter)="addEnv()" [(ngModel)]="env.value" required>
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="addvar">
+            <button mat-raised-button color="primary" (click)="addEnv()">Add Variable</button>
+        </div>
+
+    </div>
+
+
+    <div class="row nog environment-variables">
+        <div class="col env" *ngFor="let k of object.keys(envs).sort(); let i = index">
+            <div class="env-var" *ngIf="k">
+                <div class="env-head" >Name: &#123; {{k}} &#125;</div>
+                
+                <div class="env-body" *ngIf="!editEnv || editEnv.key!==k">
+                    <span>Value: </span> {{envs[k]}}
+                </div>
+                <div class="env-body" *ngIf="editEnv && editEnv.key===k">
+
+                    <span>Value: </span> <input id="edit-env-{{k}}" type="text" [(ngModel)]="editEnv.value" (keyup.enter)="editEnvVar(k)">
+                </div>
+                <!-- <hr> -->
+                <div class="env-action">
+                    <mat-icon *ngIf="!editEnv || editEnv.key!==k" (click)="enableEdit(k)">edit</mat-icon>
+                    <mat-icon *ngIf="editEnv && editEnv.key===k" (click)="editEnvVar(k)">done</mat-icon>
+
+                    <mat-icon (click)="deleteEnv(k); ">delete_outline</mat-icon>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
