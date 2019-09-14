@@ -58,7 +58,7 @@ export class CrudService {
     const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName, IDBContract._transactionRO);
     const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
     const uidIndex = reqHistStore.index(IDBContract._tReqHistoryIndexUserId);
-    const result = uidIndex.getAll();
+    const result = uidIndex.getAll(uid);
     return new Promise<any>((res, rej) => {
       result.onsuccess = () => {
         res(result.result);
@@ -66,6 +66,37 @@ export class CrudService {
       result.onerror = (err) => {
         rej(err);
       };
+    });
+  }
+
+  deleteHistoryEntry(id:any):Promise<boolean>{
+    const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName,
+      IDBContract._transactionRW);
+    const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
+    const uidIndex = reqHistStore.delete(id);
+    return new Promise<boolean>((res,rej) => {
+      uidIndex.onsuccess = () =>{
+        res(true);
+      }
+      uidIndex.onerror = () => {
+        rej(false);
+      }
+    });
+  }
+
+  deleteAllHistoryEntry():Promise<boolean>{
+    const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName,
+      IDBContract._transactionRW);
+    const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
+    const range = IDBKeyRange.bound(0,Infinity,true,false);
+    const uidIndex = reqHistStore.delete(range);
+    return new Promise<boolean>((res,rej) => {
+      uidIndex.onsuccess = () =>{
+        res(true);
+      }
+      uidIndex.onerror = () => {
+        rej(false);
+      }
     });
   }
 
