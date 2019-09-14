@@ -12,16 +12,20 @@
                 &#123;authToken&#125;
             </span>
         </div>
+
+        <div class="err" *ngIf="error">
+            {{error}}
+        </div>
         <div class="row nog input-vars">
             <div class="col nog">
                 <mat-form-field>
 
-                    <input matInput placeholder="variable name" [(ngModel)]="env.key" id="inputkey">
+                    <input matInput placeholder="variable name" [(ngModel)]="env.key" id="inputkey" required>
                 </mat-form-field>
             </div>
             <div class="col nog">
                 <mat-form-field>
-                    <input matInput placeholder="variable value" (keyup.enter)="addEnv()" [(ngModel)]="env.value">
+                    <input matInput placeholder="variable value" (keyup.enter)="addEnv()" [(ngModel)]="env.value" required>
                 </mat-form-field>
             </div>
 
@@ -34,28 +38,23 @@
 
 
     <div class="row nog environment-variables">
-        <div class="col env" *ngFor="let en of envs; let i = index">
-            <div class="env-var" *ngIf="en">
-
-                <div class="env-head" *ngIf="!editEnv || editEnv.key!==en.key">Name: &#123; {{en.key}} &#125;</div>
-                <div class="env-head" *ngIf="editEnv && editEnv.key===en.key">
-                    Name: <input type="text" [(ngModel)]="editEnv.key" >
+        <div class="col env" *ngFor="let k of object.keys(envs).sort(); let i = index">
+            <div class="env-var" *ngIf="k">
+                <div class="env-head" >Name: &#123; {{k}} &#125;</div>
+                
+                <div class="env-body" *ngIf="!editEnv || editEnv.key!==k">
+                    <span>Value: </span> {{envs[k]}}
                 </div>
+                <div class="env-body" *ngIf="editEnv && editEnv.key===k">
 
-
-                <div class="env-body" *ngIf="!editEnv || editEnv.key!==en.key">
-                    <span>Value: </span> {{en.value}}
-                </div>
-                <div class="env-body" *ngIf="editEnv && editEnv.key===en.key">
-
-                    <span>Value: </span> <input type="text" [(ngModel)]="editEnv.value" (keyup.enter)="editEnvVar(i)">
+                    <span>Value: </span> <input id="edit-env-{{k}}" type="text" [(ngModel)]="editEnv.value" (keyup.enter)="editEnvVar(k)">
                 </div>
                 <!-- <hr> -->
                 <div class="env-action">
-                    <mat-icon *ngIf="!editEnv || editEnv.key!==en.key" (click)="enableEdit(i)">edit</mat-icon>
-                    <mat-icon *ngIf="editEnv && editEnv.key===en.key" (click)="editEnvVar(i)">done</mat-icon>
+                    <mat-icon *ngIf="!editEnv || editEnv.key!==k" (click)="enableEdit(k)">edit</mat-icon>
+                    <mat-icon *ngIf="editEnv && editEnv.key===k" (click)="editEnvVar(k)">done</mat-icon>
 
-                    <mat-icon (click)="deleteEnv(i); ">delete_outline</mat-icon>
+                    <mat-icon (click)="deleteEnv(k); ">delete_outline</mat-icon>
                 </div>
 
             </div>
