@@ -29,10 +29,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
         &>.env-var{
             padding: 50px 10px;
             max-width: 1000px;
-            width: 100%;
+            // width: 100%;
             flex-grow: 1;
             &>.vars-head{
                 padding: 10px;
@@ -45,6 +46,8 @@
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
+                flex-wrap: wrap;
+
                 &>div{
                     flex-grow: 1;
                     padding: 5px;
@@ -52,58 +55,72 @@
 
                 
             }
-            &>.vars-body{
-                background: rgb(243, 242, 242);
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                border-radius: 0 0 10px 10px;
+            &>.body{
+                &>.vars-body{
+                    background: rgb(243, 242, 242);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    // flex-wrap: wrap;
 
-                &>.vars{
-                    width: 100%;
-                    
-                    margin:10px;
-                    padding: 10px 5px;
-                    border-radius: 10px;  
-                    
-                    
-                    
-                    &>div{
-                        padding: 5px;
+                    border-radius: 0 0 10px 10px;
+                    width: auto;
+
+                    &>.vars{
+                        width: 100%;
+                        position: relative;
+                        margin:10px;
+                        padding: 10px 5px;
+                        border-radius: 10px;  
                         display: flex;
-                        flex-direction: column;
-                        justify-content: baseline;
-                        align-items: baseline;
-                        &>span{
-                            display: inline-block;
-                            flex-grow: 1;
-                            border-bottom: 1px solid #555; 
-                            margin: 0;
-                            width:100%;
-                        } 
-                    }
-                   
-                    &:nth-of-type(odd){
-                        // background-color:#969595; 
-                        // color: #f1f1f1;
-                    }
-                    
-                    &:nth-of-type(even){
-                        
-                        // background-color:#d8d6d6; 
-                    }
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        flex-wrap: wrap;
 
-                
-                }
-                &>.input-vars{
-                    width: 100%;
-                    padding: 10px 5px;
+                        
+                        
+                        &>div{
+                            padding: 5px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: baseline;
+                            align-items: baseline;
+                            width: auto;
+                            &>span{
+                                display: inline-block;
+                                flex-grow: 1;
+                                border-bottom: 1px solid #555; 
+                                margin: 0;
+                                width:100%;
+                            } 
+                        }
                     
-                    &>div{
-                        padding: 5px;
-                        &>mat-form-field{
-                            width: 100%;
+                        &:nth-of-type(odd){
+                            // background-color:#969595; 
+                            // color: #f1f1f1;
+                        }
+                        
+                        &:nth-of-type(even){
+                            
+                            // background-color:#d8d6d6; 
+                        }
+
+                    
+                    }
+                    &>.input-vars{
+                        width: 100%;
+                        padding: 10px 5px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        &>div{
+                            padding: 5px;
+                            &>mat-form-field{
+                                width: 100%;
+                            }
                         }
                     }
                 }

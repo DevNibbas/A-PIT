@@ -14,6 +14,7 @@
         </div>
     </div>
 
+
     <div class="environment-variables">
         <div class="env-var">
             <div class="vars-head">
@@ -24,25 +25,27 @@
                     Variable Value
                 </div>
             </div>
-            <div class="vars-body">
-                <div class="vars" *ngFor="let env of envs">
-                    <div class=" "><span>{{env.key}}</span></div>
-                    <div class=""><span>{{env.value}}</span></div>
-                </div>
-                <div class=" input-vars">
-                    <div class="">
-                        <mat-form-field>
-                            <input matInput placeholder="variable name" [(ngModel)]="env.key">
-                        </mat-form-field>
+            <div class="body">
+                <div class="vars-body">
+                    <div class="vars" *ngFor="let env of envs">
+                        <div class=" "><span>{{env.key}}</span></div>
+                        <div class=""><span>{{env.value}}</span></div>
                     </div>
-                    <div class="">
-                        <mat-form-field><input matInput placeholder="variable value" [(ngModel)]="env.value">
-                        </mat-form-field>
-                    </div>
+                    <div class=" input-vars">
+                        <div class="">
+                            <mat-form-field>
+                                <input matInput placeholder="variable name" [(ngModel)]="env.key">
+                            </mat-form-field>
+                        </div>
+                        <div class="">
+                            <mat-form-field><input matInput placeholder="variable value" [(ngModel)]="env.value">
+                            </mat-form-field>
+                        </div>
 
-                </div>
-                <div class="">
-                    <button mat-raised-button color="primary" (click)="addEnv()">Add Variable</button>
+                    </div>
+                    <div class="">
+                        <button mat-raised-button color="primary" (click)="addEnv()">Add Variable</button>
+                    </div>
                 </div>
             </div>
         </div>
