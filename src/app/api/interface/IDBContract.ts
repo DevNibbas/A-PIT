@@ -6,38 +6,38 @@ export class IDBContract {
     /* ---------------------------------------------- */
 
     /* ---------------------------------------------- */
-    public static _databaseName: string = 'apit-indexedDB';
-    public static _dbVersionHistory: number = 1;
+    public static _databaseName = 'apit-indexedDB';
+    public static _dbVersionHistory = 1;
     /* ---------------------------------------------- */
 
     /* ---------------------------------------------- */
-    public static _methodHeader: string = 'method_header';
-    public static _methodParam: string = 'method_param';
-    public static _methodData: string = 'method_data';
-    public static _methodURL: string = 'method_url';
+    public static _methodHeader = 'method_header';
+    public static _methodParam = 'method_param';
+    public static _methodData = 'method_data';
+    public static _methodURL = 'method_url';
     /* ---------------------------------------------- */
 
     /* ---------------------------------------------- */
-    public static _tReqHistoryStoreName: string = 'request_history';
-    public static _tReqHistoryIndexUniqueId: string = 'id';
-    public static _tReqHistoryIndexUserId: string = 'uid';
-    public static _tReqHistoryIndexMethod: string = 'req_method';
-    public static _tReqHistoryIndexURL: string = 'req_url';
-    public static _tReqHistoryIndexParams: string = 'req_params';
-    public static _tReqHistoryIndexHeaders: string = 'req_headers';
-    public static _tReqHistoryIndexData: string = 'req_data';
-    public static _tReqHistoryIndexAuth: string = 'req_auth';
-    public static _tReqHistoryIndexAuthUname: string = 'req_auth_uname';
-    public static _tReqHistoryIndexAuthPwd: string = 'req_auth_pwd';
-    public static _tReqHistoryIndexBearerToken: string = 'req_auth_bearer_token';
-    public static _tReqHistoryIndexAuthType: string = 'req_auth_type';
+    public static _tReqHistoryStoreName = 'request_history';
+    public static _tReqHistoryIndexUniqueId = 'id';
+    public static _tReqHistoryIndexUserId = 'uid';
+    public static _tReqHistoryIndexMethod = 'req_method';
+    public static _tReqHistoryIndexURL = 'req_url';
+    public static _tReqHistoryIndexParams = 'req_params';
+    public static _tReqHistoryIndexHeaders = 'req_headers';
+    public static _tReqHistoryIndexData = 'req_data';
+    public static _tReqHistoryIndexAuth = 'req_auth';
+    public static _tReqHistoryIndexAuthUname = 'req_auth_uname';
+    public static _tReqHistoryIndexAuthPwd = 'req_auth_pwd';
+    public static _tReqHistoryIndexBearerToken = 'req_auth_bearer_token';
+    public static _tReqHistoryIndexAuthType = 'req_auth_type';
     /* ---------------------------------------------- */
-    public static _tModelStoreName: string = 'model_names';
-    public static _tModelIndexName: string = 'name';
-    public static _tModelIndexId: string = 'id';
-    public static _tModelIndexUid: string = 'uid';
-    public static _tModelIndexType: string = 'type';
-    public static _tModelIndexData: string = 'data';
+    public static _tModelStoreName = 'model_names';
+    public static _tModelIndexName = 'name';
+    public static _tModelIndexId = 'id';
+    public static _tModelIndexUid = 'uid';
+    public static _tModelIndexType = 'type';
+    public static _tModelIndexData = 'data';
     /* ---------------------------------------------- */
 
     constructor() { }
