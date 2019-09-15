@@ -8,7 +8,7 @@ export class StringGeneratorService {
 
   constructor() { }
 
-  createString(regex:string):string{
+  createString(regex: string): string {
     return new RandExp(new RegExp(regex)).gen();
   }
 
