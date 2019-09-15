@@ -130,10 +130,14 @@
 
 
                             <div class="history-content">
+                                <div class="histories" *ngIf="!history.allHistory || history.allHistory.length===0">
+                                    No history yet, try sending a request.
+                                </div>
+
                                 <div class="histories" *ngFor="let hist of history.allHistory; let i=index">
                                     <div class="row nog histlisthead" (click)="history.toggleHistoryList(i)">
                                         <div class="col-md-1 nog slipcard">
-                                            {{hist.id}}:
+                                            {{i+1}}:
                                         </div>
                                         <div class="col-md nog slipcard"><span>URL:</span> {{hist.req_url}}</div>
                                         <div class="col-md-2 nog slipcard"><span>Type:</span> {{hist.req_method}}</div>
@@ -144,7 +148,7 @@
                                                     refresh
                                                 </mat-icon>
                                                 <mat-icon
-                                                    (click)="history.deleteHist(hist.id);$event.stopPropagation()">
+                                                    (click)="history.deleteHist(i,i,hist.id);$event.stopPropagation()">
                                                     delete
                                                 </mat-icon>
                                             </div>
@@ -152,7 +156,8 @@
                                         </div>
                                     </div>
                                     <div class="histlistbody" *ngIf="history.activatedHistory==hist.id">
-                                        <pre class="prehist"><code>{{Json.stringify(history.parseToJson(hist),null,3)}}</code></pre>
+                                        <pre
+                                            class="prehist"><code>{{Json.stringify(history.parseToJson(hist),null,3)}}</code></pre>
 
                                     </div>
 
@@ -204,10 +209,13 @@
 
 
                     <div class="history-content">
+                        <div class="histories" *ngIf="!history.allHistory || history.allHistory.length===0">
+                            No history yet, try sending a request.
+                        </div>
                         <div class="histories" *ngFor="let hist of history.allHistory; let i=index">
                             <div class="row nog histlisthead" (click)="history.toggleHistoryList(i)">
                                 <div class="col-md-1 nog slipcard">
-                                    {{hist.id}}:
+                                    {{i+1}}:
                                 </div>
                                 <div class="col-md nog slipcard"><span>URL:</span> {{hist.req_url}}</div>
                                 <div class="col-md-2 nog slipcard"><span>Type:</span> {{hist.req_method}}</div>
@@ -217,7 +225,7 @@
                                             (click)="request.parseToReq(hist); sendReq() ;$event.stopPropagation()">
                                             refresh
                                         </mat-icon>
-                                        <mat-icon (click)="history.deleteHist(hist.id);$event.stopPropagation()">
+                                        <mat-icon (click)="history.deleteHist(i,hist.id);$event.stopPropagation()">
                                             delete
                                         </mat-icon>
                                     </div>
