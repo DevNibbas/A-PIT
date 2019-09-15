@@ -1,7 +1,7 @@
 .env{
     width: 100vw;
     &>.head{
-        width: 100%;
+        width: 100vw;
         position: relative;
         display: flex;
         flex-direction:column;
@@ -11,6 +11,7 @@
         padding: 50px 10px;
         font-size: 18px;
         font-weight: 200; 
+        overflow-x: hidden;
         &>.header{
             font-size: 25px;
             margin-bottom: 10px;

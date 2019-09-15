@@ -1,4 +1,3 @@
-import { element } from 'protractor';
 import { CrudService } from './../../crud.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -13,7 +12,6 @@ export class EnvironmentComponent implements OnInit {
 
   envs: any = { sample: 'this is a sample env declaration', sample2: 'this is a sample env declaration' } as any;
   error;
-  sort = Array.so
   env: any = { key: '', value: '' };
   object = Object;
   envobjects;

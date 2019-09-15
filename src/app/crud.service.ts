@@ -69,34 +69,34 @@ export class CrudService {
     });
   }
 
-  deleteHistoryEntry(id:any):Promise<boolean>{
+  deleteHistoryEntry(id: any): Promise<boolean> {
     const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName,
       IDBContract._transactionRW);
     const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
     const uidIndex = reqHistStore.delete(id);
-    return new Promise<boolean>((res,rej) => {
-      uidIndex.onsuccess = () =>{
+    return new Promise<boolean>((res, rej) => {
+      uidIndex.onsuccess = () => {
         res(true);
-      }
+      };
       uidIndex.onerror = () => {
         rej(false);
-      }
+      };
     });
   }
 
-  deleteAllHistoryEntry():Promise<boolean>{
+  deleteAllHistoryEntry(): Promise<boolean> {
     const reqHistTransaction = this._dbAPIT.transaction(IDBContract._tReqHistoryStoreName,
       IDBContract._transactionRW);
     const reqHistStore = reqHistTransaction.objectStore(IDBContract._tReqHistoryStoreName);
-    const range = IDBKeyRange.bound(0,Infinity,true,false);
+    const range = IDBKeyRange.bound(0, Infinity, true, false);
     const uidIndex = reqHistStore.delete(range);
-    return new Promise<boolean>((res,rej) => {
-      uidIndex.onsuccess = () =>{
+    return new Promise<boolean>((res, rej) => {
+      uidIndex.onsuccess = () => {
         res(true);
-      }
+      };
       uidIndex.onerror = () => {
         rej(false);
-      }
+      };
     });
   }
 
