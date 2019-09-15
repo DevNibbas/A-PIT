@@ -35,13 +35,26 @@ export class History {
         // function for lazy load
     }
 
-    deleteHist(id) {
+    deleteHist(i, id) {
+        this.db.deleteHistoryEntry(id).then(res => {
+            if (res) {
+                this.allHistory.splice(i, 1);
+            }
+        }).catch(err => console.log(err));
 
     }
 
 
     deleteAllHistory() {
-        const x = confirm('you naughty.. want to clear your history :)- ');
+        const conf = confirm('you naughty.. want to clear your history :)- ');
+        if (conf) {
+            this.db.deleteAllHistoryEntry().then(res => {
+                if (res) {
+                    this.allHistory = [];
+
+                }
+            });
+        }
         // function for delete  all history
     }
 
