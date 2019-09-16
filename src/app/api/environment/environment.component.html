@@ -43,7 +43,7 @@
                 <div class="env-head" >Name: &#123; {{k}} &#125;</div>
                 
                 <div class="env-body" *ngIf="!editEnv || editEnv.key!==k">
-                    <span>Value: </span> {{envs[k]}}
+                    <span>Value: </span> {{envs[k].value}}
                 </div>
                 <div class="env-body" *ngIf="editEnv && editEnv.key===k">
 
