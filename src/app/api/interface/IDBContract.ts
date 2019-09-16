@@ -7,7 +7,7 @@ export class IDBContract {
 
     /* ---------------------------------------------- */
     public static _databaseName = 'apit-indexedDB';
-    public static _dbVersionHistory = 1;
+    public static _dbVersionHistory = 2;
     /* ---------------------------------------------- */
 
     /* ---------------------------------------------- */
