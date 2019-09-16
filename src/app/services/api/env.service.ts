@@ -75,7 +75,13 @@ export class EnvService {
       subscription = this.Envs.subscribe(
         result => {
           const val: any = result.find(res => res.name === envvar);
-          resolver(subscription, resolve, val.name);
+          if (val) {
+            resolver(subscription, resolve, val.name);
+          } else {
+            resolver(subscription, resolve, undefined);
+          }
+
+
         },
         error => { rejecter(subscription, reject, error); }
       );

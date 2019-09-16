@@ -20,7 +20,7 @@
             <div class="col nog">
                 <mat-form-field>
 
-                    <input matInput placeholder="variable name" [(ngModel)]="env.key" id="inputkey" required>
+                    <input matInput placeholder="variable name" [(ngModel)]="env.key" id="inputkey" required (keyup)="error=undefined">
                 </mat-form-field>
             </div>
             <div class="col nog">
