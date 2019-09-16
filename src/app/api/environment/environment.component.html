@@ -38,23 +38,23 @@
 
 
     <div class="row nog environment-variables">
-        <div class="col env" *ngFor="let k of object.keys(envs).sort(); let i = index">
+        <div class="col env" *ngFor="let k of (envservice.Envs| async); let i = index">
             <div class="env-var" *ngIf="k">
-                <div class="env-head" >Name: &#123; {{k}} &#125;</div>
+                <div class="env-head" >Name: &#123; {{k.name}} &#125;</div>
                 
-                <div class="env-body" *ngIf="!editEnv || editEnv.key!==k">
-                    <span>Value: </span> {{envs[k].value}}
+                <div class="env-body" *ngIf="!editEnv || editEnv.key!==k.name">
+                    <span>Value: </span> {{k.value}}
                 </div>
-                <div class="env-body" *ngIf="editEnv && editEnv.key===k">
+                <div class="env-body" *ngIf="editEnv && editEnv.key===k.name">
 
-                    <span>Value: </span> <input id="edit-env-{{k}}" type="text" [(ngModel)]="editEnv.value" (keyup.enter)="editEnvVar(k)">
+                    <span>Value: </span> <input id="edit-env-{{k.name}}" type="text" [(ngModel)]="editEnv.value" (keyup.enter)="editEnvVar(i,k.name)">
                 </div>
                 <!-- <hr> -->
                 <div class="env-action">
-                    <mat-icon *ngIf="!editEnv || editEnv.key!==k" (click)="enableEdit(k)">edit</mat-icon>
-                    <mat-icon *ngIf="editEnv && editEnv.key===k" (click)="editEnvVar(k)">done</mat-icon>
+                    <mat-icon *ngIf="!editEnv || editEnv.key!==k.name" (click)="enableEdit(k.name)">edit</mat-icon>
+                    <mat-icon *ngIf="editEnv && editEnv.key===k.name" (click)="editEnvVar(i,k.name)">done</mat-icon>
 
-                    <mat-icon (click)="deleteEnv(k); ">delete_outline</mat-icon>
+                    <mat-icon (click)="deleteEnv(i,k.name); ">delete_outline</mat-icon>
                 </div>
 
             </div>

@@ -30,19 +30,24 @@ export class EnvService {
     });
   }
 
-  updateEnv(obj) {
+  updateEnv(index, obj) {
     obj.uid = this.user;
     return this.db.addEnv(obj).then(id => {
       obj.id = id;
-      this.store.forEach(s => {
-        if (s.id === id) {
-          s.name = obj.name;
-          s.value = obj.value;
-        }
-      });
+      this.store[index].name = obj.name;
+      this.store[index].value = obj.value;
+
+
       this._allEnvs.next(this.store);
 
       return id;
+    });
+  }
+
+  deleteEnv(index, id) {
+    this.db.deleteEnvEntry(id).then(res => {
+      this.store.splice(index, 1);
+      this._allEnvs.next(this.store);
     });
   }
 

@@ -130,6 +130,21 @@ export class CrudService {
   }
 
 
+  deleteEnvEntry(id: any): Promise<boolean> {
+    const envTransaction = this._dbAPIT.transaction(IDBContract._tEnvStoreName, IDBContract._transactionRW);
+    const conf = envTransaction.objectStore(IDBContract._tEnvStoreName);
+    const deleted = conf.delete(id);
+    return new Promise<boolean>((res, rej) => {
+      deleted.onsuccess = () => {
+        res(true);
+      };
+      deleted.onerror = () => {
+        rej(false);
+      };
+    });
+  }
+
+
 
   isDBOpened(): boolean {
     return this._dbOpen;

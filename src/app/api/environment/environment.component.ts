@@ -18,7 +18,6 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
   envobjects;
   editEnv;
   subs;
-  @ViewChild('#edit-env', { static: false }) inpkey;
 
   constructor(public envservice: EnvService) {
     this.subs = this.envservice.Envs.subscribe(envs => {
@@ -34,12 +33,7 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
 
   addEnv() {
     if (this.env.key && !this.envs.hasOwnProperty(this.env.key)) {
-      this.envservice.addEnv({ name: this.env.key, value: this.env.value }).then(iid => {
-        // this.envs[this.env.key] = {
-        //   id: iid, value: this.env.value
-        // };
-
-      });
+      this.envservice.addEnv({ name: this.env.key, value: this.env.value });
       this.env = {};
     } else if (this.env.key) {
       this.error = 'Key already exist';
@@ -59,13 +53,12 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
     }, 500);
 
   }
-  editEnvVar(i) {
-    // this.envs[this.editEnv.key] = this.editEnv.value;
-    this.envservice.updateEnv({ id: this.envs[i].id, name: i, value: this.editEnv.value });
+  editEnvVar(index, i) {
+    this.envservice.updateEnv(index, { id: this.envs[i].id, name: i, value: this.editEnv.value });
     this.editEnv = undefined;
   }
-  deleteEnv(i) {
-    delete this.envs[i];
+  deleteEnv(index, id) {
+    this.envservice.deleteEnv(index, this.envs[id].id);
 
   }
 
