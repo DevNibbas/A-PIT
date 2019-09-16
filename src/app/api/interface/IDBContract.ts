@@ -40,5 +40,13 @@ export class IDBContract {
     public static _tModelIndexData = 'data';
     /* ---------------------------------------------- */
 
+    public static _tEnvStoreName = 'env_vars';
+    public static _tEnvIndexName = 'name';
+    public static _tEnvIndexId = 'id';
+    public static _tEnvIndexUid = 'uid';
+    public static _tEnvIndexValue = 'value';
+
+    /* ---------------------------------------------- */
+
     constructor() { }
 }

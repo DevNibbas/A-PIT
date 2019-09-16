@@ -20,7 +20,7 @@
             <div class="col nog">
                 <mat-form-field>
 
-                    <input matInput placeholder="variable name" [(ngModel)]="env.key" id="inputkey" required>
+                    <input matInput placeholder="variable name" [(ngModel)]="env.key" id="inputkey" required (keyup)="error=undefined">
                 </mat-form-field>
             </div>
             <div class="col nog">
@@ -38,26 +38,29 @@
 
 
     <div class="row nog environment-variables">
-        <div class="col env" *ngFor="let k of object.keys(envs).sort(); let i = index">
+        <div class="col env" *ngFor="let k of (envservice.Envs| async); let i = index">
             <div class="env-var" *ngIf="k">
-                <div class="env-head" >Name: &#123; {{k}} &#125;</div>
+                <div class="env-head" >Name: &#123; {{k.name}} &#125;</div>
                 
-                <div class="env-body" *ngIf="!editEnv || editEnv.key!==k">
-                    <span>Value: </span> {{envs[k]}}
+                <div class="env-body" *ngIf="!editEnv || editEnv.key!==k.name">
+                    <span>Value: </span> {{k.value}}
                 </div>
-                <div class="env-body" *ngIf="editEnv && editEnv.key===k">
+                <div class="env-body" *ngIf="editEnv && editEnv.key===k.name">
 
-                    <span>Value: </span> <input id="edit-env-{{k}}" type="text" [(ngModel)]="editEnv.value" (keyup.enter)="editEnvVar(k)">
+                    <span>Value: </span> <input id="edit-env-{{k.name}}" type="text" [(ngModel)]="editEnv.value" (keyup.enter)="editEnvVar(i,k.name)">
                 </div>
                 <!-- <hr> -->
                 <div class="env-action">
-                    <mat-icon *ngIf="!editEnv || editEnv.key!==k" (click)="enableEdit(k)">edit</mat-icon>
-                    <mat-icon *ngIf="editEnv && editEnv.key===k" (click)="editEnvVar(k)">done</mat-icon>
+                    <mat-icon *ngIf="!editEnv || editEnv.key!==k.name" (click)="enableEdit(k.name)">edit</mat-icon>
+                    <mat-icon *ngIf="editEnv && editEnv.key===k.name" (click)="editEnvVar(i,k.name)">done</mat-icon>
 
-                    <mat-icon (click)="deleteEnv(k); ">delete_outline</mat-icon>
+                    <mat-icon (click)="deleteEnv(i,k.name); ">delete_outline</mat-icon>
                 </div>
 
             </div>
+        </div>
+        <div class="nodata" *ngIf="envservice.store && !envservice.store.length>0">
+            You don't have any &#123; ENV &#125; vars in the store, <span (click)="doc.getElementById('inputkey').focus();">try creating one</span> 
         </div>
     </div>
 

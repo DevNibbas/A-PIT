@@ -100,6 +100,52 @@ export class CrudService {
     });
   }
 
+
+  getAllEnv(uid) {
+    const envTransaction = this._dbAPIT.transaction(IDBContract._tEnvStoreName, IDBContract._transactionRO);
+    const envStore = envTransaction.objectStore(IDBContract._tEnvStoreName);
+    const uidIndex = envStore.index(IDBContract._tEnvIndexUid);
+    const result = uidIndex.getAll(uid);
+    return new Promise<any>((res, rej) => {
+      result.onsuccess = () => {
+        res(result.result);
+      };
+      result.onerror = (err) => {
+        rej(err);
+      };
+    });
+  }
+
+  addEnv(object: any) {
+    const envTransaction = this._dbAPIT.transaction(IDBContract._tEnvStoreName, IDBContract._transactionRW);
+    const conf = envTransaction.objectStore(IDBContract._tEnvStoreName).put(object);
+    return new Promise<any>((res, rej) => {
+      envTransaction.oncomplete = () => {
+        res(conf.result);
+      };
+      envTransaction.onerror = (err) => {
+        rej(err);
+      };
+    });
+  }
+
+
+  deleteEnvEntry(id: any): Promise<boolean> {
+    const envTransaction = this._dbAPIT.transaction(IDBContract._tEnvStoreName, IDBContract._transactionRW);
+    const conf = envTransaction.objectStore(IDBContract._tEnvStoreName);
+    const deleted = conf.delete(id);
+    return new Promise<boolean>((res, rej) => {
+      deleted.onsuccess = () => {
+        res(true);
+      };
+      deleted.onerror = () => {
+        rej(false);
+      };
+    });
+  }
+
+
+
   isDBOpened(): boolean {
     return this._dbOpen;
   }
@@ -109,6 +155,7 @@ export class CrudService {
       IDBContract._dbVersionHistory);
     this._dbAPITReq.onupgradeneeded = () => {
       this._dbAPIT = this._dbAPITReq.result;
+      // creating history database
       const reqHistStore = this._dbAPIT.createObjectStore(
         IDBContract._tReqHistoryStoreName, { keyPath: IDBContract._tReqHistoryIndexUniqueId, autoIncrement: true });
       this.addIndexesWithOutOptions(reqHistStore, [IDBContract._tReqHistoryIndexUserId,
@@ -117,10 +164,19 @@ export class CrudService {
       IDBContract._tReqHistoryIndexData, IDBContract._tReqHistoryIndexAuth,
       IDBContract._tReqHistoryIndexAuthType, IDBContract._tReqHistoryIndexAuthUname,
       IDBContract._tReqHistoryIndexAuthPwd, IDBContract._tReqHistoryIndexBearerToken]);
+
+      // creating model database
       const modelsStore = this._dbAPIT.createObjectStore(
         IDBContract._tModelStoreName, { keyPath: IDBContract._tModelIndexId, autoIncrement: true });
       this.addIndexesWithOutOptions(modelsStore, [IDBContract._tModelIndexName,
       IDBContract._tModelIndexUid, IDBContract._tModelIndexType, IDBContract._tModelIndexData]);
+
+      // creating env database
+      const envsStore = this._dbAPIT.createObjectStore(
+        IDBContract._tEnvStoreName, { keyPath: IDBContract._tEnvIndexId, autoIncrement: true });
+      this.addIndexesWithOutOptions(envsStore, [IDBContract._tEnvIndexName,
+      IDBContract._tEnvIndexUid, IDBContract._tEnvIndexValue]);
+
     };
     this._dbAPITReq.onsuccess = () => {
       this._dbOpen = true;
