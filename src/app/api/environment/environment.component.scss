@@ -29,6 +29,17 @@
     }
     .environment-variables{
         margin:20px;
+        .nodata{
+            text-align: center;
+            color: #555;
+            width: 100%;
+            margin-top:50px;
+            font-size: 20px;
+            &>span{
+                color: rgb(37, 144, 206);
+                cursor: pointer;
+            }
+        }
         &>.env{
           
             &>.env-var{

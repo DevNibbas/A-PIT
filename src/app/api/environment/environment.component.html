@@ -59,6 +59,9 @@
 
             </div>
         </div>
+        <div class="nodata" *ngIf="envservice.store && !envservice.store.length>0">
+            You don't have any &#123; ENV &#125; vars in the store, <span (click)="doc.getElementById('inputkey').focus();">try creating one</span> 
+        </div>
     </div>
 
 

@@ -15,6 +15,7 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
   error;
   env: any = { key: '', value: '' };
   object = Object;
+  doc = document;
   envobjects;
   editEnv;
   subs;
@@ -24,11 +25,10 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
 
       envs.forEach(env => {
         this.envs[env.name] = { id: env.id, value: env.value };
-        console.log(env);
       });
       this.envobjects = this.object.keys(this.envs);
-      console.log(this.envobjects);
     });
+
   }
 
   addEnv() {
@@ -40,6 +40,8 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
     } else {
       this.error = 'please enter a key';
     }
+    this.envservice.parseEnv('sam').then(res => console.log(res));
+
     document.getElementById('inputkey').focus();
   }
 

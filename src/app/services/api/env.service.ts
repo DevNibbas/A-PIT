@@ -1,14 +1,14 @@
 import { state } from '@angular/animations';
 import { CrudService } from './../../crud.service';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnvService {
 
-  store: any[] = [];
+  store: any[];
   private _allEnvs = new BehaviorSubject<any[]>([]);
   user;
   readonly ROallEnvs = this._allEnvs.asObservable();
@@ -49,6 +49,39 @@ export class EnvService {
       this.store.splice(index, 1);
       this._allEnvs.next(this.store);
     });
+  }
+
+
+
+  parseEnv(envvar) {
+    let subscription;
+
+    // tslint:disable-next-line:ban-types
+    const resolver = (subsription: Subscription, resolve: Function, result: string) => {
+      resolve(result);
+      if (subscription) {
+        subsription.unsubscribe();
+      }
+
+    };
+    // tslint:disable-next-line:ban-types
+    const rejecter = (subsription: Subscription, reject: Function, error: any) => {
+      reject(error);
+      if (subscription) {
+        subsription.unsubscribe();
+      }
+    };
+    return new Promise((resolve, reject) => {
+      subscription = this.Envs.subscribe(
+        result => {
+          const val: any = result.find(res => res.name === envvar);
+          resolver(subscription, resolve, val.name);
+        },
+        error => { rejecter(subscription, reject, error); }
+      );
+    });
+
+
   }
 
 
