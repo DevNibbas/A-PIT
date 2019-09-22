@@ -14,37 +14,37 @@ import { Component, OnInit } from '@angular/core';
 
 export class AutotestComponent implements OnInit {
 
-  object:any = {};
-  request:Apirequest = new Apirequest();
-  result:any = {};
-  response:string[] = undefined;
-  pass:number = 0;
-  resultDetails:any[] = [];
-  displayResults:boolean = false;
+  object: any = {};
+  // request: Apirequest = new Apirequest();
+  result: any = {};
+  response: string[] = undefined;
+  pass: number = 0;
+  resultDetails: any[] = [];
+  displayResults: boolean = false;
 
-  constructor(private automatedTest:AutomatedTestService,
-      private idbCRUD:CrudService) {
+  constructor(private automatedTest: AutomatedTestService, public request: Apirequest,
+    private idbCRUD: CrudService) {
     this.request.method = 'GET';
     this.request.params = [new Param];
     this.request.headers = [{ name: 'Access-Control-Request-Origin', value: '*' } as any, {}];
     this.request.datas = [{} as any];
-      // this.object.url = 'https://jsonplaceholder.typicode.com/posts';
-    
-      // this.object.url = 'https://sms-system-api.herokuapp.com/add-leave';
-      // this.object.paramNames = ['from','reason','sender_id','till','to_number'];
-      // this.object.paramRegex = ['^[a-zA-Z]+$','^[a-zA-Z]+$','^16BCB0048$','^[a-zA-Z]+$','^9423867235$'];
+    // this.object.url = 'https://jsonplaceholder.typicode.com/posts';
 
-      // this.object.httpHeaders = new HttpHeaders({'Content-Type':'application/json',
-      //   'Access-Control-Allow-Origin':'*'});
-      // this.object.paramNames = ['id','title','completed','created_by'];
-      // this.object.paramOptional = ['id','title','completed','created_by'];
-      // this.object.paramRegex = ['^[0-9]{1-3}$','^[a-zA-Z]+$','^[a-z]+$','^[a-zA-Z0-9]+$']
-      // this.object.data = {title:'Head',completed:true,created_by:'jack1806'};
-      //console.log(automatedTest.test('GET',this.object));
-      // console.log(automatedTest.test('POST',this.object));
-      //this.object.url = `${this.object.url}/1`;
-      //console.log(automatedTest.test('PUT',this.object));
-   }
+    // this.object.url = 'https://sms-system-api.herokuapp.com/add-leave';
+    // this.object.paramNames = ['from','reason','sender_id','till','to_number'];
+    // this.object.paramRegex = ['^[a-zA-Z]+$','^[a-zA-Z]+$','^16BCB0048$','^[a-zA-Z]+$','^9423867235$'];
+
+    // this.object.httpHeaders = new HttpHeaders({'Content-Type':'application/json',
+    //   'Access-Control-Allow-Origin':'*'});
+    // this.object.paramNames = ['id','title','completed','created_by'];
+    // this.object.paramOptional = ['id','title','completed','created_by'];
+    // this.object.paramRegex = ['^[0-9]{1-3}$','^[a-zA-Z]+$','^[a-z]+$','^[a-zA-Z0-9]+$']
+    // this.object.data = {title:'Head',completed:true,created_by:'jack1806'};
+    //console.log(automatedTest.test('GET',this.object));
+    // console.log(automatedTest.test('POST',this.object));
+    //this.object.url = `${this.object.url}/1`;
+    //console.log(automatedTest.test('PUT',this.object));
+  }
 
   ngOnInit() {
   }
@@ -81,7 +81,7 @@ export class AutotestComponent implements OnInit {
       reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
       responseType: 'json',
     };
-    let obj:any = {};
+    let obj: any = {};
     obj[IDBContract._tReqHistoryIndexUserId] = 1;
     obj[IDBContract._tReqHistoryIndexMethod] = this.request.method;
     obj[IDBContract._tReqHistoryIndexURL] = this.request.url;
@@ -96,10 +96,10 @@ export class AutotestComponent implements OnInit {
 
     console.log(this.idbCRUD.addRequestHistory(obj));
     let history = this.idbCRUD.getRequestHistory(1);
-    history.then(res=>{
+    history.then(res => {
       console.log(res);
     });
-    this.response = this.automatedTest.test(this.request,option);
+    this.response = this.automatedTest.test(this.request, option);
     // let x = new Promise<string[]>((res,rej)=>{
     //   res(this.automatedTest.test(this.request,option));
     // });
@@ -123,16 +123,16 @@ export class AutotestComponent implements OnInit {
     // });
   }
 
-  getPassValues(){
+  getPassValues() {
     let ret = 0;
     this.resultDetails = [];
     console.log(this.response.length);
     this.response.forEach(x => {
       let tmp = x.split(':');
-      let obj = {casenum:tmp[0],result:tmp[1],details:tmp[2],status:tmp[3]};
+      let obj = { casenum: tmp[0], result: tmp[1], details: tmp[2], status: tmp[3] };
       this.resultDetails.push(obj);
-      if(x.includes('pass'))
-      ret += 1;
+      if (x.includes('pass'))
+        ret += 1;
     });
     this.pass = ret;
     this.displayResults = true;

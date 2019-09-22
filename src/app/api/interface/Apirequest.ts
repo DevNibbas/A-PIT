@@ -1,5 +1,7 @@
 import { IDBContract } from './../interface/IDBContract';
 import { environment } from 'src/environments/environment';
+import { EnvService } from 'src/app/services/api/env.service';
+import { reject } from 'q';
 
 export class Apirequest {
     user: any;
@@ -18,7 +20,7 @@ export class Apirequest {
     responseType?: string;
     apiAuth;
     response;
-    constructor() {
+    constructor(private env: EnvService) {
         this.params = [{} as any];
         this.datas = [{} as any];
         this.headers = [{ key: 'Access-Control-Request-Origin', value: '*' } as any, {}];
@@ -129,6 +131,29 @@ export class Apirequest {
         req[IDBContract._tReqHistoryIndexAuth] = this.auth;
         req[IDBContract._tReqHistoryIndexAuthType] = this.authtype;
         return req;
+
+    }
+
+
+
+    parseEnv(objtype?: string) {
+        const y: any[] = this.url.match(/\{[a-zA-Z]+.*\}$/);
+        return new Promise((res, rej) => {
+            for (let e = 0; e < y.length; e++) {
+                const key = y[e].replace(/[\{|\}]/g, '');
+                this.env.parseEnv(key).then((val: string) => {
+                    this.url = this.url.replace(y[e], val);
+                });
+                if (e === y.length - 1) {
+                    res(true);
+                }
+            }
+
+
+        });
+
+        // rej(false);
+
 
     }
 

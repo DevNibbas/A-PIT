@@ -1,3 +1,4 @@
+import { Apirequest } from './interface/Apirequest';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
@@ -55,6 +56,7 @@ import { History } from './interface/History';
   ],
   providers: [
     History,
+    Apirequest,
   ]
 })
 export class ApiModule { }
