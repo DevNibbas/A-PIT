@@ -18,8 +18,8 @@
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput type="text" placeholder="Enter request url" [(ngModel)]="request.url"
-                                (input)="tweakUiAfterUrlChanged()" id="url">
+                            <input matInput type="text" placeholder="Enter request url" [ngModel]="request.url | envparse | async" (ngModelChange)="request.url=$event"
+                                (input)="tweakUiAfterUrlChanged();" (mouseout)="request.url=$event.target.value"  id="url">
                             <button mat-button *ngIf="request.url" matSuffix mat-icon-button aria-label="Clear"
                                 (click)="request.url=''">
                                 <mat-icon>close</mat-icon>

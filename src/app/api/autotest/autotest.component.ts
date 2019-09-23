@@ -4,7 +4,7 @@ import { Param } from './../interface/Param';
 import { Apirequest } from './../interface/Apirequest';
 import { AutomatedTestService } from './../../services/test/automated-test.service';
 import { Component, OnInit } from '@angular/core';
-;
+
 
 @Component({
   selector: 'app-autotest',
@@ -18,14 +18,14 @@ export class AutotestComponent implements OnInit {
   // request: Apirequest = new Apirequest();
   result: any = {};
   response: string[] = undefined;
-  pass: number = 0;
+  pass = 0;
   resultDetails: any[] = [];
-  displayResults: boolean = false;
+  displayResults = false;
 
   constructor(private automatedTest: AutomatedTestService, public request: Apirequest,
     private idbCRUD: CrudService) {
     this.request.method = 'GET';
-    this.request.params = [new Param];
+    this.request.params = [{} as any];
     this.request.headers = [{ name: 'Access-Control-Request-Origin', value: '*' } as any, {}];
     this.request.datas = [{} as any];
     // this.object.url = 'https://jsonplaceholder.typicode.com/posts';
@@ -40,10 +40,10 @@ export class AutotestComponent implements OnInit {
     // this.object.paramOptional = ['id','title','completed','created_by'];
     // this.object.paramRegex = ['^[0-9]{1-3}$','^[a-zA-Z]+$','^[a-z]+$','^[a-zA-Z0-9]+$']
     // this.object.data = {title:'Head',completed:true,created_by:'jack1806'};
-    //console.log(automatedTest.test('GET',this.object));
+    // console.log(automatedTest.test('GET',this.object));
     // console.log(automatedTest.test('POST',this.object));
-    //this.object.url = `${this.object.url}/1`;
-    //console.log(automatedTest.test('PUT',this.object));
+    // this.object.url = `${this.object.url}/1`;
+    // console.log(automatedTest.test('PUT',this.object));
   }
 
   ngOnInit() {
@@ -81,7 +81,7 @@ export class AutotestComponent implements OnInit {
       reportProgress: this.request.reportProgress ? this.request.reportProgress : false,
       responseType: 'json',
     };
-    let obj: any = {};
+    const obj: any = {};
     obj[IDBContract._tReqHistoryIndexUserId] = 1;
     obj[IDBContract._tReqHistoryIndexMethod] = this.request.method;
     obj[IDBContract._tReqHistoryIndexURL] = this.request.url;
@@ -95,7 +95,7 @@ export class AutotestComponent implements OnInit {
     // obj[IDBContract._tReqHistoryBearerToken] = 1;
 
     console.log(this.idbCRUD.addRequestHistory(obj));
-    let history = this.idbCRUD.getRequestHistory(1);
+    const history = this.idbCRUD.getRequestHistory(1);
     history.then(res => {
       console.log(res);
     });
@@ -128,11 +128,12 @@ export class AutotestComponent implements OnInit {
     this.resultDetails = [];
     console.log(this.response.length);
     this.response.forEach(x => {
-      let tmp = x.split(':');
-      let obj = { casenum: tmp[0], result: tmp[1], details: tmp[2], status: tmp[3] };
+      const tmp = x.split(':');
+      const obj = { casenum: tmp[0], result: tmp[1], details: tmp[2], status: tmp[3] };
       this.resultDetails.push(obj);
-      if (x.includes('pass'))
+      if (x.includes('pass')) {
         ret += 1;
+      }
     });
     this.pass = ret;
     this.displayResults = true;
