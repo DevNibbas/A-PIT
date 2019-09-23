@@ -19,7 +19,7 @@
                         </mat-form-field>
                         <mat-form-field>
                             <input matInput type="text" placeholder="Enter request url" [ngModel]="request.url | envparse | async" (ngModelChange)="request.url=$event"
-                                (input)="tweakUiAfterUrlChanged();" (mouseout)="request.url=$event.target.value"  id="url">
+                                (input)="tweakUiAfterUrlChanged();" (mouseout)="request.url=$event.target.value"  id="url" (focusout)="request.url=$event.target.value">
                             <button mat-button *ngIf="request.url" matSuffix mat-icon-button aria-label="Clear"
                                 (click)="request.url=''">
                                 <mat-icon>close</mat-icon>
@@ -96,13 +96,13 @@
                                 <div class="col-md nog">
                                     <mat-form-field>
                                         <input matInput type="text" placeholder="Username"
-                                            [ngModel]="request.apiAuth.username | envparse | async" (ngModelChange)="request.apiAuth.username=$event" (mouseout)="request.apiAuth.username=$event.target.value">
+                                            [ngModel]="request.apiAuth.username | envparse | async" (ngModelChange)="request.apiAuth.username=$event" (mouseout)="request.apiAuth.username=$event.target.value" (focusout)="request.apiAuth.username=$event.target.value">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md nog">
                                     <mat-form-field>
                                         <input matInput type="text" placeholder="Password"
-                                            [ngModel]="request.apiAuth.password | envparse | async" (ngModelChange)="request.apiAuth.password=$event" (mouseout)="request.apiAuth.password=$event.target.value">
+                                            [ngModel]="request.apiAuth.password | envparse | async" (ngModelChange)="request.apiAuth.password=$event" (mouseout)="request.apiAuth.password=$event.target.value" (focusout)="request.apiAuth.password=$event.target.value">
                                     </mat-form-field>
                                 </div>
 
@@ -113,7 +113,7 @@
                                     <mat-form-field>
 
                                         <input matInput type="text" placeholder="Enter Bearer Token"
-                                            [ngModel]="request.apiAuth.bearer | envparse | async" (ngModelChange)="request.apiAuth.bearer=$event" (mouseout)="request.apiAuth.bearer=$event.target.value">
+                                            [ngModel]="request.apiAuth.bearer | envparse | async" (ngModelChange)="request.apiAuth.bearer=$event" (mouseout)="request.apiAuth.bearer=$event.target.value" (focusout)="request.apiAuth.bearer=$event.target.value">
                                     </mat-form-field>
                                 </div>
 
