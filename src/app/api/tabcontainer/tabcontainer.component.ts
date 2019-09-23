@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { EnvparsePipe } from '../environment/envparse.pipe';
+import { EnvService } from 'src/app/services/api/env.service';
 
 @Component({
   selector: 'tabcontainer',
@@ -10,7 +12,7 @@ export class TabcontainerComponent implements OnInit {
 
   @Input('option') option: any[];
   @Output() requestUpdated = new EventEmitter();
-  constructor() { }
+  constructor(private env: EnvService) { }
 
   ngOnInit() {
   }
@@ -34,7 +36,17 @@ export class TabcontainerComponent implements OnInit {
     }
   }
 
+  parsedInput(i, t, e) {
+    const envparser = new EnvparsePipe(this.env);
+    envparser.transform(e.target.innerText).then(val => {
+      this.option[i][t] = val;
+    });
+
+
+  }
+
   triggermagic() {
+
     this.requestUpdated.emit(this.option);
 
   }
