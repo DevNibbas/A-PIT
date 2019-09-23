@@ -135,26 +135,4 @@ export class Apirequest {
     }
 
 
-
-    parseEnv(objtype?: string) {
-        const y: any[] = this.url.match(/\{[a-zA-Z]+.*\}$/);
-        return new Promise((res, rej) => {
-            for (let e = 0; e < y.length; e++) {
-                const key = y[e].replace(/[\{|\}]/g, '');
-                this.env.parseEnv(key).then((val: string) => {
-                    this.url = this.url.replace(y[e], val);
-                });
-                if (e === y.length - 1) {
-                    res(true);
-                }
-            }
-
-
-        });
-
-        // rej(false);
-
-
-    }
-
 }
