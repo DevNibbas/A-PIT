@@ -76,7 +76,7 @@ export class EnvService {
         result => {
           const val: any = result.find(res => res.name === envvar);
           if (val) {
-            resolver(subscription, resolve, val.name);
+            resolver(subscription, resolve, val.value);
           } else {
             resolver(subscription, resolve, undefined);
           }

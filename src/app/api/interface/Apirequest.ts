@@ -1,5 +1,7 @@
 import { IDBContract } from './../interface/IDBContract';
 import { environment } from 'src/environments/environment';
+import { EnvService } from 'src/app/services/api/env.service';
+import { reject } from 'q';
 
 export class Apirequest {
     user: any;
@@ -18,7 +20,7 @@ export class Apirequest {
     responseType?: string;
     apiAuth;
     response;
-    constructor() {
+    constructor(private env: EnvService) {
         this.params = [{} as any];
         this.datas = [{} as any];
         this.headers = [{ key: 'Access-Control-Request-Origin', value: '*' } as any, {}];
@@ -131,5 +133,6 @@ export class Apirequest {
         return req;
 
     }
+
 
 }

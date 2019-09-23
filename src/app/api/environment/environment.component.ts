@@ -68,6 +68,7 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
   }
+
   ngOnDestroy() {
     if (this.subs) {
       this.subs.unsubscribe();

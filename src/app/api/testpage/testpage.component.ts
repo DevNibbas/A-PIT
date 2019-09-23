@@ -6,6 +6,7 @@ import { Apirequest } from './../interface/Apirequest';
 import { AuthService } from 'src/app/auth/auth.service';
 import { environment } from 'src/environments/environment';
 import { History } from '../interface/History';
+import { EnvService } from 'src/app/services/api/env.service';
 
 @Component({
   selector: 'app-testpage',
@@ -15,12 +16,12 @@ import { History } from '../interface/History';
 
 export class TestpageComponent {
 
-  request: Apirequest = new Apirequest();
+  // request: Apirequest = new Apirequest();
   errors: any = [] as any;
   Json = JSON;
 
   constructor(private req: ApirequestService, private ele: ElementRef, private db: CrudService, private auth: AuthService,
-    public history: History) {
+    public history: History, public request: Apirequest) {
   }
 
   tweakUiAfterUrlChanged() {
@@ -30,13 +31,16 @@ export class TestpageComponent {
 
   }
 
+
   sendReq() {
     const ele = document.getElementById('jsonResponse');
     const eleHeader = document.getElementById('jsonResponseHeader');
 
+    // this.request.parseEnv().then(res => {
 
     this.request.getAuthIfEnabled();
     this.request.getOptions();
+
     this.request.CheckForCors();
 
     this.req.unireq(this.request.method, this.request.typeCastedUrl, this.request.options, this.request.getDatas()).subscribe(res => {
@@ -63,7 +67,7 @@ export class TestpageComponent {
       });
 
 
-
+    // });
   }
 
 
