@@ -20,7 +20,7 @@ export class Apirequest {
     responseType?: string;
     apiAuth;
     response;
-    constructor(private env: EnvService) {
+    constructor() {
         this.params = [{} as any];
         this.datas = [{} as any];
         this.headers = [{ key: 'Access-Control-Request-Origin', value: '*' } as any, {}];

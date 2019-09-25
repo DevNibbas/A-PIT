@@ -19,9 +19,9 @@ export class TestpageComponent {
   // request: Apirequest = new Apirequest();
   errors: any = [] as any;
   Json = JSON;
-
+  request = new Apirequest();
   constructor(private req: ApirequestService, private ele: ElementRef, private db: CrudService, private auth: AuthService,
-    public history: History, public request: Apirequest) {
+    public history: History) {
   }
 
   tweakUiAfterUrlChanged() {

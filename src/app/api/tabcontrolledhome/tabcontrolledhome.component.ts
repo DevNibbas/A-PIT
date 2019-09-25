@@ -9,12 +9,14 @@ export class TabcontrolledhomeComponent implements OnInit {
 
   tabs: any[] = ['Default'];
   selected = 0;
+  tabcontent: any[] = [{} as any];
 
   constructor() { }
 
   addTabs() {
     this.tabs.push('New Tab');
-    this.selected = 1;
+    this.tabcontent.push({} as any);
+    this.selected = this.tabs.length - 1;
   }
   ngOnInit() {
   }

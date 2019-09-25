@@ -1,12 +1,7 @@
-<div>
-    <button mat-raised-button class="example-add-tab-button" (click)="addTabs()">
-        Add new tab
-    </button>
-</div>
 
-<mat-tab-group [selectedIndex]="selected" (selectedIndexChange)="selected=0">
-    <mat-tab *ngFor="let tab of tabs; let index = index" label="{{tab}} <button>99</button>">
-        Contents for {{tab}} tab
 
+<mat-tab-group [selectedIndex]="selected" (dblclick)="addTabs()">
+    <mat-tab *ngFor="let tab of tabs; let index = index" label="{{tab}}">
+        <app-testpage ></app-testpage>
     </mat-tab>
 </mat-tab-group>
