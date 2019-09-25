@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { TabcontainerComponent } from './tabcontainer/tabcontainer.component';
 import { History } from './interface/History';
 import { EnvparsePipe } from './environment/envparse.pipe';
+import { TabcontrolledhomeComponent } from './tabcontrolledhome/tabcontrolledhome.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { EnvparsePipe } from './environment/envparse.pipe';
     ApiuiwrapperComponent,
     TabcontainerComponent,
     EnvparsePipe,
+    TabcontrolledhomeComponent,
 
   ],
   imports: [
