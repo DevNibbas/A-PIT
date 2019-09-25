@@ -7,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabcontrolledhomeComponent implements OnInit {
 
+  tabs: any[] = ['Default'];
+  selected = 0;
+
   constructor() { }
 
+  addTabs() {
+    this.tabs.push('New Tab');
+    this.selected = 1;
+  }
   ngOnInit() {
   }
 

@@ -7,13 +7,14 @@ import { ViewcollectionComponent } from './viewcollection/viewcollection.compone
 import { SetupmodeldataComponent } from './setupmodeldata/setupmodeldata.component';
 import { EnvironmentComponent } from './environment/environment.component';
 import { AutotestComponent } from './autotest/autotest.component';
+import { TabcontrolledhomeComponent } from './tabcontrolledhome/tabcontrolledhome.component';
 
 
 const routes: Routes = [
   {
     path: '', component: ApiuiwrapperComponent, children: [
       {
-        path: '', component: TestpageComponent, canActivate: [AuthGuard]
+        path: '', component: TabcontrolledhomeComponent, canActivate: [AuthGuard]
       },
       {
         path: 'test', component: TestpageComponent, canActivate: [AuthGuard]
