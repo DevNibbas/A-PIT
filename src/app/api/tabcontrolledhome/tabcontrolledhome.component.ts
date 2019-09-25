@@ -14,7 +14,7 @@ export class TabcontrolledhomeComponent implements OnInit {
   constructor() { }
 
   addTabs() {
-    this.tabs.push('New Tab');
+    this.tabs.push('New Tab ' + (this.tabs.length));
     this.tabcontent.push({} as any);
     this.selected = this.tabs.length - 1;
   }
