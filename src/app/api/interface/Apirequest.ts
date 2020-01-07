@@ -1,7 +1,11 @@
 import { IDBContract } from './../interface/IDBContract';
 import { environment } from 'src/environments/environment';
 import { EnvService } from 'src/app/services/api/env.service';
-import { reject } from 'q';
+
+import { Injectable } from '@angular/core';
+@Injectable({
+    providedIn: 'root'
+  })
 
 export class Apirequest {
     user: any;

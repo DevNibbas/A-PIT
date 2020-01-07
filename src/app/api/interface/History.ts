@@ -1,5 +1,9 @@
 import { CrudService } from './../../crud.service';
 import { IDBContract } from './IDBContract';
+import { Injectable } from '@angular/core';
+@Injectable({
+    providedIn: 'root'
+  })
 export class History {
     allHistory: any[];
     activatedHistory;
