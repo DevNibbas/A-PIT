@@ -27,7 +27,7 @@
     "cors-anywhere": "^0.4.1",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.15.0",
     "randexp": "^0.5.3",
     "rxjs": "~6.4.0",
